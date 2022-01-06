@@ -1,15 +1,13 @@
 package com.api.users;
 
-import com.api.users.token2FA.GenerateUserTokenWith2FA;
+import com.api.users.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.print.DocFlavor;
-
-public class UserAdminPutCreateUser {
+public class AdminPutCreateUser {
     public String userTokenWith2FA;
     public String user2FaCode;
     final String ROLE_ADMIN = "admin", LOGIN_ADMIN = "admin_API_TEST_";
@@ -40,9 +38,9 @@ public class UserAdminPutCreateUser {
 
     @BeforeMethod
     private void beforeUpdateProfileAdmin() {
-        GenerateUserTokenWith2FA generateUserTokenWith2FA = new GenerateUserTokenWith2FA();
-        this.userTokenWith2FA = generateUserTokenWith2FA.set2faForAccount();
-        this.user2FaCode = generateUserTokenWith2FA.get2FaCode;
+        GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
+        this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
+        this.user2FaCode = generateUserTokenWith2FAForAdmin.admin2FaCode;
     }
 
     @Test
