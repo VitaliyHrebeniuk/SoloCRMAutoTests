@@ -15,12 +15,13 @@ public class GenerateUserTokenWith2FaForChief {
     public String chiefTokenWith2FA;
     public String chief2FaCode;
     public RequestSpecification request = RestAssured.given();
+    final String URL = "https://test-api.solo-crm.com/";
 
     public String setUserTokenWithout2FA(){
         Response response = request
                 .param("login", LOGIN_TRUE)
                 .param("password", PASSWORD_TRUE)
-                .get("https://beta-api.solo-crm.com/profile/login");
+                .get(URL+"profile/login");
         this.chiefTokenWithout2FA = response.path("data.token").toString();
         return chiefTokenWithout2FA;
     }
@@ -29,7 +30,7 @@ public class GenerateUserTokenWith2FaForChief {
         String setUserTokenWithout2FA = setUserTokenWithout2FA();
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
-                .get("https://beta-api.solo-crm.com/security/generate/code/qr");
+                .get(URL+"security/generate/code/qr");
         this.chief2FACode = response.path("data.security_code").toString();
         return chief2FACode;
     }
@@ -58,7 +59,7 @@ public class GenerateUserTokenWith2FaForChief {
         this.chief2FaCode = chief2FaCode();
         Response response = request
                 .headers("token",setUserTokenWithout2FA())
-                .post("https://beta-api.solo-crm.com/security/verify/" + chief2FaCode);
+                .post(URL+"security/verify/" + chief2FaCode);
         this.chiefTokenWith2FA = response.path("data.token").toString();
         return chiefTokenWith2FA;
     }
