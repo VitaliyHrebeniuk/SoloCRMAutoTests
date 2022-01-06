@@ -12,7 +12,7 @@ public class FinControlGetUsersList {
     public String finControlTokenWith2FA;
     public String finControl2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://beta-api.solo-crm.com";
+    final String URL = "https://test-api.solo-crm.com/";
 
     @BeforeMethod
     private void beforeGetProfile() {
@@ -25,7 +25,7 @@ public class FinControlGetUsersList {
     private void getUserProfile(){
         request
                 .headers("token", finControlTokenWith2FA)
-                .get(URL +"/users")
+                .get(URL +"users")
                 .then()
                 .assertThat()
                 .statusCode(200);

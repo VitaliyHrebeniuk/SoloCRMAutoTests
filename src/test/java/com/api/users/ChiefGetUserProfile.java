@@ -10,6 +10,7 @@ public class ChiefGetUserProfile {
     public String chiefTokenWith2FA;
     public String chief2FaCode;
     RequestSpecification request = RestAssured.given();
+    final String URL = "https://test-api.solo-crm.com";
 
     @BeforeMethod
     private void beforeGetProfile() {
@@ -22,7 +23,7 @@ public class ChiefGetUserProfile {
     private void getUserProfile(){
         request
                 .headers("token", chiefTokenWith2FA)
-                .get("https://beta-api.solo-crm.com/users/1")
+                .get(URL+"users/1")
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -32,7 +33,7 @@ public class ChiefGetUserProfile {
     public void afterGetProfile(){
         request
                 .headers("token", chiefTokenWith2FA)
-                .post("https://beta-api.solo-crm.com/security/status/disable/" + chief2FaCode)
+                .post(URL+"security/status/disable/" + chief2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

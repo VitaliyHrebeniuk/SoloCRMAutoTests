@@ -11,6 +11,7 @@ public class TeamLeadGetUserProfile {
     public String teamLeadTokenWith2FA;
     public String teamLead2FaCode;
     RequestSpecification request = RestAssured.given();
+    final String URL = "https://test-api.solo-crm.com/";
 
     @BeforeMethod
     private void beforeGetProfile() {
@@ -23,7 +24,7 @@ public class TeamLeadGetUserProfile {
     private void getUserProfile(){
         request
                 .headers("token", teamLeadTokenWith2FA)
-                .get("https://beta-api.solo-crm.com/users/887")
+                .get(URL+"users/887")
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -33,7 +34,7 @@ public class TeamLeadGetUserProfile {
     public void afterGetProfile(){
         request
                 .headers("token", teamLeadTokenWith2FA)
-                .post("https://beta-api.solo-crm.com/security/status/disable/" + teamLead2FaCode)
+                .post(URL+"security/status/disable/" + teamLead2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

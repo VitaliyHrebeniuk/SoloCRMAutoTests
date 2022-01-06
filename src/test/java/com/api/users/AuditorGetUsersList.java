@@ -12,7 +12,7 @@ public class AuditorGetUsersList {
     public String auditorTokenWith2FA;
     public String auditor2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://beta-api.solo-crm.com";
+    final String URL = "https://test-api.solo-crm.com";
 
     @BeforeMethod
     private void beforeGetProfile() {

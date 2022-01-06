@@ -12,7 +12,7 @@ public class TeamLeadPostUpdateAnotherProfile {
     public String teamLeadTokenWith2FA;
     public String teamLead2FaCode;
     RequestSpecification request = RestAssured.given();
-    private final String URL = "https://beta-api.solo-crm.com/";
+    private final String URL = "https://test-api.solo-crm.com/";
 
     @BeforeClass()
     private void beforeUpdateUserProfile(){
@@ -31,7 +31,7 @@ public class TeamLeadPostUpdateAnotherProfile {
                 .param("password",teamLeadProfilePojo.getPassword())
                 .param("status", teamLeadProfilePojo.getStatus())
                 .param("bid_id", teamLeadProfilePojo.getBid())
-                .post("https://beta-api.solo-crm.com/users/" + teamLeadProfilePojo.getUser_id())
+                .post(URL+"users/" + teamLeadProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -47,7 +47,7 @@ public class TeamLeadPostUpdateAnotherProfile {
                 .param("status", managerProfilePojo.getStatus())
                 .param("bid_id", managerProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post("https://beta-api.solo-crm.com/users/" + managerProfilePojo.getUser_id())
+                .post(URL + "users/" +  managerProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -64,7 +64,7 @@ public class TeamLeadPostUpdateAnotherProfile {
                 .param("status", teamLeadProfilePojo.getStatus())
                 .param("bid_id", teamLeadProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post("https://beta-api.solo-crm.com/users/" + teamLeadProfilePojo.getUser_id())
+                .post(URL + "users/" +   teamLeadProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -80,7 +80,7 @@ public class TeamLeadPostUpdateAnotherProfile {
                 .param("status", managerProfilePojo.getStatus())
                 .param("bid_id", managerProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post("https://beta-api.solo-crm.com/users/" + managerProfilePojo.getUser_id())
+                .post(URL + "users/" + managerProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -90,7 +90,7 @@ public class TeamLeadPostUpdateAnotherProfile {
     public void afterUpdateUserProfile(){
         request
                 .headers("token", teamLeadTokenWith2FA)
-                .post("https://beta-api.solo-crm.com/security/status/disable/" + teamLead2FaCode)
+                .post(URL + "security/status/disable/" + teamLead2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
