@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.given;
 
 
 public class AdminGetLogin {
-    private final static String URL = "https://beta-api.solo-crm.com/";
+    final String URL = "https://test-api.solo-crm.com/";
     RequestSpecification request = given();
     Gson g = new GsonBuilder().setPrettyPrinting().create();
 

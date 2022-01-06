@@ -28,6 +28,7 @@ public class AdminPutCreateUser {
     final String NAME = "API_TEST_USER";
     final String TELEGRAM = "API_TEST";
     final String PASSWORD = "132465798";
+    final String URL = "https://test-api.solo-crm.com/";
 
     RequestSpecification request = RestAssured.given();
 
@@ -54,7 +55,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_ADMIN+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -70,7 +71,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_AUDITOR+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -86,7 +87,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_CONTROL+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -102,7 +103,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_CHIEF+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -118,7 +119,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_BUYING_CONTROL+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -134,7 +135,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_FIN_CONTROL+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -150,7 +151,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_CM+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -166,7 +167,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_FS+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -182,7 +183,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_HEAD_CONTROL+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -198,7 +199,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_MANAGER+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -214,7 +215,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_SEARCHER+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -230,7 +231,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_SPAMER+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -246,7 +247,7 @@ public class AdminPutCreateUser {
                 .param("email", LOGIN_TEAMLEAD+generateRandomNumber()+EMAIL_PREFIX)
                 .param("telegram", TELEGRAM)
                 .param("password", PASSWORD)
-                .put("https://beta-api.solo-crm.com/users")
+                .put(URL+"users")
                 .then()
                 .assertThat()
                 .statusCode(201);
@@ -255,7 +256,7 @@ public class AdminPutCreateUser {
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)
-                .post("https://beta-api.solo-crm.com/security/status/disable/" + user2FaCode)
+                .post(URL+"security/status/disable/" + user2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

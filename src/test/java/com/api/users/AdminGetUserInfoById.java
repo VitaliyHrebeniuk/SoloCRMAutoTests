@@ -1,17 +1,18 @@
 package com.api.users;
 
 import com.api.users.token2FA.GenerateUserTokenWith2FaForAdmin;
+import com.api.users.token2FA.GenerateUserTokenWith2FaForChief;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class AdminGetUsersList {
+public class AdminGetUserInfoById {
     public String adminTokenWith2FA;
     public String admin2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    final String URL = "https://beta-api.solo-crm.com";
 
     @BeforeMethod
     private void beforeGetProfile() {
@@ -24,7 +25,8 @@ public class AdminGetUsersList {
     private void getUserProfile(){
         request
                 .headers("token", adminTokenWith2FA)
-                .get(URL +"/users")
+                .param("userId",884)
+                .get(URL +"/users/userInfoById")
                 .then()
                 .assertThat()
                 .statusCode(200);

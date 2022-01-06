@@ -15,13 +15,14 @@ public class GenerateUserTokenWith2FaForAdmin {
     public String adminTokenWith2FA;
     public String admin2FaCode;
     public RequestSpecification request = RestAssured.given();
+    final String URL = "https://test-api.solo-crm.com/";
 
 
     public String setUserTokenWithout2FA(){
         Response response = request
                 .param("login", LOGIN_TRUE)
                 .param("password", PASSWORD_TRUE)
-                .get("https://beta-api.solo-crm.com/profile/login");
+                .get(URL+"profile/login");
         adminTokenWithout2FA = response.path("data.token").toString();
         return adminTokenWithout2FA;
     }
@@ -30,7 +31,7 @@ public class GenerateUserTokenWith2FaForAdmin {
         String setUserTokenWithout2FA = setUserTokenWithout2FA();
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
-                .get("https://beta-api.solo-crm.com/security/generate/code/qr");
+                .get(URL+"security/generate/code/qr");
         admin2FACode = response.path("data.security_code").toString();
         return admin2FACode;
     }
@@ -59,7 +60,7 @@ public class GenerateUserTokenWith2FaForAdmin {
         this.admin2FaCode = get2FaCode();
         Response response = request
                 .headers("token",setUserTokenWithout2FA())
-                .post("https://beta-api.solo-crm.com/security/verify/" + admin2FaCode);
+                .post(URL+"security/verify/" + admin2FaCode);
         this.adminTokenWith2FA = response.path("data.token").toString();
         return adminTokenWith2FA;
     }

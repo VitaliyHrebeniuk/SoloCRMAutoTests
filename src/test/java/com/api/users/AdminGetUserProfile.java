@@ -11,6 +11,7 @@ public class AdminGetUserProfile {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
+    final String URL = "https://test-api.solo-crm.com/";
 
     @BeforeMethod
     private void beforeUpdateProfileAdmin() {
@@ -23,7 +24,7 @@ public class AdminGetUserProfile {
     private void getUserProfile(){
         request
                 .headers("token", userTokenWith2FA)
-                .get("https://beta-api.solo-crm.com/users/1")
+                .get(URL+"users/1")
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -33,7 +34,7 @@ public class AdminGetUserProfile {
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)
-                .post("https://beta-api.solo-crm.com/security/status/disable/" + user2FaCode)
+                .post(URL+"security/status/disable/" + user2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

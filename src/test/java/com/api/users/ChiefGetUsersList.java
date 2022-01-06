@@ -11,7 +11,7 @@ public class ChiefGetUsersList {
     public String chiefTokenWith2FA;
     public String chief2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://beta-api.solo-crm.com";
+    final String URL = "https://test-api.solo-crm.com";
 
     @BeforeMethod
     private void beforeGetProfile() {

@@ -15,12 +15,13 @@ public class GenerateUserTokenWith2FaForTeamLead {
     public String teamLeadTokenWith2FA;
     public String teamLead2FaCode;
     public RequestSpecification request = RestAssured.given();
+    final String URL = "https://test-api.solo-crm.com/";
 
     public String setUserTokenWithout2FA(){
         Response response = request
                 .param("login", LOGIN_TRUE)
                 .param("password", PASSWORD_TRUE)
-                .get("https://beta-api.solo-crm.com/profile/login");
+                .get(URL+"profile/login");
         this.teamLeadTokenWithout2FA = response.path("data.token").toString();
         return teamLeadTokenWithout2FA;
     }
@@ -29,7 +30,7 @@ public class GenerateUserTokenWith2FaForTeamLead {
         String setUserTokenWithout2FA = setUserTokenWithout2FA();
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
-                .get("https://beta-api.solo-crm.com/security/generate/code/qr");
+                .get(URL+"security/generate/code/qr");
         this.teamLead2FACode = response.path("data.security_code").toString();
         return teamLead2FACode;
     }
@@ -58,7 +59,7 @@ public class GenerateUserTokenWith2FaForTeamLead {
         this.teamLead2FaCode = teamLead2FaCode();
         Response response = request
                 .headers("token",setUserTokenWithout2FA())
-                .post("https://beta-api.solo-crm.com/security/verify/" + teamLead2FaCode);
+                .post(URL+"security/verify/" + teamLead2FaCode);
         this.teamLeadTokenWith2FA = response.path("data.token").toString();
         return teamLeadTokenWith2FA;
     }

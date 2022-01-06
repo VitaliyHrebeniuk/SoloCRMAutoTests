@@ -20,6 +20,7 @@ public class AdminPostUpdateSelfProfile {
     final String EMAIL = "admin_qa" + generateRandomNumber() + "@gmail.com";
     final String STATUS = "active";
     final Integer BID = 84;
+    final String URL = "https://test-api.solo-crm.com/";
 
     private String generateRandomNumber() {
         double a = 20 + Math.random() * 4000;
@@ -44,7 +45,7 @@ public class AdminPostUpdateSelfProfile {
                 .param("password",PASSWORD)
                 .param("status", STATUS)
                 .param("bid_id", BID)
-                .post("https://beta-api.solo-crm.com/profile")
+                .post(URL + "profile")
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -54,7 +55,7 @@ public class AdminPostUpdateSelfProfile {
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)
-                .post("https://beta-api.solo-crm.com/security/status/disable/" + user2FaCode)
+                .post(URL + "security/status/disable/" + user2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
