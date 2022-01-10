@@ -1,7 +1,6 @@
 package com.api.users;
 
-import com.api.users.token2FA.GenerateUserTokenWith2FaForAdmin;
-import com.api.users.token2FA.GenerateUserTokenWith2FaForChief;
+import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterMethod;

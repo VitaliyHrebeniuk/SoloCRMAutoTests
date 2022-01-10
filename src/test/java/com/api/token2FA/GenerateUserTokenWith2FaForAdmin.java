@@ -1,4 +1,4 @@
-package com.api.users.token2FA;
+package com.api.token2FA;
 
 import de.taimos.totp.TOTP;
 import io.restassured.RestAssured;
@@ -7,13 +7,13 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
-public class GenerateUserTokenWith2FaForFinControl {
-    final String LOGIN_TRUE = "fin_control_TEST_API";
+public class GenerateUserTokenWith2FaForAdmin {
+    final String LOGIN_TRUE = "admin_TEST_API";
     final String PASSWORD_TRUE = "132465798";
-    public String finControlTokenWithout2FA;
-    public String finControl2FACode;
-    public String finControlWith2FA;
-    public String finControl2FaCode;
+    public String adminTokenWithout2FA;
+    public String admin2FACode;
+    public String adminTokenWith2FA;
+    public String admin2FaCode;
     public RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
@@ -22,8 +22,8 @@ public class GenerateUserTokenWith2FaForFinControl {
                 .param("login", LOGIN_TRUE)
                 .param("password", PASSWORD_TRUE)
                 .get(URL+"profile/login");
-        this.finControlTokenWithout2FA = response.path("data.token").toString();
-        return finControlTokenWithout2FA;
+        adminTokenWithout2FA = response.path("data.token").toString();
+        return adminTokenWithout2FA;
     }
 
     public String generateUser2FACode(){
@@ -31,8 +31,8 @@ public class GenerateUserTokenWith2FaForFinControl {
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
                 .get(URL+"security/generate/code/qr");
-        this.finControl2FACode = response.path("data.security_code").toString();
-        return finControl2FACode;
+        admin2FACode = response.path("data.security_code").toString();
+        return admin2FACode;
     }
 
     public String getTOTPCode(String secretKey) {
@@ -42,7 +42,7 @@ public class GenerateUserTokenWith2FaForFinControl {
         return TOTP.getOTP(hexKey);
     }
 
-    public String chief2FaCode() {
+    public String get2FaCode() {
         String secretKey = generateUser2FACode();
         String lastCode = null;
         int i = 1;
@@ -56,11 +56,12 @@ public class GenerateUserTokenWith2FaForFinControl {
     }
 
     public String set2faForAccount(){
-        this.finControl2FaCode = chief2FaCode();
+        this.admin2FaCode = get2FaCode();
         Response response = request
                 .headers("token",setUserTokenWithout2FA())
-                .post(URL+"security/verify/" + finControl2FaCode);
-        this.finControlWith2FA = response.path("data.token").toString();
-        return finControlWith2FA;
+                .post(URL+"security/verify/" + admin2FaCode);
+        this.adminTokenWith2FA = response.path("data.token").toString();
+        return adminTokenWith2FA;
     }
+
 }
