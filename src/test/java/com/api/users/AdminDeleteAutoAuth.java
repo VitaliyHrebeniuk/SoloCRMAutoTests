@@ -7,7 +7,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class AdminGetProfile {
+public class AdminDeleteAutoAuth {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
@@ -21,10 +21,10 @@ public class AdminGetProfile {
     }
 
     @Test
-    private void getUserProfile(){
+    private void getAdminLogout(){
         request
                 .headers("token", userTokenWith2FA)
-                .get(URL+"profile/me")
+                .delete(URL + "users/auto_auth/manager_TEST_API")
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -34,10 +34,9 @@ public class AdminGetProfile {
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)
-                .post(URL+"security/status/disable/" + user2FaCode)
+                .post(URL + "security/status/disable/" + user2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
     }
-
 }

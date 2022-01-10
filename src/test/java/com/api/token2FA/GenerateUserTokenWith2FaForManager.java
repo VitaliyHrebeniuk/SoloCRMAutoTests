@@ -1,4 +1,4 @@
-package com.api.users.token2FA;
+package com.api.token2FA;
 
 import de.taimos.totp.TOTP;
 import io.restassured.RestAssured;
@@ -7,13 +7,13 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
-public class GenerateUserTokenWith2FaForChief {
-    final String LOGIN_TRUE = "chief_TEST_API";
+public class GenerateUserTokenWith2FaForManager {
+    final String LOGIN_TRUE = "manager_TEST_API";
     final String PASSWORD_TRUE = "132465798";
-    public String chiefTokenWithout2FA;
-    public String chief2FACode;
-    public String chiefTokenWith2FA;
-    public String chief2FaCode;
+    public String managerTokenWithout2FA;
+    public String manager2FACode;
+    public String managerTokenWith2FA;
+    public String manager2FaCode;
     public RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
@@ -22,17 +22,17 @@ public class GenerateUserTokenWith2FaForChief {
                 .param("login", LOGIN_TRUE)
                 .param("password", PASSWORD_TRUE)
                 .get(URL+"profile/login");
-        this.chiefTokenWithout2FA = response.path("data.token").toString();
-        return chiefTokenWithout2FA;
+        this.managerTokenWithout2FA = response.path("data.token").toString();
+        return managerTokenWithout2FA;
     }
 
     public String generateUser2FACode(){
         String setUserTokenWithout2FA = setUserTokenWithout2FA();
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
-                .get(URL+"security/generate/code/qr");
-        this.chief2FACode = response.path("data.security_code").toString();
-        return chief2FACode;
+                .get(URL + "security/generate/code/qr");
+        this.manager2FACode = response.path("data.security_code").toString();
+        return manager2FACode;
     }
 
     public String getTOTPCode(String secretKey) {
@@ -42,7 +42,7 @@ public class GenerateUserTokenWith2FaForChief {
         return TOTP.getOTP(hexKey);
     }
 
-    public String chief2FaCode() {
+    public String teamLead2FaCode() {
         String secretKey = generateUser2FACode();
         String lastCode = null;
         int i = 1;
@@ -56,11 +56,11 @@ public class GenerateUserTokenWith2FaForChief {
     }
 
     public String set2faForAccount(){
-        this.chief2FaCode = chief2FaCode();
+        this.manager2FaCode = teamLead2FaCode();
         Response response = request
                 .headers("token",setUserTokenWithout2FA())
-                .post(URL+"security/verify/" + chief2FaCode);
-        this.chiefTokenWith2FA = response.path("data.token").toString();
-        return chiefTokenWith2FA;
+                .post(URL + "security/verify/" + manager2FaCode);
+        this.managerTokenWith2FA = response.path("data.token").toString();
+        return managerTokenWith2FA;
     }
 }

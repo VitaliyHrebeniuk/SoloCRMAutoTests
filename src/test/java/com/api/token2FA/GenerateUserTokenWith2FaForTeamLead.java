@@ -1,4 +1,4 @@
-package com.api.users.token2FA;
+package com.api.token2FA;
 
 import de.taimos.totp.TOTP;
 import io.restassured.RestAssured;

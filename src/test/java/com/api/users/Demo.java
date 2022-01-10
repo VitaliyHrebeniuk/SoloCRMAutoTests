@@ -1,6 +1,6 @@
 package com.api.users;
 
-import com.api.users.token2FA.GenerateUserTokenWith2FaForAdmin;
+import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.restassured.RestAssured;

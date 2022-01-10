@@ -1,4 +1,4 @@
-package com.api.users.token2FA;
+package com.api.token2FA;
 
 import de.taimos.totp.TOTP;
 import io.restassured.RestAssured;
@@ -7,13 +7,13 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
-public class GenerateUserTokenWith2FaForAuditor {
-    final String LOGIN_TRUE = "auditor_TEST_API";
+public class GenerateUserTokenWith2FaForChief {
+    final String LOGIN_TRUE = "chief_TEST_API";
     final String PASSWORD_TRUE = "132465798";
-    public String auditorTokenWithout2FA;
-    public String auditor2FACode;
-    public String auditorWith2FA;
-    public String auditor2FaCode;
+    public String chiefTokenWithout2FA;
+    public String chief2FACode;
+    public String chiefTokenWith2FA;
+    public String chief2FaCode;
     public RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
@@ -22,8 +22,8 @@ public class GenerateUserTokenWith2FaForAuditor {
                 .param("login", LOGIN_TRUE)
                 .param("password", PASSWORD_TRUE)
                 .get(URL+"profile/login");
-        this.auditorTokenWithout2FA = response.path("data.token").toString();
-        return auditorTokenWithout2FA;
+        this.chiefTokenWithout2FA = response.path("data.token").toString();
+        return chiefTokenWithout2FA;
     }
 
     public String generateUser2FACode(){
@@ -31,8 +31,8 @@ public class GenerateUserTokenWith2FaForAuditor {
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
                 .get(URL+"security/generate/code/qr");
-        this.auditor2FACode = response.path("data.security_code").toString();
-        return auditor2FACode;
+        this.chief2FACode = response.path("data.security_code").toString();
+        return chief2FACode;
     }
 
     public String getTOTPCode(String secretKey) {
@@ -56,11 +56,11 @@ public class GenerateUserTokenWith2FaForAuditor {
     }
 
     public String set2faForAccount(){
-        this.auditor2FaCode = chief2FaCode();
+        this.chief2FaCode = chief2FaCode();
         Response response = request
                 .headers("token",setUserTokenWithout2FA())
-                .post(URL+"security/verify/" + auditor2FaCode);
-        this.auditorWith2FA = response.path("data.token").toString();
-        return auditorWith2FA;
+                .post(URL+"security/verify/" + chief2FaCode);
+        this.chiefTokenWith2FA = response.path("data.token").toString();
+        return chiefTokenWith2FA;
     }
 }
