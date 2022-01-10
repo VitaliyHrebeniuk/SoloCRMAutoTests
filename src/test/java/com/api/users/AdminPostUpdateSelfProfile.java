@@ -3,9 +3,7 @@ package com.api.users;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static javafx.scene.AccessibleAttribute.ROLE;
 
@@ -14,7 +12,7 @@ public class AdminPostUpdateSelfProfile {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String LOGIN = "admin_TEST" + generateRandomNumber();
+    final String LOGIN = "admin_TEST_API" + generateRandomNumber();
     final String PASSWORD = "132465798";
     final String NAME = "admin_qa";
     final String EMAIL = "admin_qa" + generateRandomNumber() + "@gmail.com";
@@ -27,7 +25,7 @@ public class AdminPostUpdateSelfProfile {
         return String.valueOf(a);
     }
 
-    @BeforeMethod
+    @BeforeClass
     private void beforeUpdateProfileAdmin(){
         GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
         this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
@@ -38,20 +36,17 @@ public class AdminPostUpdateSelfProfile {
     public void postUpdateProfileAdmin(){
         request
                 .headers("token", userTokenWith2FA)
-                .param("login", LOGIN)
                 .param("name", NAME)
-                .param("role", ROLE)
-                .param("email", EMAIL)
                 .param("password",PASSWORD)
-                .param("status", STATUS)
-                .param("bid_id", BID)
+                .param("telegram", "null")
+                .param("telegram_notification",0)
                 .post(URL + "profile")
                 .then()
                 .assertThat()
                 .statusCode(200);
     }
 
-    @AfterMethod
+    @AfterClass
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)

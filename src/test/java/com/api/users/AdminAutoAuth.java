@@ -3,24 +3,22 @@ package com.api.users;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-public class AdminPostAutoAuth {
+public class AdminAutoAuth {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
-    @BeforeMethod
+    @BeforeClass
     private void beforeUpdateProfileAdmin() {
         GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
         this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
         this.user2FaCode = generateUserTokenWith2FAForAdmin.admin2FaCode;
     }
 
-    @Test
+    @Test(priority = 1)
     private void getAdminLogout(){
         request
                 .headers("token", userTokenWith2FA)
@@ -30,7 +28,17 @@ public class AdminPostAutoAuth {
                 .statusCode(200);
     }
 
-    @AfterMethod
+    @Test(priority = 2)
+    private void deleteAdminUsersAutiAuth(){
+        request
+                .headers("token", userTokenWith2FA)
+                .delete(URL + "users/auto_auth/manager_TEST_API")
+                .then()
+                .assertThat()
+                .statusCode(200);
+    }
+
+    @AfterClass
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)

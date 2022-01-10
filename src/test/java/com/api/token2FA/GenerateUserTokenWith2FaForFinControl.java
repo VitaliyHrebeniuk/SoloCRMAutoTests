@@ -8,7 +8,7 @@ import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
 public class GenerateUserTokenWith2FaForFinControl {
-    final String LOGIN_TRUE = "fin_control_TEST_API";
+    final String LOGIN_TRUE = "finControl_TEST_API";
     final String PASSWORD_TRUE = "132465798";
     public String finControlTokenWithout2FA;
     public String finControl2FACode;

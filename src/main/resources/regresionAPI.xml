@@ -1,0 +1,7 @@
+<suite name="Suite1" verbose="1" >
+    <test name="Regression API"   >
+        <packages>
+            <package name="com.api.users" />
+        </packages>
+    </test>
+</suite>

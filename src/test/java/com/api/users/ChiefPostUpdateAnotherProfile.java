@@ -12,7 +12,7 @@ public class ChiefPostUpdateAnotherProfile {
     public String chiefTokenWith2FA;
     public String chief2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com";
+    final String URL = "https://test-api.solo-crm.com/";
 
     @BeforeClass()
     private void beforeUpdateUserProfile(){
