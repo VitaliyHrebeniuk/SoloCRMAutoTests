@@ -4,9 +4,7 @@ import com.api.users.pojo.ProfileUser.*;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class AdminPostUpdateAnotherProfile {
     public String userTokenWith2FA;
@@ -32,7 +30,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", adminProfilePojo.getStatus())
                 .param("bid_id", adminProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + adminProfilePojo.getUser_id())
+                .post(URL  + "users/" + adminProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -49,7 +47,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("password",auditorProfilePojo.getPassword())
                 .param("status", auditorProfilePojo.getStatus())
                 .param("bid_id", auditorProfilePojo.getBid())
-                .post(URL  + "/users/" + auditorProfilePojo.getUser_id())
+                .post(URL  + "users/" + auditorProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -64,7 +62,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("password",buyingControlProfilePojo.getPassword())
                 .param("status", buyingControlProfilePojo.getStatus())
                 .param("bid_id", buyingControlProfilePojo.getBid())
-                .post(URL  + "/users/" + buyingControlProfilePojo.getUser_id())
+                .post(URL  + "users/" + buyingControlProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -80,7 +78,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", chiefProfilePojo.getStatus())
                 .param("bid_id", chiefProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + chiefProfilePojo.getUser_id())
+                .post(URL  + "users/" + chiefProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -97,7 +95,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", cmProfilePojo.getStatus())
                 .param("bid_id", cmProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + cmProfilePojo.getUser_id())
+                .post(URL  + "users/" + cmProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -113,7 +111,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", controlProfilePojo.getStatus())
                 .param("bid_id", controlProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + controlProfilePojo.getUser_id())
+                .post(URL  + "users/" + controlProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -129,7 +127,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", finControlProfilePojo.getStatus())
                 .param("bid_id", finControlProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + finControlProfilePojo.getUser_id())
+                .post(URL  + "users/" + finControlProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -145,7 +143,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", fsProfilePojo.getStatus())
                 .param("bid_id", fsProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + fsProfilePojo.getUser_id())
+                .post(URL  + "users/" + fsProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -162,7 +160,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", headControlProfilePojo.getStatus())
                 .param("bid_id", headControlProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + headControlProfilePojo.getUser_id())
+                .post(URL  + "users/" + headControlProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -178,7 +176,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", searcherProfilePojo.getStatus())
                 .param("bid_id", searcherProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + searcherProfilePojo.getUser_id())
+                .post(URL  + "users/" + searcherProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -194,7 +192,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", spamerProfilePojo.getStatus())
                 .param("bid_id", spamerProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + spamerProfilePojo.getUser_id())
+                .post(URL  + "users/" + spamerProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -209,7 +207,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("password",teamLeadProfilePojo.getPassword())
                 .param("status", teamLeadProfilePojo.getStatus())
                 .param("bid_id", teamLeadProfilePojo.getBid())
-                .post(URL  + "/users/" + teamLeadProfilePojo.getUser_id())
+                .post(URL  + "users/" + teamLeadProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -225,7 +223,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", managerProfilePojo.getStatus())
                 .param("bid_id", managerProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + managerProfilePojo.getUser_id())
+                .post(URL  + "users/" + managerProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -240,7 +238,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("password",buyingControlProfilePojo.getPassword())
                 .param("status", buyingControlProfilePojo.getStatus())
                 .param("bid_id", buyingControlProfilePojo.getBid())
-                .post(URL  + "/users/" + buyingControlProfilePojo.getUser_id())
+                .post(URL  + "users/" + buyingControlProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -256,7 +254,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", chiefProfilePojo.getStatus())
                 .param("bid_id", chiefProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + chiefProfilePojo.getUser_id())
+                .post(URL  + "users/" + chiefProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -272,7 +270,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", cmProfilePojo.getStatus())
                 .param("bid_id", cmProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + cmProfilePojo.getUser_id())
+                .post(URL  + "users/" + cmProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -288,7 +286,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", controlProfilePojo.getStatus())
                 .param("bid_id", controlProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + controlProfilePojo.getUser_id())
+                .post(URL  + "users/" + controlProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -304,7 +302,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", finControlProfilePojo.getStatus())
                 .param("bid_id", finControlProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + finControlProfilePojo.getUser_id())
+                .post(URL  + "users/" + finControlProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -320,7 +318,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", fsProfilePojo.getStatus())
                 .param("bid_id", fsProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + fsProfilePojo.getUser_id())
+                .post(URL  + "users/" + fsProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -336,7 +334,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", headControlProfilePojo.getStatus())
                 .param("bid_id", headControlProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + headControlProfilePojo.getUser_id())
+                .post(URL  + "users/" + headControlProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -352,7 +350,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", searcherProfilePojo.getStatus())
                 .param("bid_id", searcherProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + searcherProfilePojo.getUser_id())
+                .post(URL  + "users/" + searcherProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -368,7 +366,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("password",spamerProfilePojo.getPassword())
                 .param("status", spamerProfilePojo.getStatus())
                 .param("bid_id", spamerProfilePojo.getBid())
-                .post(URL  + "/users/" + spamerProfilePojo.getUser_id())
+                .post(URL  + "users/" + spamerProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -385,7 +383,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", teamLeadProfilePojo.getStatus())
                 .param("bid_id", teamLeadProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + teamLeadProfilePojo.getUser_id())
+                .post(URL  + "users/" + teamLeadProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -401,7 +399,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", managerProfilePojo.getStatus())
                 .param("bid_id", managerProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + managerProfilePojo.getUser_id())
+                .post(URL  + "users/" + managerProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -418,7 +416,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("password",auditorProfilePojo.getPassword())
                 .param("status", auditorProfilePojo.getStatus())
                 .param("bid_id", auditorProfilePojo.getBid())
-                .post(URL  + "/users/" + auditorProfilePojo.getUser_id())
+                .post(URL  + "users/" + auditorProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -434,7 +432,7 @@ public class AdminPostUpdateAnotherProfile {
                 .param("status", adminProfilePojo.getStatus())
                 .param("bid_id", adminProfilePojo.getBid())
                 .param("telegram_notification", 0)
-                .post(URL  + "/users/" + adminProfilePojo.getUser_id())
+                .post(URL  + "users/" + adminProfilePojo.getUser_id())
                 .then()
                 .assertThat()
                 .statusCode(200);

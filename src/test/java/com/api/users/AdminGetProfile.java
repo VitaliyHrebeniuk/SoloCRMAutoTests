@@ -3,9 +3,7 @@ package com.api.users;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class AdminGetProfile {
     public String userTokenWith2FA;
@@ -13,7 +11,7 @@ public class AdminGetProfile {
     RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
-    @BeforeMethod
+    @BeforeClass
     private void beforeUpdateProfileAdmin() {
         GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
         this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
@@ -30,7 +28,7 @@ public class AdminGetProfile {
                 .statusCode(200);
     }
 
-    @AfterMethod
+    @AfterClass
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)

@@ -3,9 +3,7 @@ package com.api.users;
 import com.api.token2FA.GenerateUserTokenWith2FaForFinControl;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class FinControlGetUsersList {
     public String finControlTokenWith2FA;
@@ -13,7 +11,7 @@ public class FinControlGetUsersList {
     RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
-    @BeforeMethod
+    @BeforeClass
     private void beforeGetProfile() {
         GenerateUserTokenWith2FaForFinControl generateUserTokenWith2FaForFinControl = new GenerateUserTokenWith2FaForFinControl();
         this.finControlTokenWith2FA = generateUserTokenWith2FaForFinControl.set2faForAccount();
@@ -29,11 +27,11 @@ public class FinControlGetUsersList {
                 .assertThat()
                 .statusCode(200);
     }
-    @AfterMethod
+    @AfterClass
     public void afterGetProfile(){
         request
                 .headers("token", finControlTokenWith2FA)
-                .post(URL + "/security/status/disable/" + finControl2FaCode)
+                .post(URL + "security/status/disable/" + finControl2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

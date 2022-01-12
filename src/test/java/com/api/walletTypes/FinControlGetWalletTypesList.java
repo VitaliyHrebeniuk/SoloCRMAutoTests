@@ -1,11 +1,14 @@
-package com.api.users;
+package com.api.walletTypes;
 
-import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
+import com.api.token2FA.GenerateUserTokenWith2FaForAuditor;
+import com.api.token2FA.GenerateUserTokenWith2FaForFinControl;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-public class AdminGetAnotherProfile {
+public class FinControlGetWalletTypesList {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
@@ -13,17 +16,16 @@ public class AdminGetAnotherProfile {
 
     @BeforeClass
     private void beforeUpdateProfileAdmin() {
-        GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
-        this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
-        this.user2FaCode = generateUserTokenWith2FAForAdmin.admin2FaCode;
+        GenerateUserTokenWith2FaForFinControl generateUserTokenWith2FaForFinControl = new GenerateUserTokenWith2FaForFinControl();
+        this.userTokenWith2FA = generateUserTokenWith2FaForFinControl.set2faForAccount();
+        this.user2FaCode = generateUserTokenWith2FaForFinControl.finControl2FaCode;
     }
 
     @Test
-    private void getUserAnotherProfile(){
+    private void test(){
         request
                 .headers("token", userTokenWith2FA)
-                .param("login","admin")
-                .get(URL+"profile/adminLogin")
+                .get(URL+"wallet/types/list")
                 .then()
                 .assertThat()
                 .statusCode(200);

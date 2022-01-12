@@ -1,11 +1,14 @@
-package com.api.users;
+package com.api.walletTypes;
 
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
+import com.api.token2FA.GenerateUserTokenWith2FaForAuditor;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-public class AdminGetLogout {
+public class AuditorGetWalletTypesList {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
@@ -13,16 +16,16 @@ public class AdminGetLogout {
 
     @BeforeClass
     private void beforeUpdateProfileAdmin() {
-        GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
-        this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
-        this.user2FaCode = generateUserTokenWith2FAForAdmin.admin2FaCode;
+        GenerateUserTokenWith2FaForAuditor generateUserTokenWith2FaForAuditor = new GenerateUserTokenWith2FaForAuditor();
+        this.userTokenWith2FA = generateUserTokenWith2FaForAuditor.set2faForAccount();
+        this.user2FaCode = generateUserTokenWith2FaForAuditor.auditor2FaCode;
     }
 
     @Test
-    private void getAdminLogout(){
+    private void test(){
         request
                 .headers("token", userTokenWith2FA)
-                .post(URL + "profile/logout")
+                .get(URL+"wallet/types/list")
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -32,7 +35,7 @@ public class AdminGetLogout {
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)
-                .post(URL + "security/status/disable/" + user2FaCode)
+                .post(URL+"security/status/disable/" + user2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

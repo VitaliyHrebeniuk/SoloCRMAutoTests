@@ -1,19 +1,19 @@
-package com.api.users;
+package com.api.walletTypes;
 
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class AdminPostAutoAuth {
+public class AdminPostWalletTypesUpdate {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
-    @BeforeMethod
+    @BeforeClass
     private void beforeUpdateProfileAdmin() {
         GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
         this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
@@ -21,20 +21,20 @@ public class AdminPostAutoAuth {
     }
 
     @Test
-    private void getAdminLogout(){
+    private void postWalletTypesUpdate(){
         request
                 .headers("token", userTokenWith2FA)
-                .post(URL + "users/auto_auth/manager_TEST_API")
+                .post(URL+"wallet/types/update/45")
                 .then()
                 .assertThat()
                 .statusCode(200);
     }
 
-    @AfterMethod
+    @AfterClass
     public void afterUpdateUserProfile(){
         request
                 .headers("token", userTokenWith2FA)
-                .post(URL + "security/status/disable/" + user2FaCode)
+                .post(URL+"security/status/disable/" + user2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
