@@ -7,8 +7,8 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
-public class GenerateUserTokenWith2FaForManager {
-    final String LOGIN_TRUE = "manager_TEST_API";
+public class GenerateUserTokenWith2FaForManagerUI {
+    final String LOGIN_TRUE = "manager_TEST_UI";
     final String PASSWORD_TRUE = "132465798";
     public String managerTokenWithout2FA;
     public String manager2FACode;
@@ -17,12 +17,11 @@ public class GenerateUserTokenWith2FaForManager {
     public RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
-
     public String setUserTokenWithout2FA(){
         Response response = request
                 .param("login", LOGIN_TRUE)
                 .param("password", PASSWORD_TRUE)
-                .get(URL + "profile/login");
+                .post(URL + "profile/login");
         managerTokenWithout2FA = response.path("data.token").toString();
         return managerTokenWithout2FA;
     }
