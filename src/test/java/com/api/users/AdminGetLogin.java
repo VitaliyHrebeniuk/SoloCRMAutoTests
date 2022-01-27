@@ -17,10 +17,9 @@ public class AdminGetLogin {
     public void getLoginTrue(){
        request
                 .contentType(ContentType.JSON)
-                //.body(loginAdminPojo)
-                .param("login","admin_qa")
-                .param("password","132465798")
-                .get(URL + "profile/login")
+                .queryParam("login","admin_qa")
+                .queryParam("password","132465798")
+                .post(URL + "profile/login")
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -32,10 +31,10 @@ public class AdminGetLogin {
                 .contentType(ContentType.JSON)
                 .param("login", "1")
                 .param("password","1")
-                .get(URL + "profile/login")
+                .post(URL + "profile/login")
                 .then()
                 .assertThat()
-                .statusCode(401);
+                .statusCode(422);
     }
 
 }

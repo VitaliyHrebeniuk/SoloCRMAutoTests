@@ -7,13 +7,13 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
-public class GenerateUserTokenWith2FaForChief {
-    final String LOGIN_TRUE = "chief_TEST_API";
+public class GenerateTokenWith2FaForBuyingControl {
+    final String LOGIN_TRUE = "buyingControl_TEST_API";
     final String PASSWORD_TRUE = "132465798";
-    public String chiefTokenWithout2FA;
-    public String chief2FACode;
-    public String chiefTokenWith2FA;
-    public String chief2FaCode;
+    public String buyingControlTokenWithout2FA;
+    public String buyingControl2FACode;
+    public String buyingControlWith2FA;
+    public String buyingControl2FaCode;
     public RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
 
@@ -22,8 +22,8 @@ public class GenerateUserTokenWith2FaForChief {
                 .queryParams("login", LOGIN_TRUE)
                 .queryParams("password", PASSWORD_TRUE)
                 .post(URL+"profile/login");
-        this.chiefTokenWithout2FA = response.path("data.token").toString();
-        return chiefTokenWithout2FA;
+        this.buyingControlTokenWithout2FA = response.path("data.token").toString();
+        return buyingControlTokenWithout2FA;
     }
 
     public String generateUser2FACode(){
@@ -31,8 +31,8 @@ public class GenerateUserTokenWith2FaForChief {
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
                 .get(URL+"security/generate/code/qr");
-        this.chief2FACode = response.path("data.security_code").toString();
-        return chief2FACode;
+        this.buyingControl2FACode = response.path("data.security_code").toString();
+        return buyingControl2FACode;
     }
 
     public String getTOTPCode(String secretKey) {
@@ -56,11 +56,11 @@ public class GenerateUserTokenWith2FaForChief {
     }
 
     public String set2faForAccount(){
-        this.chief2FaCode = chief2FaCode();
+        this.buyingControl2FaCode = chief2FaCode();
         Response response = request
                 .headers("token",setUserTokenWithout2FA())
-                .post(URL+"security/verify/" + chief2FaCode);
-        this.chiefTokenWith2FA = response.path("data.token").toString();
-        return chiefTokenWith2FA;
+                .post(URL+"security/verify/" + buyingControl2FaCode);
+        this.buyingControlWith2FA = response.path("data.token").toString();
+        return buyingControlWith2FA;
     }
 }
