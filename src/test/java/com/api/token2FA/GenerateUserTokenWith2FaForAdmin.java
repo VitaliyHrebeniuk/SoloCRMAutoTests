@@ -19,9 +19,9 @@ public class GenerateUserTokenWith2FaForAdmin {
 
     public String setUserTokenWithout2FA(){
         Response response = request
-                .param("login", LOGIN_TRUE)
-                .param("password", PASSWORD_TRUE)
-                .get(URL+"profile/login");
+                .queryParams("login", LOGIN_TRUE)
+                .queryParams("password", PASSWORD_TRUE)
+                .post(URL+"profile/login");
         adminTokenWithout2FA = response.path("data.token").toString();
         return adminTokenWithout2FA;
     }

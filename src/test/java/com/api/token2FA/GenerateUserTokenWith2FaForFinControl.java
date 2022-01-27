@@ -19,9 +19,9 @@ public class GenerateUserTokenWith2FaForFinControl {
 
     public String setUserTokenWithout2FA(){
         Response response = request
-                .param("login", LOGIN_TRUE)
-                .param("password", PASSWORD_TRUE)
-                .get(URL+"profile/login");
+                .queryParams("login", LOGIN_TRUE)
+                .queryParams("password", PASSWORD_TRUE)
+                .post(URL+"profile/login");
         this.finControlTokenWithout2FA = response.path("data.token").toString();
         return finControlTokenWithout2FA;
     }
