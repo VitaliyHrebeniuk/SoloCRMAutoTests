@@ -29,7 +29,7 @@ public class AdminGetAllPayments {
     private void test(){
         request
                 .headers("token", userTokenWith2FA)
-                .get(URL+"powerbi/allPayments/JUv4tVlWTalpf0PM1P6oeBZEgk7wbAE")
+                .get(URL+"powerbi/allPayments/JUv4tVlWTalpf0PM1P6oeBZEgk7wbAE?date_from=2020-03-01&date_to=2020-03-15")
                 .then()
                 .assertThat()
                 .statusCode(200);

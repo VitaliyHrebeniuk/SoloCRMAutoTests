@@ -13,6 +13,7 @@
             <package name="com.api.redirectors"/>
             <package name="com.api.powerbi"/>
             <package name="com.api.payments"/>
+            <package name="com.api.partners"/>
         </packages>
     </test>
 </suite>

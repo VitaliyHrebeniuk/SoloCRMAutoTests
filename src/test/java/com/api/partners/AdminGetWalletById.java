@@ -1,4 +1,4 @@
-package com.api.powerbi;
+package com.api.partners;
 
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
@@ -7,12 +7,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static java.lang.String.valueOf;
-
-public class AdminGetPaymentList {
+public class AdminGetWalletById {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
@@ -24,30 +19,12 @@ public class AdminGetPaymentList {
         this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
         this.user2FaCode = generateUserTokenWith2FAForAdmin.admin2FaCode;
     }
-    private String getDate(){
-        Date today;
-        String result;
-        SimpleDateFormat ymd;
-        SimpleDateFormat hours;
-        SimpleDateFormat minutes;
-        String minutes_result;
-        int minutest_result_int;
-        today = new Date();
-
-        ymd = new SimpleDateFormat("y-M-d");
-        hours = new SimpleDateFormat("H:");
-        minutes = new SimpleDateFormat("m");
-        minutes_result = valueOf(minutes.format(today));
-        minutest_result_int = Integer.parseInt(valueOf(minutes_result))+ 2;
-        result = ymd.format(today) + " " + hours.format(today) + minutest_result_int;
-        return result;
-    }
 
     @Test
     private void test(){
         request
                 .headers("token", userTokenWith2FA)
-                .get(URL+"powerbi/paymentList/JUv4tVlWTalpf0PM1P6oeBZEgk7wbAE?date_from=2020-10-14&date_to=2020-10-14&sample_by=done")
+                .get(URL+"partners/wallets/2158")
                 .then()
                 .assertThat()
                 .statusCode(200);
