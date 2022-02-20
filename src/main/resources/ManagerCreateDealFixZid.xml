@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="FixSMM">
+    <test name="testingFixSMM">
+        <classes>
+            <class name="com.ui.ManagerCreateDealFixZid.ManagerCreateDealFixZid" />
+            <class name="com.ui.ManagerCreateDealFixZid.BuyingControlApproveDealFixZid" />
+            <class name="com.ui.ManagerCreateDealFixZid.ManagerApproveDeal" />
+            <class name="com.ui.ManagerCreateDealFixZid.TeamLeadApproveDealFixZid" />
+            <class name="com.ui.ManagerCreateDealFixZid.AuditorApproveDealFixZid" />
+        </classes>
+    </test>
+</suite>
