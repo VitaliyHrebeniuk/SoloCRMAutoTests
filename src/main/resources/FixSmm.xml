@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="FixSMM">
+    <test name="testingFixSMM">
+        <classes>
+            <class name="ManagerCreateDealFixSMM" />
+            <class name="BuyingControlApproveFixSMM" />
+            <class name="ManagerApproveFixSMM" />
+            <class name="TeamLeadApproveFixSMM" />
+            <class name="AuditorApproveFixSMM" />
+        </classes>
+    </test>
+</suite>
