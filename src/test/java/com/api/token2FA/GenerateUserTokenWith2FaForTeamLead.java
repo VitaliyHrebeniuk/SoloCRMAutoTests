@@ -1,5 +1,6 @@
 package com.api.token2FA;
 
+import com.api.BaseURL;
 import de.taimos.totp.TOTP;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -15,7 +16,8 @@ public class GenerateUserTokenWith2FaForTeamLead {
     public String teamLeadTokenWith2FA;
     public String teamLead2FaCode;
     public RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
 
     public String setUserTokenWithout2FA(){
         Response response = request

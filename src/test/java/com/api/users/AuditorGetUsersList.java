@@ -1,5 +1,6 @@
 package com.api.users;
 
+import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForAuditor;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
@@ -9,7 +10,8 @@ public class AuditorGetUsersList {
     public String auditorTokenWith2FA;
     public String auditor2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
 
     @BeforeClass
     private void beforeGetProfile() {

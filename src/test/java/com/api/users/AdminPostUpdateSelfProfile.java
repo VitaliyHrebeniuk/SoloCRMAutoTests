@@ -1,12 +1,10 @@
 package com.api.users;
 
+import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.*;
-
-import static javafx.scene.AccessibleAttribute.ROLE;
-
 
 public class AdminPostUpdateSelfProfile {
     public String userTokenWith2FA;
@@ -18,7 +16,8 @@ public class AdminPostUpdateSelfProfile {
     final String EMAIL = "admin_qa" + generateRandomNumber() + "@gmail.com";
     final String STATUS = "active";
     final Integer BID = 84;
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
 
     private String generateRandomNumber() {
         double a = 20 + Math.random() * 4000;
