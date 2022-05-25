@@ -17,7 +17,7 @@ public class AuditorGetWalletTypesList {
     final String URL = baseURL.baseURL;
 
     @BeforeClass
-    private void beforeUpdateProfileAdmin() {
+    private void beforeUpdateProfileAuditor() {
         GenerateUserTokenWith2FaForAuditor generateUserTokenWith2FaForAuditor = new GenerateUserTokenWith2FaForAuditor();
         this.userTokenWith2FA = generateUserTokenWith2FaForAuditor.set2faForAccount();
         this.user2FaCode = generateUserTokenWith2FaForAuditor.auditor2FaCode;

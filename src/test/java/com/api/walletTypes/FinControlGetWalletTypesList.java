@@ -17,7 +17,7 @@ public class FinControlGetWalletTypesList {
     final String URL = baseURL.baseURL;
 
     @BeforeClass
-    private void beforeUpdateProfileAdmin() {
+    private void beforeUpdateProfileFinControl() {
         GenerateUserTokenWith2FaForFinControl generateUserTokenWith2FaForFinControl = new GenerateUserTokenWith2FaForFinControl();
         this.userTokenWith2FA = generateUserTokenWith2FaForFinControl.set2faForAccount();
         this.user2FaCode = generateUserTokenWith2FaForFinControl.finControl2FaCode;
