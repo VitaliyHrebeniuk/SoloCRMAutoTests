@@ -1,8 +1,11 @@
-package com.ui.ManagerCreateDealFixZid;
+package com.ui;
 
-import com.ui.BaseTest;
 import com.ui.pages.BaseURL;
-import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.*;
+import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
+import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.MainPage;
+import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.PartnersListPage;
+import com.ui.pages.ManagerCreateDealOffline.AddOfflineDealPage;
+import com.ui.pages.ManagerCreateDealOffline.DealPageOffline;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
@@ -10,13 +13,14 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class ManagerCreateDealFixZid extends BaseTest {
+
+public class ManagerCreateDealOffline extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
     BaseURL baseURL = new BaseURL();
-    final String URL = baseURL.apiURL;
     final String bURL = baseURL.baseURL;
+    final String URL = baseURL.apiURL;
 
     @BeforeTest
     public void setToken() {
@@ -24,63 +28,53 @@ public class ManagerCreateDealFixZid extends BaseTest {
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
-
     @Test
-    public void createDealFixZid() {
-        /**
-         * Вводим логин, вводим пароль, нажимаем на Sign In,
-         * вводим код аутентификации, нажимаем на Send Code.
-         */
+    public void createDealFixApp() {
         new LoginManagerPage(webDriver, bURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
                 .inputAuthCode(manager2FaCode)
                 .clickOnSendCodeButton();
-        /**
-         * Нажимаем на Partners, нажимаем на Partners list.
-         */
         new MainPage(webDriver)
                 .clickOnPartnersButton()
                 .clickOnPartnersListButton();
-        /**
-         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на Fix Zid сделку.
-         */
         new PartnersListPage(webDriver)
-                .inputPartnersId("")
-                .clickOnAddDealButton()
-                .clickOnZidCidButton();
-        new DealPage(webDriver)
-                .clickOnSiteOverviewBlock()
-                .inputLink("")
-                .clickOnAddSiteLinkButton()
-                .clickOnSitePlaceField()
-                .clickOnAddLinkButton();
-        new AddLinkPage(webDriver)
+                .clickOnOfflineButton()
+                //.inputOfflinePartnersId("")
+                .clickOnAddOfflineDealButton();
+        new AddOfflineDealPage(webDriver)
+                .inputCountry("")
+                .inputTypes("")
+                .clickOnSaveButton();
+        new DealPageOffline(webDriver)
+                .inputAttachContract("")
+                .inputPartnerLink("")
+                .inputContractName("")
+                .clickOnAddFormatButton()
+                .inputStartDate("")
+                .inputEndDate("")
                 .inputSelectPlace("")
+                .inputVolumePerMonth("")
+                .inputNumbers("")
+                .inputTotalVolume("")
                 .inputCost("")
-                .inputTrafficVolume("")
-                .inputCPM("")
-                .inputTrafficChannel("")
-                .inputLabel("")
-                .inputGEO("")
-                .inputLinkPP("")
-                .clickOnSaveButton();
-        new AddZidCidPage(webDriver)
-                .clickOnAddZidCidButton()
-                .inputZidCidValue("")
-                .inputSelectPlace("")
-                .inputLabel("")
-                .inputTrafficChannel("")
-                .inputCPM("")
-                .clickOnSaveButton();
-        new LogoutPage(webDriver)
+                .clickOnSaveFormatButton()
+                .inputContractResults("")
+                .clickOnSaveResultsButton()
+                .clickOnNewPaymentButton()
+                .inputContractId("")
+                .inputBookkeepingType("")
+                .inputStartDatePayment("")
+                .inputEndDatePayment("")
+                .inputWalletName("")
+                .inputCostPayment("")
+                .clickOnSavePaymentButton()
                 .clickOnSaveDealButton()
-                .clickOnReviewButton()
+                .clickOnSendOnReviewButton()
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-
     @AfterTest
     public void ResetCode() {
         request

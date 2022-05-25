@@ -2,6 +2,7 @@ package com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal;
 
 import com.ui.pages.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
 public class DealPage extends BasePage {
@@ -9,8 +10,8 @@ public class DealPage extends BasePage {
     private final By linkInput = By.xpath("//input[@id='cpi-link_search']");
     private final By addSiteLinkButton = By.xpath("//button[@id='fix_zid-attach_lead']");
     private final By sitePlacesField = By.xpath("//input[@id='fix_zid-search_site']");
-    private final By sitePlaceId = By.xpath("//span[contains(text(),'http://www.nababet.com/')]");
     private final By addLinkButton = By.xpath("//button[@id='fix_zid-add_place']");
+    private final By adad = By.xpath("//a/span[contains(text(),'http://www.nababet.com/')]");
 //    private final By dealID = By.xpath("//h2[contains(., 'Deal ID')]");
 
     public DealPage(WebDriver webDriver) {
@@ -38,12 +39,8 @@ public class DealPage extends BasePage {
     }
 
     public DealPage clickOnSitePlaceField() {
-        waitForElementClickable(webDriver, sitePlacesField).click();
-        return this;
-    }
-
-    public DealPage selectSitePlace() {
-        waitForElementClickable(webDriver, sitePlaceId).click();
+        findElement(webDriver, sitePlacesField).click();
+        findElement(webDriver, sitePlacesField).sendKeys("20578" + Keys.ENTER);
         return this;
     }
 

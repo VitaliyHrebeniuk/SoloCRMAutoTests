@@ -15,7 +15,7 @@ public class BuyingControlApproveFixSMM {
     WebDriver driver;
     String buyingControlTokenWith2FA;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    final String URL = "https://beta-api.solo-crm.com/";
     private String buyingControl2FaCode;
 
     @BeforeClass

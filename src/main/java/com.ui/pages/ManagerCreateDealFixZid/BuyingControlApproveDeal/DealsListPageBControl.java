@@ -1,7 +1,6 @@
 package com.ui.pages.ManagerCreateDealFixZid.BuyingControlApproveDeal;
 
 import com.ui.pages.BasePage;
-import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.DealsListPageM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 

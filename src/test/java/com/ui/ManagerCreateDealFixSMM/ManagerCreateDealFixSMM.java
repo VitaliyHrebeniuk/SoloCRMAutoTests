@@ -1,5 +1,6 @@
 package com.ui.ManagerCreateDealFixSMM;
 
+import com.ui.pages.BaseURL;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.restassured.RestAssured;
@@ -21,6 +22,8 @@ public class ManagerCreateDealFixSMM {
     RequestSpecification request = RestAssured.given();
     final String URL = "https://test-api.solo-crm.com/";
     private String manager2FaCode;
+    BaseURL baseURL = new BaseURL();
+    final String bURL = baseURL.baseURL;
 
     @BeforeClass
     public void setDriver() {
@@ -36,7 +39,7 @@ public class ManagerCreateDealFixSMM {
     @Test(priority = 0)
     public void createFixSMM(){
         // Login
-        driver.get("https://test.solo-crm.com/#/login");
+        driver.get(bURL);
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         WebElement login = driver.findElement(By.cssSelector("[aria-label=Login]"));
         login.sendKeys("manager_TEST_UI");

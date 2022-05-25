@@ -93,7 +93,7 @@ public class DealPageCPM extends BasePage {
         return this;
     }
 
-    public DealPageCPM clickOnDealPlaceBdlock() {
+    public DealPageCPM clickOnDealPlaceBlock() {
         waitForElementClickable(webDriver, dealPlacesBlock).click();
         return this;
     }

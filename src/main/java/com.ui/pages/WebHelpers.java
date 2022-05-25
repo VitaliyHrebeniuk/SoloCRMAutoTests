@@ -10,7 +10,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebHelpers {
     long timeOut = 15L;
-
+    public WebElement findElements(WebDriver webDriver, By locator){
+        return findElements(webDriver, locator);
+    }
     public WebElement findElement(WebDriver webDriver, By locator){
         return findElement(webDriver, locator, timeOut);
     }

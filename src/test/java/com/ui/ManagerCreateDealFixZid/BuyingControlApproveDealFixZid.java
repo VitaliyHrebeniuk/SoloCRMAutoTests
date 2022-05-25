@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 public class BuyingControlApproveDealFixZid extends BaseTest {
     String buyingControlTokenWith2FA;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    final String URL = "https://beta-api.solo-crm.com/";
     private String buyingControl2FaCode;
 
     @BeforeTest
@@ -24,27 +24,38 @@ public class BuyingControlApproveDealFixZid extends BaseTest {
         this.buyingControlTokenWith2FA = generateUserTokenWith2FaForBuyingControlUI.set2faForAccount();
         this.buyingControl2FaCode = generateUserTokenWith2FaForBuyingControlUI.buyingControl2FaCode;
     }
-
     @Test
     public void bControlApprove() {
-        new LoginPageBControl(webDriver, "https://test.solo-crm.com/#/login")
+        /**
+         * Вводим логин, вводим пароль, нажимаем на Sign In,
+         * вводим код аутентификации, нажимаем на Send Code.
+         */
+        new LoginPageBControl(webDriver, "https://beta.solo-crm.com/#/login")
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
                 .inputAuthCode(buyingControl2FaCode)
                 .clickOnSendCodeButton();
+        /**
+         * Нажимаем на Partners, нажимаем на Deals list.
+         */
         new MainPageBControl(webDriver)
                 .clickOnPartnersButton()
                 .clickOnDealsListButton();
+        /**
+         * Нажимаем на сортировку по Start Date, нажимаем на открытие сделки.
+         */
         new DealsListPageBControl(webDriver)
                 .clickOnStartDateSort()
                 .clickOnOpenDealButton();
+        /**
+         * Нажимаем на Revision, нажимаем на профиль, выходим с профиля.
+         */
         new DealPageBControl(webDriver)
                 .clickOnRevisionButton()
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-
     @AfterTest
     public void QuitDriver() {
         request

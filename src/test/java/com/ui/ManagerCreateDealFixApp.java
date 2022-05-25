@@ -1,8 +1,10 @@
-package com.ui.ManagerCreateDealFixZid;
+package com.ui;
 
-import com.ui.BaseTest;
 import com.ui.pages.BaseURL;
-import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.*;
+import com.ui.pages.ManagerCreateDealFixApp.DealPageFixApp;
+import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
+import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.MainPage;
+import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.PartnersListPage;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
@@ -10,12 +12,12 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class ManagerCreateDealFixZid extends BaseTest {
+public class ManagerCreateDealFixApp extends BaseTest{
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
+    final String URL = "https://beta-api.solo-crm.com/";
     private String manager2FaCode;
     BaseURL baseURL = new BaseURL();
-    final String URL = baseURL.apiURL;
     final String bURL = baseURL.baseURL;
 
     @BeforeTest
@@ -24,9 +26,8 @@ public class ManagerCreateDealFixZid extends BaseTest {
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
-
     @Test
-    public void createDealFixZid() {
+    public void createDealFixApp() {
         /**
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
@@ -44,43 +45,46 @@ public class ManagerCreateDealFixZid extends BaseTest {
                 .clickOnPartnersButton()
                 .clickOnPartnersListButton();
         /**
-         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на Fix Zid сделку.
+         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на Fix App сделку.
          */
         new PartnersListPage(webDriver)
                 .inputPartnersId("")
                 .clickOnAddDealButton()
-                .clickOnZidCidButton();
-        new DealPage(webDriver)
+                .clickOnFixAppButton();
+        /**
+         * Нажимаем на блок Site Overview, нажимаем на поиск линки, вводим линку, нажимаем на добавление линки,
+         * нажимаем на блок Site Overview, нажимаем на Add Format, вводим Place, вводим Cost, вводим CPM,
+         * вводим Traffic Volume, сохраняем Format.
+         * Нажимаем на блок Deal places, вводим site id, нажимаем на Add New Deal Place,вводим Place,
+         * вводим Platform, вводим label, вводим GEO, вводим link PP, сохраняем Deal place.
+         * Сохраняем сделку, отправляем на review, нажимаем на профиль, выходим с профиля.
+         */
+        new DealPageFixApp(webDriver)
                 .clickOnSiteOverviewBlock()
+                .clickOnSearchLinkButton()
                 .inputLink("")
-                .clickOnAddSiteLinkButton()
-                .clickOnSitePlaceField()
-                .clickOnAddLinkButton();
-        new AddLinkPage(webDriver)
+                .clickOnAddLinkButton()
+                .clickOnSiteOverviewBlock()
+                .clickOnAddFormatButton()
                 .inputSelectPlace("")
                 .inputCost("")
-                .inputTrafficVolume("")
                 .inputCPM("")
-                .inputTrafficChannel("")
+                .inputTrafficVolume("")
+                .clickOnSaveFormatButton()
+                .clickOnDealPlacesBlock()
+                .inputSearchSiteById("")
+                .clickOnAddNewDealPlaceButton()
+                .inputSelectPlaceNewDealPlace("")
+                .inputPlatform("")
                 .inputLabel("")
                 .inputGEO("")
-                .inputLinkPP("")
-                .clickOnSaveButton();
-        new AddZidCidPage(webDriver)
-                .clickOnAddZidCidButton()
-                .inputZidCidValue("")
-                .inputSelectPlace("")
-                .inputLabel("")
-                .inputTrafficChannel("")
-                .inputCPM("")
-                .clickOnSaveButton();
-        new LogoutPage(webDriver)
+                .inputLinkPp("")
+                .clickOnSaveDealPlaceButton()
                 .clickOnSaveDealButton()
-                .clickOnReviewButton()
+                .clickOnSendOnReviewButton()
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-
     @AfterTest
     public void ResetCode() {
         request

@@ -1,6 +1,7 @@
 package com.ui.ManagerCreateDealCPM;
 
 import com.ui.BaseTest;
+import com.ui.pages.BaseURL;
 import com.ui.pages.ManagerCreateDealCPM.DealPageCPM;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.MainPage;
@@ -15,8 +16,10 @@ import org.testng.annotations.Test;
 public class ManagerCreateDealCPM extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    final String URL = "https://beta-api.solo-crm.com/";
     private String manager2FaCode;
+    BaseURL baseURL = new BaseURL();
+    final String bURL = baseURL.baseURL;
 
     @BeforeTest
     public void setToken() {
@@ -27,19 +30,38 @@ public class ManagerCreateDealCPM extends BaseTest {
 
     @Test
     public void createDealCPM() {
-        new LoginManagerPage(webDriver, "https://test.solo-crm.com/#/login")
+        /**
+         * Вводим логин, вводим пароль, нажимаем на Sign In,
+         * вводим код аутентификации, нажимаем на Send Code.
+         */
+        new LoginManagerPage(webDriver, bURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
                 .inputAuthCode(manager2FaCode)
                 .clickOnSendCodeButton();
+        /**
+         * Нажимаем на Partners, нажимаем на Partners list.
+         */
         new MainPage(webDriver)
                 .clickOnPartnersButton()
                 .clickOnPartnersListButton();
+        /**
+         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на CPM сделку.
+         */
         new PartnersListPage(webDriver)
                 .inputPartnersId("")
                 .clickOnAddDealButton()
                 .clickOnCPMButton();
+        /**
+         * Нажимаем на блок Site overview, вводим линку, нажимаем на добавление линки, нажимаем на Add Format,
+         * вводим Place, вводим GEO, вводим CPM usd, вводим CPC usd, вводим Traffic Type,
+         * вводим Traffic Channel, сохраняем Format. Нажимаем на блок Deal Places,
+         * нажимаем на Search site, вводим site id, выбираем чекбокс, нажимаем на add site.
+         * Нажимаем на Add new deal place, вводим Place Name, вводим Place, вводим Label,вводим GEO,
+         * вводим CpmCpc, вводим Traffic channel, вводим Traffic type, вводим Link PP, сохраняем Deal Place.
+         * Сохраняем сделку, отправляем на review, нажимаем на профиль, выходим с профиля.
+         */
         new DealPageCPM(webDriver)
                 .clickOnSiteOverviewBlock()
                 .inputLink("")
@@ -52,7 +74,7 @@ public class ManagerCreateDealCPM extends BaseTest {
                 .inputTrafficTypeInAdFormat("")
                 .inputTrafficChannelInAdFormat("")
                 .clickOnSaveFormatButton()
-                .clickOnDealPlaceBdlock()
+                .clickOnDealPlaceBlock()
                 .clickOnSearchSiteButton()
                 .inputSearchById("")
                 .clickOnAddSiteCheckbox()

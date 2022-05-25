@@ -15,7 +15,7 @@ public class GenerateUserTokenWith2FaForTeamLeadUI {
     public String teamLeadTokenWith2FA;
     public String teamLead2FaCode;
     public RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    final String URL = "https://beta-api.solo-crm.com/";
 
     public String setUserTokenWithout2FA(){
         Response response = request

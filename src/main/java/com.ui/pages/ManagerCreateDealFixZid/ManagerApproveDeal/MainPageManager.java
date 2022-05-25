@@ -4,21 +4,21 @@ import com.ui.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MainPageM extends BasePage {
+public class MainPageManager extends BasePage {
     private final By partnersButton = By.xpath("//button[@id='menu-buying']");
     private final By dealsListButton = By.xpath("//a[@id='buying-deals_list']");
 
-    public MainPageM(WebDriver webDriver) {
+    public MainPageManager(WebDriver webDriver) {
         super(webDriver);
     }
     
-    public MainPageM clickOnPartnersButton() {
+    public MainPageManager clickOnPartnersButton() {
         findElement(webDriver, partnersButton).click();
         return this;
     }
 
-    public DealsListPageM clickOnDealsListButton() {
+    public DealsListPageManager clickOnDealsListButton() {
         findElement(webDriver, dealsListButton).click();
-        return new DealsListPageM(webDriver);
+        return new DealsListPageManager(webDriver);
     }
 }

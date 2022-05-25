@@ -7,13 +7,14 @@ import com.ui.pages.ManagerCreateDealFixZid.AuditorApproveDeal.PaymentsListPageA
 import com.ui.token2Fa.GenerateUserTokenWith2FaForAuditorUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class AuditorApproveDealFixZid extends BaseTest {
     String auditorTokenWith2FA;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    final String URL = "https://beta-api.solo-crm.com/";
     private String auditor2FaCode;
 
     @BeforeTest
@@ -24,22 +25,33 @@ public class AuditorApproveDealFixZid extends BaseTest {
     }
     @Test
     public void auditorApprove() {
-        new LoginPageAuditor(webDriver, "https://test.solo-crm.com/#/login")
+        /**
+         * Вводим логин, вводим пароль, нажимаем на Sign In,
+         * вводим код аутентификации, нажимаем на Send Code.
+         */
+        new LoginPageAuditor(webDriver, "https://beta.solo-crm.com/#/login")
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
                 .inputAuthCode(auditor2FaCode)
                 .clickOnSendCodeButton();
+        /**
+         * Нажимаем на Partners, нажимаем на Partners list.
+         */
         new MainPageAuditor(webDriver)
                 .clickOnPartnersButton()
                 .clickOnPaymentsListButton();
+        /**
+         * Нажимаем на чекбокс, нажимаем на approve payment,
+         * нажимаем на профиль, выходим с профиля.
+         */
         new PaymentsListPageAuditor(webDriver)
                 .clickOnCheckboxButton()
                 .clickOnApprovePaymentButton()
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @BeforeTest
+    @AfterTest
     public void QuitDriver(){
         request
                 .headers("token", auditorTokenWith2FA)

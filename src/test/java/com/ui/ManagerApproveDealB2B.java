@@ -1,7 +1,7 @@
-package com.ui.ManagerCreateDealFixZid;
+package com.ui;
 
-import com.ui.BaseTest;
-import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.DealPageM;
+import com.ui.pages.BaseURL;
+import com.ui.pages.ManagerCreateDealB2B.DealPageB2B;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.DealsListPageManager;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.MainPageManager;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
@@ -12,11 +12,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class ManagerApproveDeal extends BaseTest {
+public class ManagerApproveDealB2B extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://beta-api.solo-crm.com/";
     private String manager2FaCode;
+    BaseURL baseURL = new BaseURL();
+    final String bURL = baseURL.baseURL;
+    final String apiURL = baseURL.apiURL;
 
     @BeforeTest
     public void setToken() {
@@ -30,7 +32,7 @@ public class ManagerApproveDeal extends BaseTest {
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
          */
-        new LoginManagerPage(webDriver, "https://beta.solo-crm.com/#/login")
+        new LoginManagerPage(webDriver, bURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
@@ -46,44 +48,61 @@ public class ManagerApproveDeal extends BaseTest {
          * Нажимаем на сортировку по Start Date, нажимаем на открытие сделки.
          */
         new DealsListPageManager(webDriver)
+                .inputDealType("")
                 .clickOnStartDateSort()
                 .clickOnOpenDealButton();
-        /**
-         * Deal contract
-         * Добавить контракт!!
-         * проверить добавление контракта по Name!!
-         * Deal payments
-         * Нажимаем на блок Deal Payments,
-         * нажимаем на New Payment,
-         * вводим Start date,
-         * вводим End date,
-         * вводим Payment target,
-         * вводим Type,
-         * вводим Wallet,
-         * вводим Cost,
-         * добавить коммент!!
-         * нажимаем на Continue,
-         * вводим remaining cost,
-         * вводим Remaining zid cost,
-         * сохраняем Payment,
-         * проверяем что создался платеж по комменту!!
-         * нажимаем на аппрув Payment.
-         * нажимаем на профиль,
-         * выходим с профиля.
-         */
-        new DealPageM(webDriver)
+        new DealPageB2B(webDriver)
+                /**
+                 * Deal payments
+                 * Нажимаем на блок Deal Payments
+                 * Deal contract
+                 * Нажимаем на New contract
+                 * Вводим contract name
+                 * вводим Start date
+                 * вводим End date
+                 * прикрепляем файл
+                 * сохраняем контракт
+                 * проверить добавление контракта по Name
+                 */
                 .clickOnDealPaymentsBlockButton()
+                .clickOnNewContractButton()
+                .inputContractName("")
+                .inputStartDateInContract("")
+                .inputEndDateInContract("")
+                .inputAttachFile("")
+                .clickOnSaveContractButton()
+                .assertContractName()
+                /**
+                 * нажимаем на New Payment,
+                 * вводим Start date,
+                 * вводим End date,
+                 * вводим Payment target,
+                 * вводим Type,
+                 * вводим Wallet,
+                 * вводим Cost,
+                 * добавить коммент
+                 * нажимаем на Continue,
+                 * вводим remaining cost,
+                 * вводим Remaining zid cost,
+                 * сохраняем Payment,
+                 * проверяем что создался платеж по Wallet
+                 * нажимаем на аппрув Payment.
+                 * нажимаем на профиль,
+                 * выходим с профиля.
+                 */
                 .clickOnNewPaymentButton()
-                .inputStartDate("")
-                .inputEndDate("")
+                .inputStartDateInPayment("")
+                .inputEndDateInPayment("")
                 .inputPaymentTarget("")
                 .inputType("")
                 .inputWallet("")
-                .inputCost("")
+                .inputCostInPayment("")
+                .inputCommentInPayment("")
                 .clickOnContinueButton()
                 .inputRemainingCost("")
                 .inputRemainingZidCost("")
                 .clickOnSavePaymentButton()
+                .assertPayment()
                 .clickOnApprovePaymentButton()
                 .clickOnProfileButton()
                 .clickOnExitButton();
@@ -92,9 +111,10 @@ public class ManagerApproveDeal extends BaseTest {
     public void QuitDriver() {
         request
                 .headers("token", managerTokenWith2FA)
-                .post(URL + "security/status/disable/" + manager2FaCode)
+                .post(apiURL + "security/status/disable/" + manager2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
     }
 }
+
