@@ -1,5 +1,6 @@
 package com.api.walletTypes;
 
+import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import com.api.token2FA.GenerateUserTokenWith2FaForAuditor;
 import io.restassured.RestAssured;
@@ -12,7 +13,8 @@ public class AuditorGetWalletTypesList {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
 
     @BeforeClass
     private void beforeUpdateProfileAdmin() {

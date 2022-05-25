@@ -1,5 +1,6 @@
 package com.api.users;
 
+import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
@@ -26,7 +27,8 @@ public class AdminPutCreateUser {
     final String NAME = "API_TEST_USER";
     final String TELEGRAM = "API_TEST";
     final String PASSWORD = "132465798";
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
 
     RequestSpecification request = RestAssured.given();
 

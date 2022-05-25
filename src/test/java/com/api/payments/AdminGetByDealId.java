@@ -1,18 +1,20 @@
 package com.api.payments;
 
+import com.api.BaseTestApi;
+import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
-import com.api.token2FA.GenerateUserTokenWith2FaForAuditor;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class AdminGetByDealId {
+public class AdminGetByDealId extends BaseTestApi {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
 
     @BeforeClass
     private void beforeUpdateProfileAdmin() {

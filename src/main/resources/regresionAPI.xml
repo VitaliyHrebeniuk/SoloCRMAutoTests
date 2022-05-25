@@ -1,18 +1,18 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite1" verbose="1" >
-    <test name="Regression API"   >
+<suite name="Suite1" verbose="1">
+    <test name="Regression API">
         <packages>
-            <package name="com.api.users" />
+<!--            <package name="com.api.users" />-->
             <package name="com.api.walletTypes" />
-            <package name="com.api.ticket"/>
-            <package name="com.api.teams"/>
-            <package name="com.api.tags"/>
-            <package name="com.api.similar"/>
-            <package name="com.api.seo"/>
-            <package name="com.api.reminders"/>
-            <package name="com.api.redirectors"/>
-            <package name="com.api.powerbi"/>
-            <package name="com.api.payments"/>
+<!--            <package name="com.api.ticket"/>-->
+<!--            <package name="com.api.teams"/>-->
+<!--            <package name="com.api.tags"/>-->
+<!--            <package name="com.api.similar"/>-->
+<!--            <package name="com.api.seo"/>-->
+<!--            <package name="com.api.reminders"/>-->
+<!--            <package name="com.api.redirectors"/>-->
+<!--            <package name="com.api.powerbi"/>-->
+<!--            <package name="com.api.payments"/>-->
         </packages>
     </test>
 </suite>

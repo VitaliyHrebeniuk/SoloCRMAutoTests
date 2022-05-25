@@ -1,4 +1,5 @@
 package com.api.users;
+import com.api.BaseURL;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import io.restassured.http.ContentType;
@@ -9,7 +10,8 @@ import static io.restassured.RestAssured.given;
 
 
 public class AdminGetLogin {
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
     RequestSpecification request = given();
     Gson g = new GsonBuilder().setPrettyPrinting().create();
 

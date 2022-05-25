@@ -1,4 +1,5 @@
 package com.api.users;
+import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForChief;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
@@ -8,7 +9,8 @@ public class ChiefGetUserProfile {
     public String chiefTokenWith2FA;
     public String chief2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
 
     @BeforeClass
     private void beforeGetProfile() {

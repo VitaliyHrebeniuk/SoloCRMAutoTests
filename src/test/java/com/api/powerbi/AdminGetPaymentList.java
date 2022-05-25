@@ -1,11 +1,12 @@
 package com.api.powerbi;
 
+import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
+import io.restassured.config.HttpClientConfig;
+import io.restassured.config.RestAssuredConfig;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -16,7 +17,8 @@ public class AdminGetPaymentList {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    BaseURL baseURL = new BaseURL();
+    final String URL = baseURL.baseURL;
 
     @BeforeClass
     private void beforeUpdateProfileAdmin() {
@@ -51,6 +53,7 @@ public class AdminGetPaymentList {
                 .then()
                 .assertThat()
                 .statusCode(200);
+
     }
 
     @AfterClass
