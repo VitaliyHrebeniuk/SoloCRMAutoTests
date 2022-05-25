@@ -2,7 +2,7 @@
 <suite name="Suite1" verbose="1">
     <test name="Regression API">
         <packages>
-            <package name="com.api.users" />
+<!--            <package name="com.api.users" />-->
 <!--            <package name="com.api.walletTypes" />-->
 <!--            <package name="com.api.ticket"/>-->
 <!--            <package name="com.api.teams"/>-->
