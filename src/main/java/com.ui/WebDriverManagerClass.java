@@ -14,9 +14,11 @@ public class WebDriverManagerClass {
         switch (browserName) {
             case "chrome":
                 webDriver = WebDriverManager.chromedriver().create();
+                webDriver.manage().window().maximize();
                 break;
             case "ff":
                 webDriver = WebDriverManager.firefoxdriver().create();
+                webDriver.manage().window().maximize();
                 break;
             default:
                 throw new RuntimeException("Incorrect browser name");

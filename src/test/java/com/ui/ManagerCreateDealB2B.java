@@ -105,7 +105,7 @@ public class ManagerCreateDealB2B extends BaseTest{
                  * Выбираем аналитику за 1 месяц
                  * Добавляем ссылку на скриншот в аналитику за 1 месяц
                  * Выбрать Start date и End date в период за месяц
-                 * Выбираем аналитику за 3 месяца !!
+                 * Выбираем аналитику за 3 месяца
                  * Добавляем ссылку на скриншот в аналитику за 3 месяца!!
                  * Выбрать Start date и End date в период за 3 месяца!!
                  * Добавить ссылку в поле Traffic overview
@@ -122,18 +122,19 @@ public class ManagerCreateDealB2B extends BaseTest{
                 .inputLink("")
                 .clickOnAddLinkButton()
                 .inputCostInAnalytics("")
-                .inputSelectAnalytics("")
-                .inputAddScreenshot("")
-                .inputStartDateFor1Month("")
-                .inputEndDateFor1Month("")
+                .inputSelectAnalyticsFor1Month("")
+                .inputAddScreenshotFor1Month("")
+                .selectStartDateFor1Month()
+                .selectEndDateFor1Month()
+//                .inputSelectAnalyticsFor3Month("")
                 .inputTrafficOverview("")
                 .inputGeoTraffic("")
                 .inputDeviceCategory("")
                 .inputTrafficSource("")
                 .inputMobileDesktop("")
                 .inputCommentInAnalytics("")
-                .clickOnNewAnalyticsButton()
-                .clickOnFirstAnalyticsButton()
+//                .clickOnNewAnalyticsButton()
+//                .clickOnFirstAnalyticsButton()
                 /**
                  * Нажимаем на Add format,
                  * вводим Place, вводим Cost,

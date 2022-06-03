@@ -18,7 +18,8 @@ public class DealPageB2B extends BasePage {
 
     private final By communicationButton = By.xpath("//div[contains(text(),'Communication')]");
     private final By commentInput = By.xpath("//textarea[@aria-label='Write a comment']");
-    private final By addFileInComment = By.xpath("//div[@class='flex image-wrap md5']//input[@type='file']");
+    private final By addFileInComment = By.xpath("//div[@class='layout wrap align-end fill-height']//input[@type='file']");
+//    private final By addFileInComment = By.xpath("//div[@class='flex md3']//i[@title='Attach file']");
     private final By addCommentButton = By.xpath("//i[contains(text(),'send')]");
     private final By addedComment = By.xpath("//div[@class='comment-author']");
     private final By exitDealChat = By.xpath("//div[@class='v-dialog__content v-dialog__content--active']");
@@ -27,31 +28,43 @@ public class DealPageB2B extends BasePage {
     private final By assertLog = By.xpath("//strong[contains(text(),'Create deal')]");
 
     private final By siteOverviewBlock = By.xpath("//div[contains(text(),'Site Overview')]");
-    private final By searchLinkButton = By.xpath("//i[contains(.,'search')]");
+    private final By searchLinkButton = By.xpath
+            ("//div[@class='v-input v-text-field v-text-field--placeholder v-input--is-readonly theme--light']" +
+                    "//i[contains(text(),'search')]");
     private final By linkInput = By.xpath("//input[@aria-label='Search by link']");
-    private final By addLinkButton = By.xpath("//button//i[contains(text(), 'add')]");
-    private final By costInputInAnalytics = By.xpath("//input[@aria-label='Cost']");
+    private final By addLinkButton = By.xpath("//button[@class='ma-0 v-btn v-btn--flat v-btn--icon theme--light']" +
+            "//i[contains(text(), 'add')]");
+    private final By costInputInAnalytics = By.xpath("//input[@placeholder='Cost']");
     private final By selectAnalyticsInput = By.xpath("//input[@placeholder='Select analytics']");
+    private final By google = By.xpath("//div[contains(text(),'google')]");
     private final By addScreenshotInput = By.xpath("//input[@placeholder='Add screenshot']");
-    private final By startDateInput = By.xpath("//input[@aria-label='Start date']");
-    private final By endDateInput = By.xpath("//input[@aria-label='End date']");
+    private final By startDateInput = By.xpath("//div[@class='layout']//input[@aria-label='Start date']");
+    private final By firstDate = By.xpath("//div[contains(text(),'1')]");
+    private final By endDate = By.xpath("//div[contains(text(),'28')]");
+    private final By endDateInput = By.xpath("//div[@class='layout']//input[@aria-label='End date']");
+    private final By selectAnalyticsFor3MonthInput = By.xpath("//div[@class='v-input v-text-field v-text-field--placeholder v-select v-input--is-focused theme--light primary--text']" +
+            "//input[@placeholder='Select analytics']");
+    private final By addScreenshotFor3MonthInput = By.xpath("//input[@placeholder='Add screenshot']");
+    private final By startDateFor3MonthInput = By.xpath("//div[@class='layout']//input[@aria-label='Start date']");
+    private final By endDateFor3MonthInput = By.xpath("//div[@class='layout']//input[@aria-label='End date']");
     private final By trafficOverviewInput = By.xpath("//input[@aria-label='Traffic Overview']");
     private final By geoTrafficInput = By.xpath("//input[@aria-label='GEO Traffic']");
     private final By deviceCategoryInput = By.xpath("//input[@aria-label='Device - Category']");
     private final By trafficSourcesInput = By.xpath("//input[@aria-label='Traffic Sources']");
     private final By mobileDesktopInput = By.xpath("//input[@aria-label='Mobile / Desktop %']");
-    private final By commentInAnalyticsInput = By.xpath("//textarea[@aria-label='Comment']");
+    private final By commentInAnalyticsInput = By.xpath("//div[@class='flex md6 pa-1']//textarea[@aria-label='Comment']");
     private final By newAnalyticsButton = By.xpath("//div[contains(text(),'New analytics')]");
-    private final By firstAnalyticsButton = By.xpath("//a[@class='v-tabs__item']");
+    private final By firstAnalyticsButton = By.xpath("//a[@class='v-tabs__item']//i[contains(text(),'timeline')]");
 
     private final By addFormatButton = By.xpath("//div[contains(text(),'Ad format')]");
-    private final By selectPlaceInput = By.xpath("//input[@aria-label='Select place']");
+    private final By selectPlaceInFormatInput = By.xpath
+            ("//div[@class='v-input v-text-field v-select v-autocomplete theme--light']//input[@aria-label='Select place']");
     private final By costInputInFormat = By.xpath("//input[@aria-label='Cost']");
     private final By cpmInput = By.xpath("//input[@aria-label='CPM']");
     private final By trafficVolumeInput = By.xpath("//input[@aria-label='Traffic volume']");
     private final By desktopScreenshotInput = By.xpath("//input[@aria-label='Desktop screenshot']");
     private final By mobileScreenshotInput = By.xpath("//input[@aria-label='Mobile screenshot']");
-    private final By saveFormatButton = By.xpath("//button//div[contains(.,'Save')]");
+    private final By saveFormatButton = By.xpath("//div[@class='v-dialog v-dialog--active']//div[contains(text(),'Save')]");
 
     private final By dealZidsBlock = By.xpath("//div[contains(text(),'Deal zids')]");
     private final By addZidCidButton = By.xpath("//button//div[contains(text(),' Add Zid / Cid ')]");
@@ -59,21 +72,33 @@ public class DealPageB2B extends BasePage {
     private final By zidCidValueInput = By.xpath("//input[@aria-label='Zid/Cid value']");
     int a = (int) (Math.random() * 100000);
     String b = String.valueOf(a);
-    private final By labelInput = By.xpath("//input[@aria-label='Label']");
+    private final By labelInZidCidInput = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
+            "//input[@aria-label='Label']");
+    private final By selectPlaceInZidCidInput = By.xpath
+            ("//div[@class='v-input deal-country v-text-field v-select v-autocomplete theme--light']" +
+                    "//input[@aria-label='Select place']");
     private final By trafficChannelInput = By.xpath("//input[@aria-label='Traffic channel']");
-    private final By commentInZidInput = By.xpath("//div[contains(.,'New zid/cid')]//textarea[@aria-label='Comment']");
+    private final By commentInZidInput = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
+            "//textarea[@aria-label='Comment']");
     private final By codeInput = By.xpath("//textarea[@aria-label='Сode']");
-    private final By saveZidCidButton = By.xpath("//button//div[contains(.,'Save')]");
-    private final By infoZidCid = By.xpath("//th[contains(.,'Zid/Cid value')]");
+    private final By saveZidCidButton = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
+            "//div[contains(text(),'Save')]");
+    private final By infoZidCid = By.xpath("//td[contains(text(),'cyber')]");
 
     private final By dealPlacesBlock = By.xpath("//div[contains(text(),'Deal places')]");
     private final By searchSiteByIdInput = By.xpath("//input[@aria-label='Search site by id']");
-    private final By addNewDealPlaceButton = By.xpath("//i[contains(.,'add')]");
+    private final By addNewDealPlaceButton = By.xpath
+            ("//button[@class='v-btn v-btn--floating v-btn--outline v-btn--depressed v-btn--small theme--light primary--text']");
+    private final By selectPlaceInNewDealPlaceInput = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
+                    "//input[@aria-label='Select place']");
     private final By geoInput = By.xpath("//input[@aria-label='GEO']");
     private final By linkPpInput = By.xpath("//input[@aria-label='Link PP']");
-    private final By commentInDealPlaceInput = By.xpath("//div[contains(.,' New deal place ')]//textarea[@aria-label='Comment']");
-    private final By saveDealPlaceButton = By.xpath("//button//div[contains(.,'Save')]");
-    private final By saveDealButton = By.xpath("//button//i[contains(., 'save')]");
+    private final By commentInDealPlaceInput = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
+            "//textarea[@aria-label='Comment']");
+    private final By saveDealPlaceButton = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
+            "//button//div[contains(text(),'Save')]");
+    private final By saveDealButton = By.xpath("//div[@type='fix_b2b']" +
+            "//button[@class='ml-0 pulse-button v-btn v-btn--bottom v-btn--floating v-btn--fixed v-btn--right theme--dark green darken-1']");
     private final By infoGEO = By.xpath("//td[contains(.,'Austria')]");
     private final By sendOnReviewButton = By.xpath("//span[contains(text(),'send on review')]");
     private final By profileButton = By.xpath("//button[@id='profile_btn']");
@@ -150,12 +175,12 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B findAddedComment() {
-        findElements(webDriver, addedComment);
+        findElement(webDriver, addedComment);
         return this;
     }
 
     public DealPageB2B closeDealChat() {
-        waitForElementClickable(webDriver, exitDealChat).click();
+        waitForElementClickable(webDriver, exitDealChat).sendKeys(Keys.ESCAPE);
         return this;
     }
 
@@ -164,7 +189,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B findDealLog() {
-        findElements(webDriver, assertLog);
+        findElement(webDriver, assertLog);
         webDriver.navigate().back();
         return this;
     }
@@ -189,20 +214,26 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, costInputInAnalytics).sendKeys("100");
         return this;
     }
-    public DealPageB2B inputSelectAnalytics(String analytics) {
+    public DealPageB2B inputSelectAnalyticsFor1Month(String analytics) {
         findElement(webDriver, selectAnalyticsInput).sendKeys("google" + Keys.ENTER);
         return this;
     }
-    public DealPageB2B inputAddScreenshot(String screen) {
+    public DealPageB2B inputAddScreenshotFor1Month(String screen) {
         findElement(webDriver, addScreenshotInput).sendKeys("screen");
         return this;
     }
-    public DealPageB2B inputStartDateFor1Month(String start) {
-        findElement(webDriver, startDateInput).sendKeys("2022-05-01" + Keys.ENTER);
+    public DealPageB2B selectStartDateFor1Month() {
+        findElement(webDriver, startDateInput).click();
+        findElement(webDriver, firstDate).click();
         return this;
     }
-    public DealPageB2B inputEndDateFor1Month(String end) {
-        findElement(webDriver, endDateInput).sendKeys("2022-05-31" + Keys.ENTER);
+    public DealPageB2B selectEndDateFor1Month() {
+        findElement(webDriver, endDateInput).click();
+        findElement(webDriver, endDate).click();
+        return this;
+    }
+    public DealPageB2B inputSelectAnalyticsFor3Month(String analytics) {
+        findElement(webDriver, selectAnalyticsFor3MonthInput).sendKeys("google" + Keys.ENTER);
         return this;
     }
     public DealPageB2B inputTrafficOverview(String traffic) {
@@ -210,23 +241,23 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B inputGeoTraffic(String traffic) {
-        findElement(webDriver, geoTrafficInput).sendKeys("GEO traffic" + Keys.ENTER);
+        findElement(webDriver, geoTrafficInput).sendKeys("GEO traffic");
         return this;
     }
     public DealPageB2B inputDeviceCategory(String category) {
-        findElement(webDriver, deviceCategoryInput).sendKeys("Device category" + Keys.ENTER);
+        findElement(webDriver, deviceCategoryInput).sendKeys("Device category");
         return this;
     }
     public DealPageB2B inputTrafficSource(String source) {
-        findElement(webDriver, trafficSourcesInput).sendKeys("Traffic sources" + Keys.ENTER);
+        findElement(webDriver, trafficSourcesInput).sendKeys("Traffic sources");
         return this;
     }
     public DealPageB2B inputMobileDesktop(String mobile) {
-        findElement(webDriver, mobileDesktopInput).sendKeys("mobile" + Keys.ENTER);
+        findElement(webDriver, mobileDesktopInput).sendKeys("mobile");
         return this;
     }
     public DealPageB2B inputCommentInAnalytics(String comment) {
-        findElement(webDriver, commentInAnalyticsInput).sendKeys("comment" + Keys.ENTER);
+        findElement(webDriver, commentInAnalyticsInput).sendKeys("comment");
         return this;
     }
     public DealPageB2B clickOnNewAnalyticsButton() {
@@ -243,7 +274,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B inputSelectPlace(String place) {
-        findElement(webDriver, selectPlaceInput).sendKeys("article" + Keys.ENTER);
+        findElement(webDriver, selectPlaceInFormatInput).sendKeys("article" + Keys.ENTER);
         return this;
     }
     public DealPageB2B inputCostInFormat(String cost) {
@@ -288,11 +319,11 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B inputSelectPlaceZidCid(String place) {
-        findElement(webDriver, selectPlaceInput).sendKeys("article" + Keys.ENTER);
+        findElement(webDriver, selectPlaceInZidCidInput).sendKeys("article" + Keys.ENTER);
         return this;
     }
     public DealPageB2B inputLabel(String label) {
-        findElement(webDriver, labelInput).sendKeys("cyber" + Keys.ENTER);
+        findElement(webDriver, labelInZidCidInput).sendKeys("cyber" + Keys.ENTER);
         return this;
     }
     public DealPageB2B inputTrafficChannel(String channel) {
@@ -312,7 +343,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B assertZidCid() {
-        Assert.assertEquals(waitForElementClickable(webDriver, infoZidCid).getText(),"Zid/Cid value");
+        Assert.assertEquals(waitForElementClickable(webDriver, infoZidCid).getText(),"cyber");
         return this;
     }
 
@@ -321,7 +352,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B inputSearchSiteById(String site) {
-        findElement(webDriver, searchSiteByIdInput).sendKeys("20578" + Keys.ENTER);
+        findElement(webDriver, searchSiteByIdInput).sendKeys("" + Keys.DOWN + "" + Keys.ENTER);
         return this;
     }
     public DealPageB2B clickOnAddNewDealPlaceButton() {
@@ -329,11 +360,11 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B inputSelectPlaceNewDealPlace(String place) {
-        findElement(webDriver, selectPlaceInput).sendKeys("article" + Keys.ENTER);
+        findElement(webDriver, selectPlaceInNewDealPlaceInput).sendKeys("article" + Keys.ENTER);
         return this;
     }
     public DealPageB2B inputLabelNewDealPlace(String label) {
-        findElement(webDriver, labelInput).sendKeys("cyber" + Keys.ENTER);
+        findElement(webDriver, labelInZidCidInput).sendKeys("cyber" + Keys.ENTER);
         return this;
     }
     public DealPageB2B inputGEO(String geo) {

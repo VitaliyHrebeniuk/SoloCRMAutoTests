@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="FixSMM">
-    <test name="testingFixSMM">
+<suite name="FixZID">
+    <test name="testingFixZID">
         <classes>
             <class name="com.ui.ManagerCreateDealFixZid.ManagerCreateDealFixZid" />
             <class name="com.ui.ManagerCreateDealFixZid.BuyingControlApproveDealFixZid" />
