@@ -27,7 +27,7 @@ public class ManagerCreateDealB2B extends BaseTest{
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealB2B() {
+    public void createDealB2B() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -68,6 +68,7 @@ public class ManagerCreateDealB2B extends BaseTest{
                  * Проверка наличия инфополя Manager
                  * Проверка наличия инфополя ROI
                  */
+                .assertDealType()
                 .assertPartnerId()
                 .assertProduct()
                 .assertDealCost()
@@ -84,7 +85,7 @@ public class ManagerCreateDealB2B extends BaseTest{
                  */
                 .clickOnCommunicationButton()
                 .inputCommentInCommunication("")
-//                .addFileToComment("")
+                .addFileToComment("")
                 .clickOnAddCommentButton()
                 .findAddedComment()
                 .closeDealChat()
@@ -106,8 +107,8 @@ public class ManagerCreateDealB2B extends BaseTest{
                  * Добавляем ссылку на скриншот в аналитику за 1 месяц
                  * Выбрать Start date и End date в период за месяц
                  * Выбираем аналитику за 3 месяца
-                 * Добавляем ссылку на скриншот в аналитику за 3 месяца!!
-                 * Выбрать Start date и End date в период за 3 месяца!!
+                 * Добавляем ссылку на скриншот в аналитику за 3 месяца
+                 * Выбрать Start date и End date в период за 3 месяца
                  * Добавить ссылку в поле Traffic overview
                  * Добавить ссылку в поле GEO traffic
                  * Добавить ссылку в поле Device category
@@ -126,15 +127,18 @@ public class ManagerCreateDealB2B extends BaseTest{
                 .inputAddScreenshotFor1Month("")
                 .selectStartDateFor1Month()
                 .selectEndDateFor1Month()
-//                .inputSelectAnalyticsFor3Month("")
+                .inputSelectAnalyticsFor3Month("")
+                .inputAddScreenshotFor3Month("")
+                .selectStartDateFor3Month()
+                .selectEndDateFor3Month()
                 .inputTrafficOverview("")
                 .inputGeoTraffic("")
                 .inputDeviceCategory("")
                 .inputTrafficSource("")
                 .inputMobileDesktop("")
                 .inputCommentInAnalytics("")
-//                .clickOnNewAnalyticsButton()
-//                .clickOnFirstAnalyticsButton()
+                .clickOnNewAnalyticsButton()
+                .clickOnFirstAnalyticsButton()
                 /**
                  * Нажимаем на Add format,
                  * вводим Place, вводим Cost,

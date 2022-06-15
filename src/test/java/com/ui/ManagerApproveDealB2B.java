@@ -27,7 +27,7 @@ public class ManagerApproveDealB2B extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void addPayment() {
+    public void addPayment() throws InterruptedException {
         /**
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.

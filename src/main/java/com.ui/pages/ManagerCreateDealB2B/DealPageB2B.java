@@ -1,10 +1,10 @@
 package com.ui.pages.ManagerCreateDealB2B;
 
 import com.ui.pages.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.openqa.selenium.By;
 
 public class DealPageB2B extends BasePage {
     private final By infoDealType = By.xpath("//input[@aria-label='Deal type']");
@@ -18,8 +18,6 @@ public class DealPageB2B extends BasePage {
 
     private final By communicationButton = By.xpath("//div[contains(text(),'Communication')]");
     private final By commentInput = By.xpath("//textarea[@aria-label='Write a comment']");
-    private final By addFileInComment = By.xpath("//div[@class='layout wrap align-end fill-height']//input[@type='file']");
-//    private final By addFileInComment = By.xpath("//div[@class='flex md3']//i[@title='Attach file']");
     private final By addCommentButton = By.xpath("//i[contains(text(),'send')]");
     private final By addedComment = By.xpath("//div[@class='comment-author']");
     private final By exitDealChat = By.xpath("//div[@class='v-dialog__content v-dialog__content--active']");
@@ -36,17 +34,21 @@ public class DealPageB2B extends BasePage {
             "//i[contains(text(), 'add')]");
     private final By costInputInAnalytics = By.xpath("//input[@placeholder='Cost']");
     private final By selectAnalyticsInput = By.xpath("//input[@placeholder='Select analytics']");
-    private final By google = By.xpath("//div[contains(text(),'google')]");
     private final By addScreenshotInput = By.xpath("//input[@placeholder='Add screenshot']");
     private final By startDateInput = By.xpath("//div[@class='layout']//input[@aria-label='Start date']");
     private final By firstDate = By.xpath("//div[contains(text(),'1')]");
     private final By endDate = By.xpath("//div[contains(text(),'28')]");
     private final By endDateInput = By.xpath("//div[@class='layout']//input[@aria-label='End date']");
-    private final By selectAnalyticsFor3MonthInput = By.xpath("//div[@class='v-input v-text-field v-text-field--placeholder v-select v-input--is-focused theme--light primary--text']" +
-            "//input[@placeholder='Select analytics']");
-    private final By addScreenshotFor3MonthInput = By.xpath("//input[@placeholder='Add screenshot']");
-    private final By startDateFor3MonthInput = By.xpath("//div[@class='layout']//input[@aria-label='Start date']");
-    private final By endDateFor3MonthInput = By.xpath("//div[@class='layout']//input[@aria-label='End date']");
+    private final By selectAnalyticsFor3MonthInput = By.xpath
+            ("//div[@class='v-input v-text-field v-text-field--placeholder v-select theme--light']" +
+                    "//input[@placeholder='Select analytics']");
+    private final By addScreenshotFor3MonthInput = By.xpath
+            ("//div[@class='v-input v-text-field v-text-field--placeholder theme--light']" +
+                    "//input[@placeholder='Add screenshot']");
+    private final By startDateFor3MonthInput = By.xpath("//div[@class='layout']" +
+            "//div[@class='v-input v-text-field v-input--is-readonly theme--light']//input[@aria-label='Start date']");
+    private final By endDateFor3MonthInput = By.xpath("//div[@class='layout']" +
+            "//div[@class='v-input v-text-field v-input--is-readonly theme--light']//input[@aria-label='End date']");
     private final By trafficOverviewInput = By.xpath("//input[@aria-label='Traffic Overview']");
     private final By geoTrafficInput = By.xpath("//input[@aria-label='GEO Traffic']");
     private final By deviceCategoryInput = By.xpath("//input[@aria-label='Device - Category']");
@@ -54,23 +56,29 @@ public class DealPageB2B extends BasePage {
     private final By mobileDesktopInput = By.xpath("//input[@aria-label='Mobile / Desktop %']");
     private final By commentInAnalyticsInput = By.xpath("//div[@class='flex md6 pa-1']//textarea[@aria-label='Comment']");
     private final By newAnalyticsButton = By.xpath("//div[contains(text(),'New analytics')]");
-    private final By firstAnalyticsButton = By.xpath("//a[@class='v-tabs__item']//i[contains(text(),'timeline')]");
+    private final By firstAnalyticsButton = By.xpath
+            ("//a[@class='v-tabs__item']");
+    private final By hideAnalytics = By.xpath("//div[contains(text(),'You should attach lead on deal']");
 
     private final By addFormatButton = By.xpath("//div[contains(text(),'Ad format')]");
-    private final By selectPlaceInFormatInput = By.xpath
-            ("//div[@class='v-input v-text-field v-select v-autocomplete theme--light']//input[@aria-label='Select place']");
-    private final By costInputInFormat = By.xpath("//input[@aria-label='Cost']");
-    private final By cpmInput = By.xpath("//input[@aria-label='CPM']");
-    private final By trafficVolumeInput = By.xpath("//input[@aria-label='Traffic volume']");
-    private final By desktopScreenshotInput = By.xpath("//input[@aria-label='Desktop screenshot']");
-    private final By mobileScreenshotInput = By.xpath("//input[@aria-label='Mobile screenshot']");
-    private final By saveFormatButton = By.xpath("//div[@class='v-dialog v-dialog--active']//div[contains(text(),'Save')]");
+    private final By selectPlaceInFormatInput = By.xpath("//div[@class='v-dialog v-dialog--active']" +
+            "//div[@class='v-input v-text-field v-select v-autocomplete theme--light']//input[@aria-label='Select place']");
+    private final By costInputInFormat = By.xpath("//div[@class='v-dialog v-dialog--active']//input[@aria-label='Cost']");
+    private final By cpmInput = By.xpath("//div[@class='v-dialog v-dialog--active']//input[@aria-label='CPM']");
+    private final By trafficVolumeInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active']//input[@aria-label='Traffic volume']");
+    private final By desktopScreenshotInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active']//input[@aria-label='Desktop screenshot']");
+    private final By mobileScreenshotInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active']//input[@aria-label='Mobile screenshot']");
+    private final By saveFormatButton = By.xpath
+            ("//div[@class='v-dialog v-dialog--active']//div[contains(text(),'Save')]");
 
     private final By dealZidsBlock = By.xpath("//div[contains(text(),'Deal zids')]");
     private final By addZidCidButton = By.xpath("//button//div[contains(text(),' Add Zid / Cid ')]");
     private final By siteInput = By.xpath("//input[@aria-label='Select site']");
     private final By zidCidValueInput = By.xpath("//input[@aria-label='Zid/Cid value']");
-    int a = (int) (Math.random() * 100000);
+    int a = (int) (Math.random() * 10000000);
     String b = String.valueOf(a);
     private final By labelInZidCidInput = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
             "//input[@aria-label='Label']");
@@ -97,10 +105,12 @@ public class DealPageB2B extends BasePage {
             "//textarea[@aria-label='Comment']");
     private final By saveDealPlaceButton = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
             "//button//div[contains(text(),'Save')]");
-    private final By saveDealButton = By.xpath("//div[@type='fix_b2b']" +
-            "//button[@class='ml-0 pulse-button v-btn v-btn--bottom v-btn--floating v-btn--fixed v-btn--right theme--dark green darken-1']");
     private final By infoGEO = By.xpath("//td[contains(.,'Austria')]");
-    private final By sendOnReviewButton = By.xpath("//span[contains(text(),'send on review')]");
+
+    private final By greenOverlay = By.xpath("//div[@class='vue-notification-template vue-notification success']");
+    private final By saveDealButton = By.xpath
+            ("//button[@class='ml-0 pulse-button v-btn v-btn--bottom v-btn--floating v-btn--fixed v-btn--right theme--dark green darken-1']");
+    private final By sendOnReviewButton = By.xpath("//button[@class='v-btn v-btn--small theme--light btn-item_send on review']");
     private final By profileButton = By.xpath("//button[@id='profile_btn']");
     private final By exitButton = By.xpath("//a[@id='exit_btn']");
 
@@ -133,6 +143,10 @@ public class DealPageB2B extends BasePage {
         super(webDriver);
     }
 
+    public DealPageB2B assertDealType() {
+        Assert.assertEquals(waitForElementClickable(webDriver, infoDealType).getText(),"fix_b2b");
+        return this;
+    }
     public DealPageB2B assertPartnerId() {
         Assert.assertEquals(waitForElementClickable(webDriver, infoPartnerId).getText(),"Partner id");
         return this;
@@ -167,7 +181,9 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B addFileToComment(String comment) {
-        findElement(webDriver, addFileInComment).sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
+        WebElement inputFile = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
+        unhide(webDriver, inputFile);
+        inputFile.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
     public DealPageB2B clickOnAddCommentButton() {
@@ -236,6 +252,20 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, selectAnalyticsFor3MonthInput).sendKeys("google" + Keys.ENTER);
         return this;
     }
+    public DealPageB2B inputAddScreenshotFor3Month(String screen) {
+        findElement(webDriver, addScreenshotFor3MonthInput).sendKeys("screen");
+        return this;
+    }
+    public DealPageB2B selectStartDateFor3Month() {
+        findElement(webDriver, startDateFor3MonthInput).click();
+        findElement(webDriver, firstDate).click();
+        return this;
+    }
+    public DealPageB2B selectEndDateFor3Month() {
+        findElement(webDriver, endDateFor3MonthInput).click();
+        findElement(webDriver, endDate).click();
+        return this;
+    }
     public DealPageB2B inputTrafficOverview(String traffic) {
         findElement(webDriver, trafficOverviewInput).sendKeys("Traffic overview");
         return this;
@@ -265,7 +295,12 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B clickOnFirstAnalyticsButton() {
-        findElement(webDriver, firstAnalyticsButton).click();
+//        waitForInvisibility(webDriver, hideAnalytics, 15L);
+//        findElement(webDriver, firstAnalyticsButton, 15L).click();
+        WebElement firstAnalButton = webDriver.findElement(By.xpath("//a[@class='v-tabs__item']"));
+//        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", firstAnalButton);
+        Actions act = new Actions(webDriver);
+        act.moveToElement(firstAnalButton).click().perform();
         return this;
     }
 
@@ -356,7 +391,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B clickOnAddNewDealPlaceButton() {
-        findElement(webDriver, addNewDealPlaceButton).click();
+        waitForElementClickable(webDriver, addNewDealPlaceButton).click();
         return this;
     }
     public DealPageB2B inputSelectPlaceNewDealPlace(String place) {
@@ -389,12 +424,14 @@ public class DealPageB2B extends BasePage {
         return this;
     }
 
-    public DealPageB2B clickOnSaveDealButton() {
-        findElement(webDriver, saveDealButton).click();
+    public DealPageB2B clickOnSaveDealButton() throws InterruptedException {
+        waitForInvisibility(webDriver, greenOverlay, 15L);
+        waitForElementClickable(webDriver, saveDealButton).click();
+        Thread.sleep(1000);
         return this;
     }
-    public DealPageB2B clickOnSendOnReviewButton() {
-        waitForElementClickable(webDriver, sendOnReviewButton).click();
+    public DealPageB2B clickOnSendOnReviewButton(){
+        findElement(webDriver, sendOnReviewButton, 1000L).click();
         return this;
     }
     public DealPageB2B clickOnProfileButton() {
@@ -410,7 +447,7 @@ public class DealPageB2B extends BasePage {
         waitForElementClickable(webDriver, dealPaymentsBlockButton).click();
         return this;
     }
-    public DealPageB2B clickOnNewContractButton() {
+    public DealPageB2B clickOnNewContractButton(){
         findElement(webDriver, newContractButton).click();
         return this;
     }
