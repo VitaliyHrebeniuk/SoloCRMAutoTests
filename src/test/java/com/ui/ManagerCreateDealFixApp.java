@@ -1,6 +1,5 @@
 package com.ui;
 
-import com.ui.pages.BaseURL;
 import com.ui.pages.ManagerCreateDealFixApp.DealPageFixApp;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.MainPage;
@@ -17,8 +16,8 @@ public class ManagerCreateDealFixApp extends BaseTest{
     RequestSpecification request = RestAssured.given();
     final String URL = "https://beta-api.solo-crm.com/";
     private String manager2FaCode;
-    BaseURL baseURL = new BaseURL();
-    final String bURL = baseURL.baseURL;
+//    BaseURL baseURL = new BaseURL();
+//    final String bURL = baseURL.baseURL;
 
     @BeforeTest
     public void setToken() {
@@ -32,7 +31,7 @@ public class ManagerCreateDealFixApp extends BaseTest{
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
          */
-        new LoginManagerPage(webDriver, bURL)
+        new LoginManagerPage(webDriver, baseURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
@@ -89,7 +88,7 @@ public class ManagerCreateDealFixApp extends BaseTest{
     public void ResetCode() {
         request
                 .headers("token", managerTokenWith2FA)
-                .post(URL + "security/status/disable/" + manager2FaCode)
+                .post(apiURL + "security/status/disable/" + manager2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

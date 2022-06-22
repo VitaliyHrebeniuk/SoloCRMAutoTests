@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 public class DealsListPageManager extends BasePage {
     private final By dealTypeInput = By.xpath("//input[@aria-label='Deal type']");
+    private final By dealStatusInput = By.xpath("//input[@aria-label='Deal status']");
     private final By startDateSort = By.xpath("//th[contains(., 'Start date')]");
     private final By openDealButton = By.xpath("//i[contains(., 'open_in_new')]");
 
@@ -14,18 +15,24 @@ public class DealsListPageManager extends BasePage {
         super(webDriver);
     }
 
-    public DealsListPageManager inputDealType (String type) {
+    public DealsListPageManager inputDealTypeB2B (String type) throws InterruptedException {
+        Thread.sleep(1000);
         findElement(webDriver, dealTypeInput).sendKeys("fix_b2b" + Keys.ENTER);
         return this;
     }
-
-    public DealsListPageManager clickOnStartDateSort() {
+    public DealsListPageManager inputDealStatus (String type) throws InterruptedException {
+        Thread.sleep(1000);
+        findElement(webDriver, dealStatusInput).sendKeys("revision" + Keys.ENTER);
+        return this;
+    }
+    public DealsListPageManager clickOnStartDateSort() throws InterruptedException {
+        Thread.sleep(1000);
         waitForElementClickable(webDriver, startDateSort).click();
         waitForElementClickable(webDriver, startDateSort).click();
         return this;
     }
-
-    public DealPageM clickOnOpenDealButton() {
+    public DealPageM clickOnOpenDealButton() throws InterruptedException {
+        Thread.sleep(1000);
         findElement(webDriver, openDealButton).click();
         return new DealPageM(webDriver);
     }

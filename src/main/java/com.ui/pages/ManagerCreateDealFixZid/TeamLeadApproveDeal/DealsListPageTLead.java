@@ -13,7 +13,7 @@ public class DealsListPageTLead extends BasePage {
     }
 
     public DealsListPageTLead clickOnStartDateSort() {
-        waitForElementClickable(webDriver, startDateSort).click();
+        findElement(webDriver, startDateSort, 15L).click();
         waitForElementClickable(webDriver, startDateSort).click();
         return this;
     }

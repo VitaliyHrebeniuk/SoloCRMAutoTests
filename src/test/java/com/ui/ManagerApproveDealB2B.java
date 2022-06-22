@@ -1,6 +1,5 @@
 package com.ui;
 
-import com.ui.pages.BaseURL;
 import com.ui.pages.ManagerCreateDealB2B.DealPageB2B;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.DealsListPageManager;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.MainPageManager;
@@ -8,19 +7,14 @@ import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class ManagerApproveDealB2B extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
-    BaseURL baseURL = new BaseURL();
-    final String bURL = baseURL.baseURL;
-    final String apiURL = baseURL.apiURL;
 
-    @BeforeTest
+    @BeforeMethod
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
@@ -32,7 +26,7 @@ public class ManagerApproveDealB2B extends BaseTest {
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
          */
-        new LoginManagerPage(webDriver, bURL)
+        new LoginManagerPage(webDriver, baseURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
@@ -48,7 +42,8 @@ public class ManagerApproveDealB2B extends BaseTest {
          * Нажимаем на сортировку по Start Date, нажимаем на открытие сделки.
          */
         new DealsListPageManager(webDriver)
-                .inputDealType("")
+                .inputDealTypeB2B("")
+                .inputDealStatus("")
                 .clickOnStartDateSort()
                 .clickOnOpenDealButton();
         new DealPageB2B(webDriver)
@@ -107,7 +102,7 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @AfterTest
+    @AfterMethod
     public void QuitDriver() {
         request
                 .headers("token", managerTokenWith2FA)

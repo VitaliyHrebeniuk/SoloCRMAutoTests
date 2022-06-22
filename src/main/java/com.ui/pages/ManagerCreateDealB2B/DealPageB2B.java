@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 public class DealPageB2B extends BasePage {
     private final By infoDealType = By.xpath("//input[@aria-label='Deal type']");
     private final By infoExtension = By.xpath("//input[@aria-label='Extension']");
+    private final By infoClassification = By.xpath("//input[@aria-label='Classification:']");
     private final By infoPartnerId = By.xpath("//h5[contains(text(),'Partner id')]");
     private final By infoProduct = By.xpath("//h5[contains(text(),'Product')]");
     private final By infoDealCost = By.xpath("//h5[contains(text(),'Deal cost')]");
@@ -113,19 +114,19 @@ public class DealPageB2B extends BasePage {
     private final By sendOnReviewButton = By.xpath("//button[@class='v-btn v-btn--small theme--light btn-item_send on review']");
     private final By profileButton = By.xpath("//button[@id='profile_btn']");
     private final By exitButton = By.xpath("//a[@id='exit_btn']");
+    private final By confirmExit = By.xpath("//div[contains(text(),'Yes')]");
 
-    private final By dealPaymentsBlockButton = By.xpath("//div[contains(text(),'Deal payments & contracts')]");
-    private final By newContractButton = By.xpath("//div[contains(text(),' New contract ')]");
+    private final By dealPaymentsBlockButton = By.xpath("//div[contains(text(),'Deal payments')]");
+    private final By newContractButton = By.xpath("//div[contains(text(),' Add contract ')]");
     private final By contractNameInput = By.xpath("//input[@aria-label='Contract name']");
     private final By startDateInContractInput = By.xpath("//div[@class='flex md6']//input[@aria-label='Start date']");
     private final By endDateInContractInput = By.xpath("//div[@class='flex md6']//input[@aria-label='End date']");
-    private final By attachFileInput = By.xpath("//div[@class='flex md12']//input[@type='file']");
     private final By saveContractButton =
             By.xpath("//div[@class='v-dialog__content v-dialog__content--active']//div[contains(text(),'Save')]");
     private final By infoContractName = By.xpath("//td[contains(text(),'Contract name')]");
 
     private final By newPaymentButton = By.xpath("//button[@id='add-payment']");
-    private final By startDateInPaymentInput = By.xpath("//input[@id='payment-start_date']");
+    private final By startDateInPaymentInput = By.xpath("//div[@class='v-text-field__slot']/input[@id='payment-start_date']");
     private final By endDateInPaymentInput = By.xpath("//input[@id='payment-end_date']");
     private final By paymentTargetInput = By.xpath("//input[@id='payment-payment_target_id']");
     private final By typeInput = By.xpath("//input[@id='payment-type']");
@@ -133,10 +134,11 @@ public class DealPageB2B extends BasePage {
     private final By costInput = By.xpath("//input[@id='payment-summary']");
     private final By commentInPaymentInput = By.xpath("//textarea[@id='payment-comment']");
     private final By continueButton = By.xpath("//div[contains(text(),'Continue')]");
-    private final By remainingCostInput = By.xpath("//input[@aria-label='Cost']");
+    private final By remainingCostInput = By.xpath("(//input[@aria-label='Cost'])[3]");
     private final By remainingZidCostInput = By.xpath("//input[@id='payment-analytic-zid-cost']");
     private final By savePaymentButton = By.xpath("//div[contains(text(),'Save payment')]");
-    private final By approvePaymentButton = By.xpath("//i[contains(., 'thumb_up')]");
+    private final By approvePaymentButton = By.xpath("//button[@id='payment-positive_status']");
+    private final By errorNotification = By.xpath("(//div[@class='notification-title']");
     private final By infoWallet = By.xpath("//div[contains(text(),' 1x ')]");
 
     public DealPageB2B(WebDriver webDriver) {
@@ -144,7 +146,15 @@ public class DealPageB2B extends BasePage {
     }
 
     public DealPageB2B assertDealType() {
-        Assert.assertEquals(waitForElementClickable(webDriver, infoDealType).getText(),"fix_b2b");
+        Assert.assertEquals(waitForElementClickable(webDriver, infoDealType).getAttribute("value"),"fix_b2b");
+        return this;
+    }
+    public DealPageB2B assertExtention() {
+        Assert.assertEquals(waitForElementClickable(webDriver, infoExtension).getAttribute("value"),"Test");
+        return this;
+    }
+    public DealPageB2B assertClassification() {
+        Assert.assertEquals(waitForElementClickable(webDriver, infoClassification).getAttribute("value"),"conv");
         return this;
     }
     public DealPageB2B assertPartnerId() {
@@ -181,9 +191,9 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B addFileToComment(String comment) {
-        WebElement inputFile = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
-        unhide(webDriver, inputFile);
-        inputFile.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
+        WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
+        unhide(webDriver, inputFileInComment);
+        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
     public DealPageB2B clickOnAddCommentButton() {
@@ -295,10 +305,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B clickOnFirstAnalyticsButton() {
-//        waitForInvisibility(webDriver, hideAnalytics, 15L);
-//        findElement(webDriver, firstAnalyticsButton, 15L).click();
         WebElement firstAnalButton = webDriver.findElement(By.xpath("//a[@class='v-tabs__item']"));
-//        ((JavascriptExecutor) webDriver).executeScript("arguments[0].click();", firstAnalButton);
         Actions act = new Actions(webDriver);
         act.moveToElement(firstAnalButton).click().perform();
         return this;
@@ -337,7 +344,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
 
-    public DealPageB2B clickOnDealZidsBlock(){
+    public DealPageB2B clickOnDealZidsBlock() {
         findElement(webDriver, dealZidsBlock).click();
         return this;
     }
@@ -425,12 +432,12 @@ public class DealPageB2B extends BasePage {
     }
 
     public DealPageB2B clickOnSaveDealButton() throws InterruptedException {
-        waitForInvisibility(webDriver, greenOverlay, 15L);
+        waitForInvisibility(webDriver, greenOverlay, 20L);
         waitForElementClickable(webDriver, saveDealButton).click();
         Thread.sleep(1000);
         return this;
     }
-    public DealPageB2B clickOnSendOnReviewButton(){
+    public DealPageB2B clickOnSendOnReviewButton() {
         findElement(webDriver, sendOnReviewButton, 1000L).click();
         return this;
     }
@@ -440,31 +447,38 @@ public class DealPageB2B extends BasePage {
     }
     public DealPageB2B clickOnExitButton() {
         findElement(webDriver, exitButton).click();
+        findElement(webDriver, confirmExit).click();
         return this;
     }
 
     public DealPageB2B clickOnDealPaymentsBlockButton() {
+        switchToNewFrame(webDriver);
         waitForElementClickable(webDriver, dealPaymentsBlockButton).click();
         return this;
     }
-    public DealPageB2B clickOnNewContractButton(){
+    public DealPageB2B clickOnNewContractButton() {
         findElement(webDriver, newContractButton).click();
         return this;
     }
-    public DealPageB2B inputContractName(String name) {
+    public DealPageB2B inputContractName(String name) throws InterruptedException {
         findElement(webDriver, contractNameInput).sendKeys("Contract name");
+        Thread.sleep(1000);
         return this;
     }
     public DealPageB2B inputStartDateInContract(String date) {
-        findElement(webDriver, startDateInContractInput).sendKeys("2022-01-01" + Keys.ENTER);
+        findElement(webDriver, startDateInContractInput).click();
+        findElement(webDriver, firstDate).click();
         return this;
     }
     public DealPageB2B inputEndDateInContract(String date) {
-        findElement(webDriver, endDateInContractInput).sendKeys("2022-02-01" + Keys.ENTER);
+        findElement(webDriver, endDateInContractInput).click();
+        findElement(webDriver, endDate).click();
         return this;
     }
     public DealPageB2B inputAttachFile(String contract) {
-        findElement(webDriver, attachFileInput).sendKeys("C:\\Users\\aberz\\Downloads\\contract.txt");
+        WebElement inputFileInContract = webDriver.findElement(By.xpath("//div[@class='flex md12']//input[@type='file']"));
+        unhide(webDriver, inputFileInContract);
+        inputFileInContract.sendKeys("C:\\Users\\aberz\\Downloads\\contract.txt");
         return this;
     }
     public DealPageB2B clickOnSaveContractButton() {
@@ -476,16 +490,21 @@ public class DealPageB2B extends BasePage {
         return this;
     }
 
-    public DealPageB2B clickOnNewPaymentButton() {
+    public DealPageB2B clickOnNewPaymentButton() throws InterruptedException {
         waitForElementClickable(webDriver, newPaymentButton).click();
+        Thread.sleep(1000);
         return this;
     }
     public DealPageB2B inputStartDateInPayment(String date) {
-        findElement(webDriver, startDateInPaymentInput).sendKeys("2022-01-01" + Keys.ENTER);
+        By head = By.xpath("(//div[@class='v-stepper__label'])[1]");
+        findElement(webDriver, head).click();
+        waitForElementClickable(webDriver, startDateInPaymentInput).click();
+        findElement(webDriver, firstDate).click();
         return this;
     }
     public DealPageB2B inputEndDateInPayment(String date) {
-        findElement(webDriver,endDateInPaymentInput).sendKeys("2022-02-01" + Keys.ENTER);
+        findElement(webDriver,endDateInPaymentInput).click();
+        findElement(webDriver, endDate).click();
         return this;
     }
     public DealPageB2B inputPaymentTarget(String target) {
@@ -512,24 +531,28 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, continueButton).click();
         return this;
     }
-    public DealPageB2B inputRemainingCost(String cost) {
+    public DealPageB2B inputRemainingCost(String cost) throws InterruptedException {
         waitForElementClickable(webDriver, remainingCostInput).sendKeys("50");
+        Thread.sleep(1000);
         return this;
     }
-    public DealPageB2B inputRemainingZidCost(String cost) {
+    public DealPageB2B inputRemainingZidCost(String cost) throws InterruptedException {
         findElement(webDriver, remainingZidCostInput).sendKeys("50");
+        Thread.sleep(1500);
         return this;
     }
     public DealPageB2B clickOnSavePaymentButton() {
-        findElement(webDriver, savePaymentButton).click();
+        waitForElementClickable(webDriver, savePaymentButton).click();
         return this;
     }
     public DealPageB2B clickOnApprovePaymentButton() {
         waitForElementClickable(webDriver, approvePaymentButton).click();
         return this;
     }
-    public DealPageB2B assertPayment() {
-        Assert.assertEquals(waitForElementClickable(webDriver, infoWallet).getText()," 1x ");
+    public DealPageB2B assertPayment() throws InterruptedException {
+        Assert.assertEquals(waitForElementClickable(webDriver, infoWallet).
+                getText(),"1x\n" + "WMZ Z146407012030\n" + "100 USD");
+        Thread.sleep(5000);
         return this;
     }
 }

@@ -44,4 +44,10 @@ public class WebHelpers {
                 + "return true;";
         ((JavascriptExecutor) webDriver).executeScript(script, locator);
     }
+
+    public void switchToNewFrame(WebDriver webDriver) {
+        for(String winHandle : webDriver.getWindowHandles()){
+            webDriver.switchTo().window(winHandle);
+        }
+    }
 }

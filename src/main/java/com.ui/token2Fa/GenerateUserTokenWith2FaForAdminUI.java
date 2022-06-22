@@ -15,7 +15,7 @@ public class GenerateUserTokenWith2FaForAdminUI {
     public String adminTokenWith2FA;
     public String admin2FaCode;
     public RequestSpecification request = RestAssured.given();
-    final String URL = "https://test-api.solo-crm.com/";
+    final String URL = "https://beta-api.solo-crm.com/";
 
     public String setUserTokenWithout2FA(){
         Response response = request

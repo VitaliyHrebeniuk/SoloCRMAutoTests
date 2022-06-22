@@ -1,6 +1,5 @@
 package com.ui;
 
-import com.ui.pages.BaseURL;
 import com.ui.pages.ManagerCreateDealB2B.DealPageB2B;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.MainPage;
@@ -8,19 +7,14 @@ import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.PartnersListPage;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class ManagerCreateDealB2B extends BaseTest{
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
-    BaseURL baseURL = new BaseURL();
-    final String bURL = baseURL.baseURL;
-    final String apiURL = baseURL.apiURL;
 
-    @BeforeTest
+    @BeforeMethod
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
@@ -33,7 +27,7 @@ public class ManagerCreateDealB2B extends BaseTest{
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
          */
-        new LoginManagerPage(webDriver, bURL)
+        new LoginManagerPage(webDriver, baseURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
@@ -58,9 +52,9 @@ public class ManagerCreateDealB2B extends BaseTest{
                 /**
                  * Deal page B2B
                  * Deal info
-                 * Проверка на правильность создания сделки B2B!!
-                 * Проверка на выбор классификации conv!!
-                 * Проверка что сделка создается с полем Extension Test!!
+                 * Проверка на правильность создания сделки B2B
+                 * Проверка на выбор классификации conv
+                 * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
                  * Проверка наличия инфополя Product
                  * Проверка наличия инфополя Deal cost
@@ -69,6 +63,8 @@ public class ManagerCreateDealB2B extends BaseTest{
                  * Проверка наличия инфополя ROI
                  */
                 .assertDealType()
+                .assertExtention()
+                .assertClassification()
                 .assertPartnerId()
                 .assertProduct()
                 .assertDealCost()
@@ -212,7 +208,7 @@ public class ManagerCreateDealB2B extends BaseTest{
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @AfterTest
+    @AfterMethod
     public void ResetCode() {
         request
                 .headers("token", managerTokenWith2FA)
