@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeClass;
 public class BaseTest{
     protected static WebDriver webDriver;
 
+
+
     @BeforeClass
     public void setUp() {
         webDriver = WebDriverManagerClass.getWebDriver();
