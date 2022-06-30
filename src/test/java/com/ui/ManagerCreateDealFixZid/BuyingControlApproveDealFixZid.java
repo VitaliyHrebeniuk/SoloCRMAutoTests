@@ -8,17 +8,14 @@ import com.ui.pages.ManagerCreateDealFixZid.BuyingControlApproveDeal.MainPageBCo
 import com.ui.token2Fa.GenerateUserTokenWith2FaForBuyingControlUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class BuyingControlApproveDealFixZid extends BaseTest {
     String buyingControlTokenWith2FA;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://beta-api.solo-crm.com/";
     private String buyingControl2FaCode;
 
-    @BeforeTest
+    @BeforeClass
     public void setDriver() {
         GenerateUserTokenWith2FaForBuyingControlUI generateUserTokenWith2FaForBuyingControlUI = new GenerateUserTokenWith2FaForBuyingControlUI();
         this.buyingControlTokenWith2FA = generateUserTokenWith2FaForBuyingControlUI.set2faForAccount();
@@ -30,7 +27,7 @@ public class BuyingControlApproveDealFixZid extends BaseTest {
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
          */
-        new LoginPageBControl(webDriver, "https://beta.solo-crm.com/#/login")
+        new LoginPageBControl(webDriver, baseURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
@@ -56,11 +53,11 @@ public class BuyingControlApproveDealFixZid extends BaseTest {
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @AfterTest
+    @AfterClass
     public void QuitDriver() {
         request
                 .headers("token", buyingControlTokenWith2FA)
-                .post(URL + "security/status/disable/" + buyingControl2FaCode)
+                .post(apiURL + "security/status/disable/" + buyingControl2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

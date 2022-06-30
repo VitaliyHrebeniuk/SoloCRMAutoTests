@@ -1,6 +1,5 @@
 package com.ui;
 
-import com.ui.pages.BaseURL;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.MainPage;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.PartnersListPage;
@@ -18,9 +17,9 @@ public class ManagerCreateDealOffline extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
-    BaseURL baseURL = new BaseURL();
-    final String bURL = baseURL.baseURL;
-    final String URL = baseURL.apiURL;
+//    BaseURL baseURL = new BaseURL();
+//    final String bURL = baseURL.baseURL;
+//    final String URL = baseURL.apiURL;
 
     @BeforeTest
     public void setToken() {
@@ -30,7 +29,7 @@ public class ManagerCreateDealOffline extends BaseTest {
     }
     @Test
     public void createDealFixApp() {
-        new LoginManagerPage(webDriver, bURL)
+        new LoginManagerPage(webDriver, baseURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
@@ -79,7 +78,7 @@ public class ManagerCreateDealOffline extends BaseTest {
     public void ResetCode() {
         request
                 .headers("token", managerTokenWith2FA)
-                .post(URL + "security/status/disable/" + manager2FaCode)
+                .post(apiURL + "security/status/disable/" + manager2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

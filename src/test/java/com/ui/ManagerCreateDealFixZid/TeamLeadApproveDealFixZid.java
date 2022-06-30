@@ -8,17 +8,14 @@ import com.ui.pages.ManagerCreateDealFixZid.TeamLeadApproveDeal.MainPageTLead;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForTeamLeadUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class TeamLeadApproveDealFixZid extends BaseTest {
     String teamLeadTokenWith2FA;
     RequestSpecification request = RestAssured.given();
-    final String URL = "https://beta-api.solo-crm.com/";
     private String teamLead2FaCode;
 
-    @BeforeTest
+    @BeforeClass
     public void setDriver() {
         GenerateUserTokenWith2FaForTeamLeadUI generateUserTokenWith2FaForTeamLead = new GenerateUserTokenWith2FaForTeamLeadUI();
         this.teamLeadTokenWith2FA = generateUserTokenWith2FaForTeamLead.set2faForAccount();
@@ -30,7 +27,7 @@ public class TeamLeadApproveDealFixZid extends BaseTest {
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
          */
-        new LoginPageTLead(webDriver, "https://beta.solo-crm.com/#/login")
+        new LoginPageTLead(webDriver, baseURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
@@ -52,15 +49,16 @@ public class TeamLeadApproveDealFixZid extends BaseTest {
          * Нажимаем на аппрув платежа, нажимаем на профиль, выходим с профиля.
          */
         new DealPageTLead(webDriver)
+                .clickOnDealPaymentsBlockButton()
                 .clickOnApprovePaymentButton()
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @AfterTest
+    @AfterClass
     public void QuitDriver(){
         request
                 .headers("token", teamLeadTokenWith2FA)
-                .post(URL + "security/status/disable/" + teamLead2FaCode)
+                .post(apiURL + "security/status/disable/" + teamLead2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);

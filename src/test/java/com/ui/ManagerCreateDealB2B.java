@@ -1,6 +1,5 @@
 package com.ui;
 
-import com.ui.pages.BaseURL;
 import com.ui.pages.ManagerCreateDealB2B.DealPageB2B;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.LoginManagerPage;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.MainPage;
@@ -8,32 +7,27 @@ import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.PartnersListPage;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class ManagerCreateDealB2B extends BaseTest{
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
-    BaseURL baseURL = new BaseURL();
-    final String bURL = baseURL.baseURL;
-    final String apiURL = baseURL.apiURL;
 
-    @BeforeTest
+    @BeforeMethod
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealB2B() {
+    public void createDealB2B() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
          */
-        new LoginManagerPage(webDriver, bURL)
+        new LoginManagerPage(webDriver, baseURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
@@ -58,9 +52,9 @@ public class ManagerCreateDealB2B extends BaseTest{
                 /**
                  * Deal page B2B
                  * Deal info
-                 * Проверка на правильность создания сделки B2B!!
-                 * Проверка на выбор классификации conv!!
-                 * Проверка что сделка создается с полем Extension Test!!
+                 * Проверка на правильность создания сделки B2B
+                 * Проверка на выбор классификации conv
+                 * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
                  * Проверка наличия инфополя Product
                  * Проверка наличия инфополя Deal cost
@@ -68,6 +62,9 @@ public class ManagerCreateDealB2B extends BaseTest{
                  * Проверка наличия инфополя Manager
                  * Проверка наличия инфополя ROI
                  */
+                .assertDealType()
+                .assertExtention()
+                .assertClassification()
                 .assertPartnerId()
                 .assertProduct()
                 .assertDealCost()
@@ -84,7 +81,7 @@ public class ManagerCreateDealB2B extends BaseTest{
                  */
                 .clickOnCommunicationButton()
                 .inputCommentInCommunication("")
-//                .addFileToComment("")
+                .addFileToComment("")
                 .clickOnAddCommentButton()
                 .findAddedComment()
                 .closeDealChat()
@@ -105,9 +102,9 @@ public class ManagerCreateDealB2B extends BaseTest{
                  * Выбираем аналитику за 1 месяц
                  * Добавляем ссылку на скриншот в аналитику за 1 месяц
                  * Выбрать Start date и End date в период за месяц
-                 * Выбираем аналитику за 3 месяца !!
-                 * Добавляем ссылку на скриншот в аналитику за 3 месяца!!
-                 * Выбрать Start date и End date в период за 3 месяца!!
+                 * Выбираем аналитику за 3 месяца
+                 * Добавляем ссылку на скриншот в аналитику за 3 месяца
+                 * Выбрать Start date и End date в период за 3 месяца
                  * Добавить ссылку в поле Traffic overview
                  * Добавить ссылку в поле GEO traffic
                  * Добавить ссылку в поле Device category
@@ -122,10 +119,14 @@ public class ManagerCreateDealB2B extends BaseTest{
                 .inputLink("")
                 .clickOnAddLinkButton()
                 .inputCostInAnalytics("")
-                .inputSelectAnalytics("")
-                .inputAddScreenshot("")
-                .inputStartDateFor1Month("")
-                .inputEndDateFor1Month("")
+                .inputSelectAnalyticsFor1Month("")
+                .inputAddScreenshotFor1Month("")
+                .selectStartDateFor1Month()
+                .selectEndDateFor1Month()
+                .inputSelectAnalyticsFor3Month("")
+                .inputAddScreenshotFor3Month("")
+                .selectStartDateFor3Month()
+                .selectEndDateFor3Month()
                 .inputTrafficOverview("")
                 .inputGeoTraffic("")
                 .inputDeviceCategory("")
@@ -207,7 +208,7 @@ public class ManagerCreateDealB2B extends BaseTest{
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @AfterTest
+    @AfterMethod
     public void ResetCode() {
         request
                 .headers("token", managerTokenWith2FA)
