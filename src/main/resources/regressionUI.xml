@@ -3,7 +3,7 @@
 <suite name="RegressionUI" verbose="1">
     <test name="Deal B2B">
         <classes>
-            <class name="com.ui.ManagerCreateDealB2B" />
+            <class name="com.ui.CreateDeals.B2B.ManagerCreateDealB2BConvClass" />
 <!--            <class name="com.ui.ManagerCreateDealFixZid.BuyingControlApproveDealFixZid" />-->
 <!--            <class name="com.ui.ManagerApproveDealB2B" />-->
 <!--            <class name="com.ui.ManagerCreateDealFixZid.TeamLeadApproveDealFixZid" />-->
