@@ -2,11 +2,11 @@
 <suite name="FixZID">
     <test name="testingFixZID">
         <classes>
-            <class name="com.ui.ManagerCreateDealFixZid.ManagerCreateDealFixZid" />
-            <class name="com.ui.ManagerCreateDealFixZid.BuyingControlApproveDealFixZid" />
-            <class name="com.ui.ManagerCreateDealFixZid.ManagerApproveDeal" />
-            <class name="com.ui.ManagerCreateDealFixZid.TeamLeadApproveDealFixZid" />
-            <class name="com.ui.ManagerCreateDealFixZid.AuditorApproveDealFixZid" />
+            <class name="com.ui.CreateDeals.ManagerCreateDealFixZid" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.ManagerApproveDealFixZid" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>
     </test>
 </suite>
