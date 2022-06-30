@@ -2,11 +2,11 @@
 <suite name="FixCPI">
     <test name="testingFixCPI">
         <classes>
-            <class name="com.ui.ManagerCreateDealCPI" />
-            <class name="com.ui.ManagerCreateDealFixZid.BuyingControlApproveDealFixZid" />
-            <class name="com.ui.ManagerCreateDealFixZid.ManagerApproveDeal" />
-            <class name="com.ui.ManagerCreateDealFixZid.TeamLeadApproveDealFixZid" />
-            <class name="com.ui.ManagerCreateDealFixZid.AuditorApproveDealFixZid" />
+            <class name="com.ui.CreateDeals.ManagerCreateDealCPI" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.ManagerApproveDealFixZid" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>
     </test>
 </suite>
