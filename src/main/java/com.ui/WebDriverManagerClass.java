@@ -16,6 +16,8 @@ public class WebDriverManagerClass {
     private void setWebDriver(String browserName) {
         switch (browserName) {
             case "chrome":
+//                webDriver = WebDriverManager.chromedriver().create();
+//                webDriver.manage().window().maximize();
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 /**
@@ -27,6 +29,7 @@ public class WebDriverManagerClass {
                 break;
             case "ff":
                 webDriver = WebDriverManager.firefoxdriver().create();
+                webDriver.manage().window().maximize();
                 break;
             default:
                 throw new RuntimeException("Incorrect browser name");

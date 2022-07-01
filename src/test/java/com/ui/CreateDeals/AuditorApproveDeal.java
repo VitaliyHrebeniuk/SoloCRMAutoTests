@@ -14,7 +14,7 @@ public class AuditorApproveDeal extends BaseTest {
     RequestSpecification request = RestAssured.given();
     private String auditor2FaCode;
 
-    @BeforeClass
+    @BeforeMethod
     public void setDriver() {
         GenerateUserTokenWith2FaForAuditorUI generateUserTokenWith2FaForAuditor = new GenerateUserTokenWith2FaForAuditorUI();
         this.auditorTokenWith2FA = generateUserTokenWith2FaForAuditor.set2faForAccount();
@@ -48,7 +48,7 @@ public class AuditorApproveDeal extends BaseTest {
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @AfterClass
+    @AfterMethod
     public void QuitDriver(){
         request
                 .headers("token", auditorTokenWith2FA)

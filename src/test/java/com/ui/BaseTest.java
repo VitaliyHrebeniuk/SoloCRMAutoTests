@@ -1,21 +1,21 @@
 package com.ui;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 public class BaseTest{
     protected static WebDriver webDriver;
+    public static final String baseURL = "https://beta.solo-crm.com/";
+    public static final String apiURL = "https://beta-api.solo-crm.com/";
 
-
-
-    @BeforeClass
+    @BeforeTest
     public void setUp() {
         webDriver = WebDriverManagerClass.getWebDriver();
     }
 
 
-    @AfterClass
+    @AfterTest
     public void shutDown() {
         webDriver.quit();
     }

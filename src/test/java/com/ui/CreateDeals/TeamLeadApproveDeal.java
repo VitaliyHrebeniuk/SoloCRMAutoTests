@@ -15,7 +15,7 @@ public class TeamLeadApproveDeal extends BaseTest {
     RequestSpecification request = RestAssured.given();
     private String teamLead2FaCode;
 
-    @BeforeClass
+    @BeforeMethod
     public void setDriver() {
         GenerateUserTokenWith2FaForTeamLeadUI generateUserTokenWith2FaForTeamLead = new GenerateUserTokenWith2FaForTeamLeadUI();
         this.teamLeadTokenWith2FA = generateUserTokenWith2FaForTeamLead.set2faForAccount();
@@ -55,7 +55,7 @@ public class TeamLeadApproveDeal extends BaseTest {
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @AfterClass
+    @AfterMethod
     public void QuitDriver(){
         request
                 .headers("token", teamLeadTokenWith2FA)
