@@ -1,13 +1,22 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="RegressionUI" verbose="1">
-    <test name="Deal B2B">
+    <test name="CreateFixB2BConvWithoutPayment">
         <classes>
             <class name="com.ui.CreateDeals.B2B.ManagerCreateDealB2BConvClass" />
-<!--            <class name="com.ui.ManagerCreateDealFixZid.BuyingControlApproveDealFixZid" />-->
-<!--            <class name="com.ui.ManagerApproveDealB2B" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.TeamLeadApproveDealFixZid" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.AuditorApproveDealFixZid" />-->
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.B2B.ManagerApproveDealB2B" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+    <test name="CreateFixB2BConvWithoutPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.B2B.ManagerCreateDealB2BVolClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.B2B.ManagerApproveDealB2B" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>
     </test>
 <!--    <test name="Deal CPI">-->
