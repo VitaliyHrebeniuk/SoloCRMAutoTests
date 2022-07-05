@@ -1,9 +1,9 @@
-package com.ui.CreateDeals;
+package com.ui.CreateDeals.FixZid;
 
 import com.ui.BaseTest;
+import com.ui.pages.Manager.MainPageManager;
 import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.DealPageM;
-import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.DealsListPageManager;
-import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.MainPageManager;
+import com.ui.pages.Manager.DealsListPageManager;
 import com.ui.pages.Manager.LoginPageManager;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;

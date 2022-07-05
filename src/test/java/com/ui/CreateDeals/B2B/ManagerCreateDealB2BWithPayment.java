@@ -8,9 +8,11 @@ import com.ui.pages.Manager.PartnersListPageManager;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class ManagerCreateDealB2BConvClass extends BaseTest {
+public class ManagerCreateDealB2BWithPayment extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -22,7 +24,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealB2B() throws InterruptedException {
+    public void createDealB2BWithPayment() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -102,7 +104,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                  * записываем кост
                  * Выбираем аналитику за 1 месяц
                  * Добавляем ссылку на скриншот в аналитику за 1 месяц
-                 * Выбираем Start date и End date в период за месяц
+                 * Выбрать Start date и End date в период за месяц
                  * Выбираем аналитику за 3 месяца
                  * Добавляем ссылку на скриншот в аналитику за 3 месяца
                  * Выбрать Start date и End date в период за 3 месяца
@@ -186,7 +188,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                  * вводим link PP,
                  * пишем коммент
                  * сохраняем Deal place.
-                 * Проверяем создание Deal place по GEO
+                 * Проверить создание Deal place по Ad place!!
                  */
                 .clickOnDealPlacesBlock()
                 .inputSearchSiteById("")
@@ -198,6 +200,58 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .inputCommentInDealPlace("")
                 .clickOnSaveDealPlaceButton()
                 .assertDealPlace()
+                /**
+                 * Deal payments
+                 * Нажимаем на блок Deal Payments
+                 * Deal contract
+                 * Нажимаем на New contract
+                 * Вводим contract name
+                 * вводим Start date
+                 * вводим End date
+                 * прикрепляем файл
+                 * сохраняем контракт
+                 * проверить добавление контракта по Name
+                 */
+                .clickOnDealPaymentsBlockButton()
+                .clickOnNewContractButton()
+                .inputContractName("")
+                .inputStartDateInContract("")
+                .inputEndDateInContract("")
+                .inputAttachFile("")
+                .clickOnSaveContractButton()
+                .assertContractName()
+                /**
+                 * нажимаем на New Payment,
+                 * вводим Start date,
+                 * вводим End date,
+                 * вводим Payment target,
+                 * вводим Type,
+                 * вводим Wallet,
+                 * вводим Cost,
+                 * добавить коммент
+                 * нажимаем на Continue,
+                 * вводим remaining cost,
+                 * вводим Remaining zid cost,
+                 * сохраняем Payment,
+                 * проверяем что создался платеж по Wallet
+                 * нажимаем на аппрув Payment.
+                 * нажимаем на профиль,
+                 * выходим с профиля.
+                 */
+                .clickOnNewPaymentButton()
+                .inputStartDateInPayment("")
+                .inputEndDateInPayment("")
+                .inputPaymentTarget("")
+                .inputType("")
+                .inputWallet("")
+                .inputCostInPayment("")
+                .clickOnAutocheck()
+                .inputCommentInPayment("")
+                .clickOnContinueButton()
+                .inputRemainingCost("")
+                .inputRemainingZidCost("")
+                .clickOnSavePaymentButton()
+                .assertPayment()
                 /**
                  * Сохраняем сделку,
                  * отправляем на review,

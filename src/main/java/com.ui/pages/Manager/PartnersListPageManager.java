@@ -1,7 +1,6 @@
 package com.ui.pages.Manager;
 
 import com.ui.pages.BasePage;
-import com.ui.pages.ManagerCreateDealFixZid.ManagerCreateDeal.DealPage;
 import com.ui.pages.ManagerCreateDealOffline.AddOfflineDealPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +21,8 @@ public class PartnersListPageManager extends BasePage {
         super(webDriver);
     }
 
-    public PartnersListPageManager inputPartnersId(String id) {
+    public PartnersListPageManager inputPartnersId(String id) throws InterruptedException {
+        Thread.sleep(3000);
         waitForElementClickable(webDriver, editPartner);
         findElement(webDriver, partnerIdInput).sendKeys("5445");
         return this;
@@ -48,9 +48,9 @@ public class PartnersListPageManager extends BasePage {
         return this;
     }
 
-    public DealPage clickOnZidCidButton() {
+    public DealPageFixZid clickOnZidCidButton() {
         findElement(webDriver, zidCidButton).click();
-        return new DealPage(webDriver);
+        return new DealPageFixZid(webDriver);
     }
 
     public DealPageCPM clickOnCPMButton() {

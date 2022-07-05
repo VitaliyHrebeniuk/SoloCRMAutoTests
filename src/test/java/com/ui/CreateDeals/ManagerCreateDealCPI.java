@@ -45,7 +45,7 @@ public class ManagerCreateDealCPI extends BaseTest {
          * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на CPI сделку.
          */
         new PartnersListPageManager(webDriver)
-                .inputPartnersId("")
+//                .inputPartnersId("")
                 .clickOnAddDealButton()
                 .clickOnCPIButton();
         /**

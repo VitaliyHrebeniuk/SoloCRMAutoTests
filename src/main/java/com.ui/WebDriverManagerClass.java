@@ -16,15 +16,15 @@ public class WebDriverManagerClass {
     private void setWebDriver(String browserName) {
         switch (browserName) {
             case "chrome":
-//                webDriver = WebDriverManager.chromedriver().create();
-//                webDriver.manage().window().maximize();
-                WebDriverManager.chromedriver().setup();
-                ChromeOptions options = new ChromeOptions();
+                webDriver = WebDriverManager.chromedriver().create();
+                webDriver.manage().window().maximize();
+//                WebDriverManager.chromedriver().setup();
+//                ChromeOptions options = new ChromeOptions();
                 /**
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
-                options.addArguments("--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
-                webDriver = new ChromeDriver(options);
+//                options.addArguments("--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
+//                webDriver = new ChromeDriver(options);
 
                 break;
             case "ff":

@@ -45,7 +45,7 @@ public class ManagerCreateDealFixApp extends BaseTest {
          * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на Fix App сделку.
          */
         new PartnersListPageManager(webDriver)
-                .inputPartnersId("")
+//                .inputPartnersId("")
                 .clickOnAddDealButton()
                 .clickOnFixAppButton();
         /**
