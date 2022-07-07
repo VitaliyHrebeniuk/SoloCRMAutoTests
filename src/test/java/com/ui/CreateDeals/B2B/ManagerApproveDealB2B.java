@@ -44,7 +44,7 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .inputDealTypeB2B("")
                 .inputDealStatus("")
                 .clickOnStartDateSort()
-                .clickOnOpenDealButton();
+                .clickOnOpenDealB2BButton();
         new DealPageB2B(webDriver)
                 /**
                  * Deal payments

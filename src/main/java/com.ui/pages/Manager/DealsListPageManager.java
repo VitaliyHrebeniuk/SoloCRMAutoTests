@@ -1,7 +1,6 @@
 package com.ui.pages.Manager;
 
 import com.ui.pages.BasePage;
-import com.ui.pages.ManagerCreateDealFixZid.ManagerApproveDeal.DealPageM;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -17,24 +16,34 @@ public class DealsListPageManager extends BasePage {
     }
 
     public DealsListPageManager inputDealTypeB2B (String type) throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         findElement(webDriver, dealTypeInput).sendKeys("fix_b2b" + Keys.ENTER);
         return this;
     }
+    public DealsListPageManager inputDealTypeFixZid (String type) throws InterruptedException {
+        Thread.sleep(3000);
+        findElement(webDriver, dealTypeInput).sendKeys("fix_zid" + Keys.ENTER);
+        return this;
+    }
     public DealsListPageManager inputDealStatus (String type) throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         findElement(webDriver, dealStatusInput).sendKeys("revision" + Keys.ENTER);
         return this;
     }
     public DealsListPageManager clickOnStartDateSort() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         waitForElementClickable(webDriver, startDateSort).click();
         waitForElementClickable(webDriver, startDateSort).click();
         return this;
     }
-    public DealPageM clickOnOpenDealButton() throws InterruptedException {
-        Thread.sleep(5000);
+    public DealPageFixZid clickOnOpenDealFixZidButton() throws InterruptedException {
+        Thread.sleep(3000);
         findElement(webDriver, openDealButton).click();
-        return new DealPageM(webDriver);
+        return new DealPageFixZid(webDriver);
+    }
+    public DealPageB2B clickOnOpenDealB2BButton() throws InterruptedException {
+        Thread.sleep(3000);
+        findElement(webDriver, openDealButton).click();
+        return new DealPageB2B(webDriver);
     }
 }

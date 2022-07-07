@@ -116,7 +116,7 @@ public class DealPageB2B extends BasePage {
     private final By confirmExit = By.xpath("//div[contains(text(),'Yes')]");
 
     private final By dealPaymentsBlockButton = By.xpath("//div[contains(text(),'Deal payments')]");
-    private final By newContractButton = By.xpath("//div[contains(text(),' Add contract ')]");
+    private final By newContractButton = By.xpath("//div[contains(text(),'Add contract')]");
     private final By contractNameInput = By.xpath("//input[@aria-label='Contract name']");
     private final By startDateInContractInput = By.xpath("//div[@class='flex md6']//input[@aria-label='Start date']");
     private final By endDateInContractInput = By.xpath("//div[@class='flex md6']//input[@aria-label='End date']");
@@ -142,7 +142,6 @@ public class DealPageB2B extends BasePage {
     private final By remainingZidCostInput = By.xpath("//input[@id='payment-analytic-zid-cost']");
     private final By savePaymentButton = By.xpath("//div[contains(text(),'Save payment')]");
     private final By approvePaymentButton = By.xpath("//button[@id='payment-positive_status']");
-    private final By errorNotification = By.xpath("(//div[@class='notification-title']");
     private final By infoWallet = By.xpath("//div[contains(text(),' 1x ')]");
 
     public DealPageB2B(WebDriver webDriver) {
@@ -467,7 +466,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B clickOnNewContractButton() {
-        findElement(webDriver, newContractButton).click();
+        waitForElementClickable(webDriver, newContractButton).click();
         return this;
     }
     public DealPageB2B inputContractName(String name) throws InterruptedException {

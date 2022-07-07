@@ -22,7 +22,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealB2B() throws InterruptedException {
+    public void createDealB2BConv() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="FixZidConv">
-    <test name="CreateFixZidConvWithoutPayment">
+<suite name="FixZidWithPayment">
+    <test name="CreateFixZidConvWithPayment">
         <classes>
-            <class name="com.ui.CreateDeals.FixZid.ManagerCreateDealFixZidConvClass" />
+            <class name="com.ui.CreateDeals.FixZid.ManagerCreateDealFixZidWithPayment" />
             <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
-            <class name="com.ui.CreateDeals.FixZid.ManagerApproveDealFixZid" />
             <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
             <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>

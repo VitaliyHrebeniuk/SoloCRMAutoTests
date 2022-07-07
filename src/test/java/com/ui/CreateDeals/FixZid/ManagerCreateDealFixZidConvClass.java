@@ -8,16 +8,14 @@ import com.ui.pages.Manager.PartnersListPageManager;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class ManagerCreateDealFixZidConvClass extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
 
-    @BeforeTest
+    @BeforeMethod
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
@@ -25,7 +23,7 @@ public class ManagerCreateDealFixZidConvClass extends BaseTest {
     }
 
     @Test
-    public void createDealFixZid() throws InterruptedException {
+    public void createDealFixZidConv() throws InterruptedException {
         /**
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
@@ -168,7 +166,7 @@ public class ManagerCreateDealFixZidConvClass extends BaseTest {
                 .clickOnExitButton();
     }
 
-    @AfterTest
+    @AfterMethod
     public void ResetCode() {
         request
                 .headers("token", managerTokenWith2FA)
