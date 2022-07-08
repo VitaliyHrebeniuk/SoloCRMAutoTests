@@ -381,7 +381,6 @@ public class DealPageFixZid extends BasePage {
     }
 
     public DealPageFixZid clickOnDealPaymentsBlockButton() {
-        switchToNewFrame(webDriver);
         waitForElementClickable(webDriver, dealPaymentsBlockButton).click();
         return this;
     }

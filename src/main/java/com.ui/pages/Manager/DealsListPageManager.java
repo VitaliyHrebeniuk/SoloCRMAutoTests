@@ -39,11 +39,13 @@ public class DealsListPageManager extends BasePage {
     public DealPageFixZid clickOnOpenDealFixZidButton() throws InterruptedException {
         Thread.sleep(3000);
         findElement(webDriver, openDealButton).click();
+        switchToNewFrame(webDriver);
         return new DealPageFixZid(webDriver);
     }
     public DealPageB2B clickOnOpenDealB2BButton() throws InterruptedException {
         Thread.sleep(3000);
         findElement(webDriver, openDealButton).click();
+        switchToNewFrame(webDriver);
         return new DealPageB2B(webDriver);
     }
 }

@@ -53,9 +53,9 @@ public class ManagerCreateDealFixZidWithPayment extends BaseTest {
                 .clickOnZidCidButton();
         new DealPageFixZid(webDriver)
                 /**
-                 * Deal page B2B
+                 * Deal page FixZid
                  * Deal info
-                 * Проверка на правильность создания сделки B2B
+                 * Проверка на правильность создания сделки FixZid
                  * Проверка на выбор классификации conv
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id

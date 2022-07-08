@@ -21,7 +21,6 @@ public class ManagerCreateDealFixZidConvClass extends BaseTest {
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
-
     @Test
     public void createDealFixZidConv() throws InterruptedException {
         /**
@@ -51,9 +50,9 @@ public class ManagerCreateDealFixZidConvClass extends BaseTest {
                 .clickOnZidCidButton();
         new DealPageFixZid(webDriver)
                 /**
-                 * Deal page B2B
+                 * Deal page FixZid
                  * Deal info
-                 * Проверка на правильность создания сделки B2B
+                 * Проверка на правильность создания сделки FixZid
                  * Проверка на выбор классификации conv
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
@@ -165,7 +164,6 @@ public class ManagerCreateDealFixZidConvClass extends BaseTest {
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-
     @AfterMethod
     public void ResetCode() {
         request

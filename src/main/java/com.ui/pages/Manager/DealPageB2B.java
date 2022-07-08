@@ -461,7 +461,6 @@ public class DealPageB2B extends BasePage {
     }
 
     public DealPageB2B clickOnDealPaymentsBlockButton() {
-        switchToNewFrame(webDriver);
         waitForElementClickable(webDriver, dealPaymentsBlockButton).click();
         return this;
     }
