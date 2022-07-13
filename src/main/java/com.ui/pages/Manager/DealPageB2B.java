@@ -442,7 +442,7 @@ public class DealPageB2B extends BasePage {
     public DealPageB2B clickOnSaveDealButton() throws InterruptedException {
         waitForInvisibility(webDriver, greenOverlay, 20L);
         waitForElementClickable(webDriver, saveDealButton).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         return this;
     }
     public DealPageB2B clickOnSendOnReviewButton() {

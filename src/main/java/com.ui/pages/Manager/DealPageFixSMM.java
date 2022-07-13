@@ -39,7 +39,7 @@ public class DealPageFixSMM extends BasePage {
             "//i[contains(text(), 'add')]");
     private final By costInFormatInput = By.xpath("//input[@aria-label='Cost']");
     private final By numberOfPositionInput = By.xpath("//input[@aria-label='Number of position']");
-    private final By reachPerPostInput = By.xpath("Reach per post");
+    private final By reachPerPostInput = By.xpath("//input[@aria-label='Reach per post']");
     private final By statsScreenshotInput = By.xpath("//textarea[@aria-label='Stats screenshots']");
     private final By commentInFormatInput = By.xpath
             ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//textarea[@aria-label='Comment']");
@@ -71,6 +71,37 @@ public class DealPageFixSMM extends BasePage {
     private final By profileButton = By.xpath("//button[@id='profile_btn']");
     private final By exitButton = By.xpath("//a[@id='exit_btn']");
     private final By confirmExit = By.xpath("//div[contains(text(),'Yes')]");
+
+    private final By dealPaymentsBlockButton = By.xpath("//div[contains(text(),'Deal payments')]");
+    private final By newContractButton = By.xpath("//div[contains(text(),'Add contract')]");
+    private final By contractNameInput = By.xpath("//input[@aria-label='Contract name']");
+    private final By startDateInContractInput = By.xpath("//div[@class='flex md6']//input[@aria-label='Start date']");
+    private final By endDateInContractInput = By.xpath("//div[@class='flex md6']//input[@aria-label='End date']");
+    private final By saveContractButton =
+            By.xpath("//div[@class='v-dialog__content v-dialog__content--active']//div[contains(text(),'Save')]");
+    private final By infoContractName = By.xpath("//td[contains(text(),'Contract name')]");
+
+    private final By newPaymentButton = By.xpath("//button[@id='add-payment']");
+    private final By head = By.xpath("(//div[@class='v-stepper__label'])[1]");
+    private final By startDateInPaymentInput = By.xpath("//div[@class='v-text-field__slot']/input[@id='payment-start_date']");
+    private final By firstDate = By.xpath("//div[contains(text(),'1')]");
+    private final By endDate = By.xpath("//div[contains(text(),'28')]");
+    private final By endDateInPaymentInput = By.xpath("//input[@id='payment-end_date']");
+    private final By paymentTargetInput = By.xpath("//input[@id='payment-payment_target_id']");
+    private final By typeInput = By.xpath("//input[@id='payment-type']");
+    private final By walletInput = By.xpath("//input[@id='payment-wallet_id']");
+    private final By costInput = By.xpath("//input[@id='payment-summary']");
+    private final By autocheckCheckbox = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//div[@class='v-input--selection-controls__ripple']");
+    private final By commentInPaymentInput = By.xpath("//textarea[@id='payment-comment']");
+    private final By continueButton = By.xpath("//div[contains(text(),'Continue')]");
+    private final By remainingCostInput = By.xpath
+            ("//div[@class='v-input payment-analytic-cost v-text-field v-input--hide-details theme--light']" +
+                    "//input[@aria-label='Cost']");
+    private final By remainingZidCostInput = By.xpath("//input[@id='payment-analytic-zid-cost']");
+    private final By savePaymentButton = By.xpath("//div[contains(text(),'Save payment')]");
+    private final By approvePaymentButton = By.xpath("//button[@id='payment-positive_status']");
+    private final By infoWallet = By.xpath("//div[contains(text(),' 1x ')]");
 
     public DealPageFixSMM(WebDriver webDriver) {
         super(webDriver);
@@ -218,7 +249,8 @@ public class DealPageFixSMM extends BasePage {
         findElement(webDriver, searchSiteByIdInput).sendKeys("" + Keys.DOWN + "" + Keys.ENTER);
         return this;
     }
-    public DealPageFixSMM clickOnAddNewDealPlaceButton() {
+    public DealPageFixSMM clickOnAddNewDealPlaceButton() throws InterruptedException {
+        Thread.sleep(3000);
         waitForElementClickable(webDriver, addNewDealPlaceButton).click();
         return this;
     }
@@ -259,7 +291,7 @@ public class DealPageFixSMM extends BasePage {
     public DealPageFixSMM clickOnSaveDealButton() throws InterruptedException {
         waitForInvisibility(webDriver, greenOverlay, 20L);
         waitForElementClickable(webDriver, saveDealButton).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         return this;
     }
     public DealPageFixSMM clickOnSendOnReviewButton() {
@@ -274,6 +306,114 @@ public class DealPageFixSMM extends BasePage {
     public DealPageFixSMM clickOnExitButton() {
         findElement(webDriver, exitButton).click();
         findElement(webDriver, confirmExit).click();
+        return this;
+    }
+
+    public DealPageFixSMM clickOnDealPaymentsBlockButton() {
+        waitForElementClickable(webDriver, dealPaymentsBlockButton).click();
+        return this;
+    }
+    public DealPageFixSMM clickOnNewContractButton() {
+        waitForElementClickable(webDriver, newContractButton).click();
+        return this;
+    }
+    public DealPageFixSMM inputContractName(String name) throws InterruptedException {
+        findElement(webDriver, contractNameInput).sendKeys("Contract name");
+        Thread.sleep(1000);
+        return this;
+    }
+    public DealPageFixSMM inputStartDateInContract(String date) {
+        findElement(webDriver, startDateInContractInput).click();
+        findElement(webDriver, firstDate).click();
+        return this;
+    }
+    public DealPageFixSMM inputEndDateInContract(String date) {
+        findElement(webDriver, endDateInContractInput).click();
+        findElement(webDriver, endDate).click();
+        return this;
+    }
+    public DealPageFixSMM inputAttachFile(String contract) {
+        WebElement inputFileInContract = webDriver.findElement(By.xpath("//div[@class='flex md12']//input[@type='file']"));
+        unhide(webDriver, inputFileInContract);
+        inputFileInContract.sendKeys("C:\\Users\\aberz\\Downloads\\contract.txt");
+        return this;
+    }
+    public DealPageFixSMM clickOnSaveContractButton() {
+        findElement(webDriver, saveContractButton).click();
+        return this;
+    }
+    public DealPageFixSMM assertContractName() {
+        Assert.assertEquals(waitForElementClickable(webDriver, infoContractName).getText(),"Contract name");
+        return this;
+    }
+
+    public DealPageFixSMM clickOnNewPaymentButton() throws InterruptedException {
+        waitForElementClickable(webDriver, newPaymentButton).click();
+        Thread.sleep(1000);
+        return this;
+    }
+    public DealPageFixSMM inputStartDateInPayment(String date) {
+        findElement(webDriver, head).click();
+        waitForElementClickable(webDriver, startDateInPaymentInput).click();
+        findElement(webDriver, firstDate).click();
+        return this;
+    }
+    public DealPageFixSMM inputEndDateInPayment(String date) {
+        findElement(webDriver,endDateInPaymentInput).click();
+        findElement(webDriver, endDate).click();
+        return this;
+    }
+    public DealPageFixSMM inputPaymentTarget(String target) {
+        findElement(webDriver, paymentTargetInput).sendKeys("1x" + Keys.ARROW_DOWN + Keys.ENTER);
+        return this;
+    }
+    public DealPageFixSMM inputType(String type) {
+        findElement(webDriver, typeInput).sendKeys("prepaid" + Keys.ENTER);
+        return this;
+    }
+    public DealPageFixSMM inputWallet(String wallet) {
+        findElement(webDriver, walletInput).sendKeys("WMZ" + Keys.ARROW_DOWN + Keys.ENTER);
+        return this;
+    }
+    public DealPageFixSMM inputCostInPayment(String cost) {
+        findElement(webDriver, costInput).sendKeys("100");
+        return this;
+    }
+    public DealPageFixSMM clickOnAutocheck() {
+        findElement(webDriver, autocheckCheckbox).click();
+        return this;
+    }
+    public DealPageFixSMM inputCommentInPayment(String comment) {
+        findElement(webDriver, commentInPaymentInput).sendKeys("comment");
+        return this;
+    }
+    public DealPageFixSMM clickOnContinueButton() {
+        findElement(webDriver, continueButton).click();
+        return this;
+    }
+    public DealPageFixSMM inputRemainingCost(String cost) throws InterruptedException {
+        waitForElementClickable(webDriver, remainingCostInput).sendKeys("50");
+        Thread.sleep(1000);
+        return this;
+    }
+    public DealPageFixSMM inputRemainingZidCost(String cost) throws InterruptedException {
+        findElement(webDriver, remainingZidCostInput).sendKeys("50");
+        Thread.sleep(1500);
+        return this;
+    }
+    public DealPageFixSMM clickOnSavePaymentButton() {
+        waitForElementClickable(webDriver, savePaymentButton).click();
+        return this;
+    }
+    public DealPageFixSMM clickOnApprovePaymentButton() throws InterruptedException {
+        waitForElementClickable(webDriver, approvePaymentButton).click();
+        Thread.sleep(3000);
+        return this;
+    }
+    public DealPageFixSMM assertPayment() throws InterruptedException {
+        Assert.assertEquals(waitForElementClickable(webDriver, infoWallet).
+                getText(),"1x\n" + "WMZ Z146407012030\n" + "100 USD");
+        Thread.sleep(5000);
         return this;
     }
 }

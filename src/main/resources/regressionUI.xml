@@ -53,6 +53,32 @@
             <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>
     </test>
+    <test name="CreateFixSMMConvWithoutPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.FixSMM.ManagerCreateDealFixSMMConvClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.FixSMM.ManagerApproveDealFixSMM" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+    <test name="CreateFixSMMVolWithoutPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.FixSMM.ManagerCreateDealFixSMMVolClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.FixSMM.ManagerApproveDealFixSMM" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+    <test name="CreateFixSMMConvWithPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.FixSMM.ManagerCreateDealFixSMMConvClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
 <!--    <test name="Deal CPI">-->
 <!--        <classes>-->
 <!--            <class name="com.ui.ManagerCreateDealCPI" />-->
@@ -79,15 +105,6 @@
 <!--            <class name="com.ui.ManagerCreateDealFixZid.TeamLeadApproveDealFixZid" />-->
 <!--            <class name="com.ui.ManagerCreateDealFixZid.AuditorApproveDealFixZid" />-->
 <!--        </classes>-->
-<!--    </test>-->
-<!--    <test name="Deal FIX_SMM">-->
-<!--        <classes>-->
-<!--            <class name="com.ui.ManagerCreateDealFixSMM.ManagerCreateDealFixSMM" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixSMM.BuyingControlApproveFixSMM" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixSMM.ManagerApproveFixSMM" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixSMM.TeamLeadApproveFixSMM" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixSMM.AuditorApproveFixSMM" />-->
-<!--        </classes>-->
-<!--    </test>-->
+
 </suite>
 

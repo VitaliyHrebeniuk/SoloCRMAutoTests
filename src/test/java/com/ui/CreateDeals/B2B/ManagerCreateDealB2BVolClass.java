@@ -55,6 +55,7 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                  * Deal info
                  * Проверка на правильность создания сделки B2B
                  * Проверка на выбор классификации conv
+                 * Выбираем Vol классификацию
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
                  * Проверка наличия инфополя Product

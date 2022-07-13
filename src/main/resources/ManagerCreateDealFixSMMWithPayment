@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="FixSMMWithPayment">
+    <test name="CreateFixSMMConvWithPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.FixSMM.ManagerCreateDealFixSMMConvClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+</suite>

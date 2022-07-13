@@ -55,6 +55,7 @@ public class ManagerCreateDealFixZidVolClass extends BaseTest {
                  * Deal info
                  * Проверка на правильность создания сделки FixZid
                  * Проверка на выбор классификации conv
+                 * Выбираем Vol классификацию
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
                  * Проверка наличия инфополя Product

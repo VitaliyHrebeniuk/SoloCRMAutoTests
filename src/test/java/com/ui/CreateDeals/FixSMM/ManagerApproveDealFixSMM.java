@@ -1,16 +1,15 @@
-package com.ui.CreateDeals.FixZid;
+package com.ui.CreateDeals.FixSMM;
 
 import com.ui.BaseTest;
-import com.ui.pages.Manager.DealPageFixZid;
-import com.ui.pages.Manager.MainPageManager;
-import com.ui.pages.Manager.DealsListPageManager;
-import com.ui.pages.Manager.LoginPageManager;
+import com.ui.pages.Manager.*;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class ManagerApproveDealFixZid extends BaseTest {
+public class ManagerApproveDealFixSMM extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -22,7 +21,7 @@ public class ManagerApproveDealFixZid extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void addPaymentInFixZid() throws InterruptedException {
+    public void addPaymentInFixSmm() throws InterruptedException {
         /**
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
@@ -40,14 +39,15 @@ public class ManagerApproveDealFixZid extends BaseTest {
                 .clickOnPartnersButton()
                 .clickOnDealsListButton();
         /**
+         * Вводим тип сделки B2B, вводим статус сделки
          * Нажимаем на сортировку по Start Date, нажимаем на открытие сделки.
          */
         new DealsListPageManager(webDriver)
-                .inputDealTypeFixZid("")
+                .inputDealTypeFixSmm("")
                 .inputDealStatus("")
                 .clickOnStartDateSort()
-                .clickOnOpenDealFixZidButton();
-        new DealPageFixZid(webDriver)
+                .clickOnOpenDealFixSmmButton();
+        new DealPageFixSMM(webDriver)
                 /**
                  * Deal payments
                  * Нажимаем на блок Deal Payments

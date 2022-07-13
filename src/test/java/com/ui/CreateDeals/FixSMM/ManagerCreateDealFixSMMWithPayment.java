@@ -12,7 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ManagerCreateDealFixSMMConvClass extends BaseTest {
+public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -145,13 +145,57 @@ public class ManagerCreateDealFixSMMConvClass extends BaseTest {
                 .clickOnSaveDealPlaceButton()
                 .assertDealPlace()
                 /**
-                 * Сохраняем сделку,
-                 * отправляем на review,
+                 * Deal payments
+                 * Нажимаем на блок Deal Payments
+                 * Deal contract
+                 * Нажимаем на New contract
+                 * Вводим contract name
+                 * вводим Start date
+                 * вводим End date
+                 * прикрепляем файл
+                 * сохраняем контракт
+                 * проверить добавление контракта по Name
+                 */
+                .clickOnDealPaymentsBlockButton()
+                .clickOnNewContractButton()
+                .inputContractName("")
+                .inputStartDateInContract("")
+                .inputEndDateInContract("")
+                .inputAttachFile("")
+                .clickOnSaveContractButton()
+                .assertContractName()
+                /**
+                 * нажимаем на New Payment,
+                 * вводим Start date,
+                 * вводим End date,
+                 * вводим Payment target,
+                 * вводим Type,
+                 * вводим Wallet,
+                 * вводим Cost,
+                 * добавить коммент
+                 * нажимаем на Continue,
+                 * вводим remaining cost,
+                 * вводим Remaining zid cost,
+                 * сохраняем Payment,
+                 * проверяем что создался платеж по Wallet
+                 * нажимаем на аппрув Payment.
                  * нажимаем на профиль,
                  * выходим с профиля.
                  */
-                .clickOnSaveDealButton()
-                .clickOnSendOnReviewButton()
+                .clickOnNewPaymentButton()
+                .inputStartDateInPayment("")
+                .inputEndDateInPayment("")
+                .inputPaymentTarget("")
+                .inputType("")
+                .inputWallet("")
+                .inputCostInPayment("")
+                .inputCommentInPayment("")
+                .clickOnContinueButton()
+                .inputRemainingCost("")
+                .inputRemainingZidCost("")
+                .clickOnSavePaymentButton()
+                .assertPayment()
+                .clickOnApprovePaymentButton()
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }

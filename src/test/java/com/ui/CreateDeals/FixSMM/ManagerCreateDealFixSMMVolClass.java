@@ -12,7 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ManagerCreateDealFixSMMConvClass extends BaseTest {
+public class ManagerCreateDealFixSMMVolClass extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -24,7 +24,7 @@ public class ManagerCreateDealFixSMMConvClass extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealFixSmmConv() throws InterruptedException {
+    public void createDealFixSmmVol() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -57,6 +57,7 @@ public class ManagerCreateDealFixSMMConvClass extends BaseTest {
                  * Deal info
                  * Проверка на правильность создания сделки FixSMM
                  * Проверка на выбор классификации conv
+                 * Выбираем Vol классификацию
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
                  * Проверка наличия инфополя Product
@@ -68,6 +69,7 @@ public class ManagerCreateDealFixSMMConvClass extends BaseTest {
                 .assertDealType()
                 .assertExtention()
                 .assertClassification()
+                .chooseVolClassification()
                 .assertPartnerId()
                 .assertProduct()
                 .assertDealCost()
