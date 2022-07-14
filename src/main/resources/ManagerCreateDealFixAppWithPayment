@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="FixApp">
+    <test name="CreateFixAppConvWithPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.FixApp.ManagerCreateDealFixAppWithPayment" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+</suite>

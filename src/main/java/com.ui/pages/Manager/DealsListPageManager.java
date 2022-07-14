@@ -30,6 +30,11 @@ public class DealsListPageManager extends BasePage {
         findElement(webDriver, dealTypeInput).sendKeys("fix_smm" + Keys.ENTER);
         return this;
     }
+    public DealsListPageManager inputDealTypeFixApp (String type) throws InterruptedException {
+        Thread.sleep(3000);
+        findElement(webDriver, dealTypeInput).sendKeys("fix_app" + Keys.ENTER);
+        return this;
+    }
     public DealsListPageManager inputDealStatus (String type) throws InterruptedException {
         Thread.sleep(3000);
         findElement(webDriver, dealStatusInput).sendKeys("revision" + Keys.ENTER);
@@ -58,5 +63,11 @@ public class DealsListPageManager extends BasePage {
         findElement(webDriver, openDealButton).click();
         switchToNewFrame(webDriver);
         return new DealPageFixSMM(webDriver);
+    }
+    public DealPageFixApp clickOnOpenDealFixAppButton() throws InterruptedException {
+        Thread.sleep(3000);
+        findElement(webDriver, openDealButton).click();
+        switchToNewFrame(webDriver);
+        return new DealPageFixApp(webDriver);
     }
 }
