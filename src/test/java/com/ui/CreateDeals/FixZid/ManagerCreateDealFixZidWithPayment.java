@@ -184,6 +184,7 @@ public class ManagerCreateDealFixZidWithPayment extends BaseTest {
                  * вводим Type,
                  * вводим Wallet,
                  * вводим Cost,
+                 * нажимаем на Autocheck
                  * добавить коммент
                  * нажимаем на Continue,
                  * вводим remaining cost,

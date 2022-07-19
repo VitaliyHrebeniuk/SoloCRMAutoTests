@@ -207,6 +207,7 @@ public class ManagerCreateDealFixAppWithPayment extends BaseTest {
                  * вводим Type,
                  * вводим Wallet,
                  * вводим Cost,
+                 * нажимаем на Autocheck
                  * добавить коммент
                  * нажимаем на Continue,
                  * вводим remaining cost,
@@ -214,8 +215,6 @@ public class ManagerCreateDealFixAppWithPayment extends BaseTest {
                  * сохраняем Payment,
                  * проверяем что создался платеж по Wallet
                  * нажимаем на аппрув Payment.
-                 * нажимаем на профиль,
-                 * выходим с профиля.
                  */
                 .clickOnNewPaymentButton()
                 .inputStartDateInPayment("")
@@ -224,6 +223,7 @@ public class ManagerCreateDealFixAppWithPayment extends BaseTest {
                 .inputType("")
                 .inputWallet("")
                 .inputCostInPayment("")
+                .clickOnAutocheck()
                 .inputCommentInPayment("")
                 .clickOnContinueButton()
                 .inputRemainingCost("")
@@ -231,6 +231,14 @@ public class ManagerCreateDealFixAppWithPayment extends BaseTest {
                 .clickOnSavePaymentButton()
                 .assertPayment()
                 .clickOnApprovePaymentButton()
+                /**
+                 * Сохраняем сделку,
+                 * отправляем на review,
+                 * нажимаем на профиль,
+                 * выходим с профиля.
+                 */
+                .clickOnSaveDealButton()
+                .clickOnSendOnReviewButton()
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="CPIVol">
+    <test name="CreateCPIVolWithoutPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.CPI.ManagerCreateDealCPIVolClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.CPI.ManagerApproveDealCPI" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+</suite>

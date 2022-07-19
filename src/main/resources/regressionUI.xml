@@ -79,15 +79,58 @@
             <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>
     </test>
-<!--    <test name="Deal CPI">-->
-<!--        <classes>-->
-<!--            <class name="com.ui.ManagerCreateDealCPI" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.BuyingControlApproveDealFixZid" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.ManagerApproveDeal" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.TeamLeadApproveDealFixZid" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.AuditorApproveDealFixZid" />-->
-<!--        </classes>-->
-<!--    </test>-->
+    <test name="CreateCPIConvWithoutPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.CPI.ManagerCreateDealCPIConvClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.CPI.ManagerApproveDealCPI" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+    <test name="CreateCPIVolWithoutPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.CPI.ManagerCreateDealCPIVolClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.CPI.ManagerApproveDealCPI" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+    <test name="CreateCPIConvWithPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.CPI.ManagerCreateDealCPIWithPayment" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+    <test name="CreateFixAppConvWithoutPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.FixApp.ManagerCreateDealFixAppConvClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.FixApp.ManagerApproveDealFixApp" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+    <test name="CreateFixAppVolWithoutPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.FixApp.ManagerCreateDealFixAppVolClass" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.FixApp.ManagerApproveDealFixApp" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
+    <test name="CreateFixAppConvWithPayment">
+        <classes>
+            <class name="com.ui.CreateDeals.FixApp.ManagerCreateDealFixAppWithPayment" />
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
 <!--    <test name="Deal CPM">-->
 <!--        <classes>-->
 <!--            <class name="com.ui.ManagerCreateDealCPM.ManagerCreateDealCPM" />-->
@@ -97,14 +140,6 @@
 <!--            <class name="com.ui.ManagerCreateDealFixZid.AuditorApproveDealFixZid" />-->
 <!--        </classes>-->
 <!--    </test>-->
-<!--    <test name="Deal FIX_APP">-->
-<!--        <classes>-->
-<!--            <class name="com.ui.ManagerCreateDealFixApp" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.BuyingControlApproveDealFixZid" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.ManagerApproveDeal" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.TeamLeadApproveDealFixZid" />-->
-<!--            <class name="com.ui.ManagerCreateDealFixZid.AuditorApproveDealFixZid" />-->
-<!--        </classes>-->
 
 </suite>
 

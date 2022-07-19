@@ -1,7 +1,7 @@
-package com.ui.CreateDeals.FixSMM;
+package com.ui.CreateDeals.CPI;
 
 import com.ui.BaseTest;
-import com.ui.pages.Manager.DealPageFixSMM;
+import com.ui.pages.Manager.DealPageCPI;
 import com.ui.pages.Manager.LoginPageManager;
 import com.ui.pages.Manager.MainPageManager;
 import com.ui.pages.Manager.PartnersListPageManager;
@@ -9,24 +9,23 @@ import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
+public class ManagerCreateDealCPIWithPayment extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
 
-    @BeforeMethod
+    @BeforeTest
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealFixSmmConv() throws InterruptedException {
+    public void createDealCPIConv() throws InterruptedException {
         /**
-         * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
          */
@@ -37,25 +36,23 @@ public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
                 .inputAuthCode(manager2FaCode)
                 .clickOnSendCodeButton();
         /**
-         * Main page
          * Нажимаем на Partners, нажимаем на Partners list.
          */
         new MainPageManager(webDriver)
                 .clickOnPartnersButton()
                 .clickOnPartnersListButton();
         /**
-         * Partners page
-         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на FixSMM сделку.
+         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на CPI сделку.
          */
         new PartnersListPageManager(webDriver)
                 .inputPartnersId("")
                 .clickOnAddDealButton()
-                .clickOnFixSMMButton();
-        new DealPageFixSMM(webDriver)
+                .clickOnCPIButton();
+        new DealPageCPI(webDriver)
                 /**
-                 * Deal page FixSMM
+                 * Deal page CPI
                  * Deal info
-                 * Проверка на правильность создания сделки FixSMM
+                 * Проверка на правильность создания сделки CPI
                  * Проверка на выбор классификации conv
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
@@ -64,6 +61,8 @@ public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
                  * Проверка наличия инфополя In progress
                  * Проверка наличия инфополя Manager
                  * Проверка наличия инфополя ROI
+                 * Проверка наличия инфополя Total spend
+                 * Проверка наличия инфополя Balance
                  */
                 .assertDealType()
                 .assertExtention()
@@ -74,6 +73,8 @@ public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
                 .assertInProgress()
                 .assertManager()
                 .assertROI()
+                .assertTotalSpend()
+                .assertBalance()
                 /**
                  * Communication
                  * Проверка на открытие модального окна
@@ -96,51 +97,52 @@ public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
                 .clickOnDealLogButton()
                 .findDealLog()
                 /**
-                 * Site overview
-                 * Нажимаем на блок Site Overview
-                 * Нажимаем на Add Format
-                 * Вводим Title
-                 * нажимаем на поиск добавления лида,
-                 * вводим линку в модальном окне Search lead,
-                 * нажимаем на добавление линки
-                 * вводим Cost, Number of positions, Reach per post, Stats screenshot, comment
-                 * Нажимаем на сохранения формата
-                 * Проверяем созданный формат по Title
+                 * Spends
+                 * Открываем спенды, открываем историю спендов
+                 * закрываем историю, закрываем спенды
+                 */
+                .clickOnSpendsButton()
+                .clickOnHistorySpendsButton()
+                .clickOnCloseHistorySpendsButton()
+                .clickOnCloseSpendsButton()
+                /**
+                 * Site Overview
+                 * Открываем блок Site overview
+                 * Вводим линку, нажимаем на добавление линки
+                 * Создаем новую аналитику, переходим на первую аналитику
                  */
                 .clickOnSiteOverviewBlock()
-                .clickOnAddFormatButton()
-                .inputTitle("")
-                .clickOnSearchLinkButton()
                 .inputLink("")
                 .clickOnAddLinkButton()
-                .inputCostInFormat("")
-                .inputNumberOfPosition("")
-                .inputReachPerPost("")
-                .inputStatsScreenshot("")
-                .inputCommentInFormat("")
-                .clickOnSaveFormatButton()
-                .assertFormat()
+                .clickOnAddAnalyticsButton()
+                .clickOnFirstAnalyticsButton()
                 /**
-                 * Нажимаем на блок Deal places,
-                 * вводим site id,
-                 * нажимаем на Add New Deal Place,
-                 * вводим Platform
-                 * вводим Place,
-                 * вводим label,
-                 * вводим GEO,
-                 * вводим link PP,
-                 * пишем коммент
-                 * сохраняем Deal place.
-                 * Проверяем создание Deal place по GEO
+                 * Cost per install
+                 * Открываем Cost per install block, нажимаем на Set cost
+                 * Выбираем страну, вводим первую дату, последнюю дату, кост
+                 * Сохраняем кост, проверяем что кост сохранился
+                 */
+                .clickOnCostPerInstallBlock()
+                .clickOnSetCostButton()
+                .inputSelectCountry("")
+                .inputCost("")
+                .clickOnSaveCostButton()
+                .assertCost()
+                /**
+                 * Deal places
+                 * Открываем блок Deal places
+                 * Вводим линку, нажимаем на добавление Deal place
+                 * Вводим Place, Platform, Label, GEO, Link PP, Comment
+                 * Сохраняем Deal place, проверяем что Deal place сохранился
                  */
                 .clickOnDealPlacesBlock()
-                .inputSearchSiteById("")
-                .clickOnAddNewDealPlaceButton()
-                .inputSelectPlaceNewDealPlace("")
+                .inputSearchSite("")
+                .clickOnAddDealPlaceButton()
+                .inputSelectPlace("")
                 .inputPlatform("")
-                .inputLabelNewDealPlace("")
+                .inputLabel("")
                 .inputGEO("")
-                .inputLinkPp("")
+                .inputLinkPP("")
                 .inputCommentInDealPlace("")
                 .clickOnSaveDealPlaceButton()
                 .assertDealPlace()
@@ -173,10 +175,7 @@ public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
                  * вводим Wallet,
                  * вводим Cost,
                  * нажимаем на Autocheck
-                 * добавить коммент
-                 * нажимаем на Continue,
-                 * вводим remaining cost,
-                 * вводим Remaining zid cost,
+                 * добавляем коммент
                  * сохраняем Payment,
                  * проверяем что создался платеж по Wallet
                  * нажимаем на аппрув Payment.
@@ -190,9 +189,6 @@ public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
                 .inputCostInPayment("")
                 .clickOnAutocheck()
                 .inputCommentInPayment("")
-                .clickOnContinueButton()
-                .inputRemainingCost("")
-                .inputRemainingZidCost("")
                 .clickOnSavePaymentButton()
                 .assertPayment()
                 .clickOnApprovePaymentButton()
@@ -208,7 +204,7 @@ public class ManagerCreateDealFixSMMWithPayment extends BaseTest {
                 .clickOnExitButton();
     }
     @AfterMethod
-    public void ResetCode() {
+    public void QuitDriver() {
         request
                 .headers("token", managerTokenWith2FA)
                 .post(apiURL + "security/status/disable/" + manager2FaCode)
