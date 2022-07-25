@@ -11,17 +11,15 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.*;
 
 public class ManagerCreateDealB2BConvClass extends BaseTest {
-    //String managerTokenWith2FA;
+    String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
 
     @BeforeMethod
-
     public void setToken() {
-        System.out.println("START 1");
-    //    GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
-    //    this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
-    //    this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
+        GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
+        this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
+        this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
     public void createDealB2BConv() throws InterruptedException {
@@ -213,13 +211,11 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     }
     @AfterMethod
     public void ResetCode() {
-        System.out.println("THE END");
+        request
+                .headers("token", managerTokenWith2FA)
+                .post(apiURL + "security/status/disable/" + manager2FaCode)
+                .then()
+                .assertThat()
+                .statusCode(200);
     }
-       // request
-       //         .headers("token", managerTokenWith2FA)
-        //        .post(apiURL + "security/status/disable/" + manager2FaCode)
-        //        .then()
-         //       .assertThat()
-         //       .statusCode(200);
-   // }
 }
