@@ -18,7 +18,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     @BeforeMethod
 
     public void setToken() {
-        System.out.println("START");
+        System.out.println("START 1");
     //    GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
     //    this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
     //    this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
