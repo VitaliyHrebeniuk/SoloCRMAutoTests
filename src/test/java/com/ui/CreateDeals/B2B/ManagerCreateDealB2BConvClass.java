@@ -16,11 +16,11 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     private String manager2FaCode;
 
     @BeforeMethod
-    public void setToken() {
-        GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
-        this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
-        this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
-    }
+    //public void setToken() {
+    //    GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
+    //    this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
+    //    this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
+    //}
     @Test
     public void createDealB2BConv() throws InterruptedException {
         /**
