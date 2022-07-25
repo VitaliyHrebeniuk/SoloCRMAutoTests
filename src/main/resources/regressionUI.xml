@@ -10,7 +10,7 @@
             <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>
     </test>
-    <test name="CreateFixB2BVolWithoutPayment">
+    <test name="CreateFixB2BVolWithoutPayment">ёё
         <classes>
             <class name="com.ui.CreateDeals.B2B.ManagerCreateDealB2BVolClass" />
             <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />

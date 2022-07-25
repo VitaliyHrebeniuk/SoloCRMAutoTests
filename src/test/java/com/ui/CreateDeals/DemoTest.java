@@ -12,15 +12,8 @@ public class DemoTest extends BaseTest {
     }
 
     @Test
-    public void auditorApprove() throws InterruptedException {
-        /**
-         * Вводим логин, вводим пароль, нажимаем на Sign In,
-         * вводим код аутентификации, нажимаем на Send Code.
-         */
-        LoginPageAuditor loginPageAuditor = new LoginPageAuditor(webDriver, baseURL)
-                .inputLogin("")
-                .inputPassword("")
-                .clickOnSignInButton();
+    public void auditorApprove() {
+
     }
 
     @AfterMethod
