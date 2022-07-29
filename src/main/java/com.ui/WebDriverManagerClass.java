@@ -16,6 +16,7 @@ public class WebDriverManagerClass {
     private void setWebDriver(String browserName) {
         switch (browserName) {
             case "chrome":
+                WebDriverManager.chromedriver().setup();
                 webDriver = WebDriverManager.chromedriver().create();
                 webDriver.manage().window().maximize();
                 /**
