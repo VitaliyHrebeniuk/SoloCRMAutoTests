@@ -25,7 +25,10 @@ public class WebDriverManagerClass {
                  **/
 
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
+                options.addArguments("--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent"
+                        , "--no-sandbox", "--disable-dev-shm-usage");
+
+
                 webDriver = new ChromeDriver(options);
 
                 break;
