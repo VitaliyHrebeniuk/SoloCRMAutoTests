@@ -25,12 +25,9 @@ public class WebDriverManagerClass {
                  **/
 
                 ChromeOptions options = new ChromeOptions();
-                options.addArguments("--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent"
-                        , "--no-sandbox", "--disable-dev-shm-usage ");
-
-
+                options.addArguments("--headless", "start-maximized","--ignore-certificate-errors", "--silent"
+                        , "--no-sandbox", "--disable-dev-shm-usage", "disable-infobars", "--disable-extensions", "--disable-gpu");
                 webDriver = new ChromeDriver(options);
-
                 break;
             case "ff":
                 webDriver = WebDriverManager.firefoxdriver().create();
