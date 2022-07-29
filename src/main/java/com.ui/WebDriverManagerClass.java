@@ -17,12 +17,13 @@ public class WebDriverManagerClass {
         switch (browserName) {
             case "chrome":
                 WebDriverManager.chromedriver().setup();
+                webDriver = new ChromeDriver();
                 webDriver = WebDriverManager.chromedriver().create();
                 webDriver.manage().window().maximize();
                 /**
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
-                WebDriverManager.chromedriver().setup();
+
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
                 webDriver = new ChromeDriver(options);
