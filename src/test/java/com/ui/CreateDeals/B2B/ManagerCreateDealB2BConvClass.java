@@ -22,7 +22,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealB2B() throws InterruptedException {
+    public void createDealB2BConv() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -102,7 +102,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                  * записываем кост
                  * Выбираем аналитику за 1 месяц
                  * Добавляем ссылку на скриншот в аналитику за 1 месяц
-                 * Выбрать Start date и End date в период за месяц
+                 * Выбираем Start date и End date в период за месяц
                  * Выбираем аналитику за 3 месяца
                  * Добавляем ссылку на скриншот в аналитику за 3 месяца
                  * Выбрать Start date и End date в период за 3 месяца
@@ -186,7 +186,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                  * вводим link PP,
                  * пишем коммент
                  * сохраняем Deal place.
-                 * Проверить создание Deal place по Ad place!!
+                 * Проверяем создание Deal place по GEO
                  */
                 .clickOnDealPlacesBlock()
                 .inputSearchSiteById("")

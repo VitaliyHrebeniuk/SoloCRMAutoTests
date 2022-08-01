@@ -1,16 +1,18 @@
-package com.ui.CreateDeals.B2B;
+package com.ui.CreateDeals.FixApp;
 
 import com.ui.BaseTest;
-import com.ui.pages.Manager.DealPageB2B;
+import com.ui.pages.Manager.DealPageFixApp;
 import com.ui.pages.Manager.LoginPageManager;
 import com.ui.pages.Manager.MainPageManager;
 import com.ui.pages.Manager.PartnersListPageManager;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class ManagerCreateDealB2BVolClass extends BaseTest {
+public class ManagerCreateDealFixAppWithPayment extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -22,7 +24,7 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealB2BVol() throws InterruptedException {
+    public void createDealFixAppWithPayment() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -43,19 +45,18 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .clickOnPartnersListButton();
         /**
          * Partners page
-         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на B2B сделку.
+         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на FixApp сделку.
          */
         new PartnersListPageManager(webDriver)
                 .inputPartnersId("")
                 .clickOnAddDealButton()
-                .clickOnB2bButton();
-        new DealPageB2B(webDriver)
+                .clickOnFixAppButton();
+        new DealPageFixApp(webDriver)
                 /**
-                 * Deal page B2B
+                 * Deal page FixApp
                  * Deal info
-                 * Проверка на правильность создания сделки B2B
+                 * Проверка на правильность создания сделки FixApp
                  * Проверка на выбор классификации conv
-                 * Выбираем Vol классификацию
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
                  * Проверка наличия инфополя Product
@@ -67,7 +68,6 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .assertDealType()
                 .assertExtention()
                 .assertClassification()
-                .chooseVolClassification()
                 .assertPartnerId()
                 .assertProduct()
                 .assertDealCost()
@@ -104,7 +104,7 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                  * записываем кост
                  * Выбираем аналитику за 1 месяц
                  * Добавляем ссылку на скриншот в аналитику за 1 месяц
-                 * Выбрать Start date и End date в период за месяц
+                 * Выбираем Start date и End date в период за месяц
                  * Выбираем аналитику за 3 месяца
                  * Добавляем ссылку на скриншот в аналитику за 3 месяца
                  * Выбрать Start date и End date в период за 3 месяца
@@ -121,6 +121,7 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .clickOnSearchLinkButton()
                 .inputLink("")
                 .clickOnAddLinkButton()
+                .clickOnSiteOverviewBlock()
                 .inputCostInAnalytics("")
                 .inputSelectAnalyticsFor1Month("")
                 .inputAddScreenshotFor1Month("")
@@ -156,50 +157,80 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .inputMobileScreenshot("")
                 .clickOnSaveFormatButton()
                 /**
-                 * нажимаем на блок Deal zids,
-                 * нажимаем на Add Zid/Cid,
-                 * вводим сайт, вводим Zid/Cid value,
-                 * вводим Place Zid/cid,
-                 * вводим Label,
-                 * вводим Traffic channel,
-                 * написал коммент
-                 * написал код
-                 * сохраняем Zid/Cid
-                 * проверил создание зида в сделку по ZidCid value
-                 */
-                .clickOnDealZidsBlock()
-                .clickOnAddZidCidButton()
-                .inputSite("")
-                .inputZidCidValue("")
-                .inputSelectPlaceZidCid("")
-                .inputLabel("")
-                .inputTrafficChannel("")
-                .inputCommentInZidCid("")
-                .inputCodeInZidCid("")
-                .clickOnSaveZidCidButton()
-                .assertZidCid()
-                /**
                  * Нажимаем на блок Deal places,
                  * вводим site id,
                  * нажимаем на Add New Deal Place,
-                 * вводим Place,
+                 * вводим Place,Platform
                  * вводим label,
                  * вводим GEO,
                  * вводим link PP,
                  * пишем коммент
                  * сохраняем Deal place.
-                 * Проверить создание Deal place по Ad place!!
+                 * Проверяем создание Deal place по GEO
                  */
                 .clickOnDealPlacesBlock()
                 .inputSearchSiteById("")
                 .clickOnAddNewDealPlaceButton()
                 .inputSelectPlaceNewDealPlace("")
+                .inputPlatformNewDealPlace("")
                 .inputLabelNewDealPlace("")
                 .inputGEO("")
                 .inputLinkPp("")
                 .inputCommentInDealPlace("")
                 .clickOnSaveDealPlaceButton()
                 .assertDealPlace()
+                /**
+                 * Deal payments
+                 * Нажимаем на блок Deal Payments
+                 * Deal contract
+                 * Нажимаем на New contract
+                 * Вводим contract name
+                 * вводим Start date
+                 * вводим End date
+                 * прикрепляем файл
+                 * сохраняем контракт
+                 * проверить добавление контракта по Name
+                 */
+                .clickOnDealPaymentsBlockButton()
+                .clickOnNewContractButton()
+                .inputContractName("")
+                .inputStartDateInContract("")
+                .inputEndDateInContract("")
+                .inputAttachFile("")
+                .clickOnSaveContractButton()
+                .assertContractName()
+                /**
+                 * нажимаем на New Payment,
+                 * вводим Start date,
+                 * вводим End date,
+                 * вводим Payment target,
+                 * вводим Type,
+                 * вводим Wallet,
+                 * вводим Cost,
+                 * нажимаем на Autocheck
+                 * добавить коммент
+                 * нажимаем на Continue,
+                 * вводим remaining cost,
+                 * вводим Remaining zid cost,
+                 * сохраняем Payment,
+                 * проверяем что создался платеж по Wallet
+                 * нажимаем на аппрув Payment.
+                 */
+                .clickOnNewPaymentButton()
+                .inputStartDateInPayment("")
+                .inputEndDateInPayment("")
+                .inputPaymentTarget("")
+                .inputType("")
+                .inputWallet("")
+                .inputCostInPayment("")
+                .clickOnAutocheck()
+                .inputCommentInPayment("")
+                .clickOnContinueButton()
+                .inputRemainingCost("")
+                .inputRemainingZidCost("")
+                .clickOnSavePaymentButton()
+                .assertPayment()
+                .clickOnApprovePaymentButton()
                 /**
                  * Сохраняем сделку,
                  * отправляем на review,

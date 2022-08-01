@@ -46,7 +46,7 @@ public class ManagerCreateDealCPM extends BaseTest {
          * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на CPM сделку.
          */
         new PartnersListPageManager(webDriver)
-                .inputPartnersId("")
+//                .inputPartnersId("")
                 .clickOnAddDealButton()
                 .clickOnCPMButton();
         /**

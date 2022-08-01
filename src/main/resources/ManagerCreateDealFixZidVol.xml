@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="FixB2BVol">
-    <test name="CreateFixB2BVolWithoutPayment">
+<suite name="FixZidConv">
+    <test name="CreateFixZidVolWithoutPayment">
         <classes>
-            <class name="com.ui.CreateDeals.B2B.ManagerCreateDealB2BVolClass" />
+            <class name="com.ui.CreateDeals.FixZid.ManagerCreateDealFixZidVolClass" />
             <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
-            <class name="com.ui.CreateDeals.B2B.ManagerApproveDealB2B" />
+            <class name="com.ui.CreateDeals.FixZid.ManagerApproveDealFixZid" />
             <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
             <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>

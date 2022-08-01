@@ -15,7 +15,7 @@ public class BuyingControlApproveDeal extends BaseTest {
     RequestSpecification request = RestAssured.given();
     private String buyingControl2FaCode;
 
-    @BeforeClass
+    @BeforeMethod
     public void setDriver() {
         GenerateUserTokenWith2FaForBuyingControlUI generateUserTokenWith2FaForBuyingControlUI = new GenerateUserTokenWith2FaForBuyingControlUI();
         this.buyingControlTokenWith2FA = generateUserTokenWith2FaForBuyingControlUI.set2faForAccount();
@@ -53,7 +53,7 @@ public class BuyingControlApproveDeal extends BaseTest {
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
-    @AfterClass
+    @AfterMethod
     public void QuitDriver() {
         request
                 .headers("token", buyingControlTokenWith2FA)

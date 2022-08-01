@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="FixB2BVol">
-    <test name="CreateFixB2BVolWithoutPayment">
+<suite name="FixB2BWithPayment">
+    <test name="CreateFixB2BConvWithPayment">
         <classes>
-            <class name="com.ui.CreateDeals.B2B.ManagerCreateDealB2BVolClass" />
+            <class name="com.ui.CreateDeals.B2B.ManagerCreateDealB2BWithPayment" />
             <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
-            <class name="com.ui.CreateDeals.B2B.ManagerApproveDealB2B" />
             <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
             <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>

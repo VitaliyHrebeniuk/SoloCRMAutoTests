@@ -1,13 +1,15 @@
-package com.ui.CreateDeals.B2B;
+package com.ui.CreateDeals.FixApp;
 
 import com.ui.BaseTest;
 import com.ui.pages.Manager.*;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class ManagerApproveDealB2B extends BaseTest {
+public class ManagerApproveDealFixApp extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -19,7 +21,7 @@ public class ManagerApproveDealB2B extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void addPaymentInB2B() throws InterruptedException {
+    public void addPaymentInFixApp() throws InterruptedException {
         /**
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
@@ -37,15 +39,15 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .clickOnPartnersButton()
                 .clickOnDealsListButton();
         /**
-         * Вводим тип сделки B2B, вводим статус сделки
+         * Вводим тип сделки FixApp, вводим статус сделки
          * Нажимаем на сортировку по Start Date, нажимаем на открытие сделки.
          */
         new DealsListPageManager(webDriver)
-                .inputDealTypeB2B("")
+                .inputDealTypeFixApp("")
                 .inputDealStatus("")
                 .clickOnStartDateSort()
-                .clickOnOpenDealB2BButton();
-        new DealPageB2B(webDriver)
+                .clickOnOpenDealFixAppButton();
+        new DealPageFixApp(webDriver)
                 /**
                  * Deal payments
                  * Нажимаем на блок Deal Payments
@@ -111,4 +113,3 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .statusCode(200);
     }
 }
-

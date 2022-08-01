@@ -8,9 +8,11 @@ import com.ui.pages.Manager.PartnersListPageManager;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class ManagerCreateDealB2BVolClass extends BaseTest {
+public class ManagerCreateDealB2BWithPayment extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -22,7 +24,7 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealB2BVol() throws InterruptedException {
+    public void createDealB2BWithPayment() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -55,7 +57,6 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                  * Deal info
                  * Проверка на правильность создания сделки B2B
                  * Проверка на выбор классификации conv
-                 * Выбираем Vol классификацию
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
                  * Проверка наличия инфополя Product
@@ -67,7 +68,6 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .assertDealType()
                 .assertExtention()
                 .assertClassification()
-                .chooseVolClassification()
                 .assertPartnerId()
                 .assertProduct()
                 .assertDealCost()
@@ -200,6 +200,55 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .inputCommentInDealPlace("")
                 .clickOnSaveDealPlaceButton()
                 .assertDealPlace()
+                /**
+                 * Deal payments
+                 * Нажимаем на блок Deal Payments
+                 * Deal contract
+                 * Нажимаем на New contract
+                 * Вводим contract name
+                 * вводим Start date
+                 * вводим End date
+                 * прикрепляем файл
+                 * сохраняем контракт
+                 * проверить добавление контракта по Name
+                 */
+                .clickOnDealPaymentsBlockButton()
+                .clickOnNewContractButton()
+                .inputContractName("")
+                .inputStartDateInContract("")
+                .inputEndDateInContract("")
+                .inputAttachFile("")
+                .clickOnSaveContractButton()
+                .assertContractName()
+                /**
+                 * нажимаем на New Payment,
+                 * вводим Start date,
+                 * вводим End date,
+                 * вводим Payment target,
+                 * вводим Type,
+                 * вводим Wallet,
+                 * вводим Cost,
+                 * добавить коммент
+                 * нажимаем на Continue,
+                 * вводим remaining cost,
+                 * вводим Remaining zid cost,
+                 * сохраняем Payment,
+                 * проверяем что создался платеж по Wallet
+                 */
+                .clickOnNewPaymentButton()
+                .inputStartDateInPayment("")
+                .inputEndDateInPayment("")
+                .inputPaymentTarget("")
+                .inputType("")
+                .inputWallet("")
+                .inputCostInPayment("")
+                .clickOnAutocheck()
+                .inputCommentInPayment("")
+                .clickOnContinueButton()
+                .inputRemainingCost("")
+                .inputRemainingZidCost("")
+                .clickOnSavePaymentButton()
+                .assertPayment()
                 /**
                  * Сохраняем сделку,
                  * отправляем на review,

@@ -1,16 +1,18 @@
-package com.ui.CreateDeals.B2B;
+package com.ui.CreateDeals.FixSMM;
 
 import com.ui.BaseTest;
-import com.ui.pages.Manager.DealPageB2B;
+import com.ui.pages.Manager.DealPageFixSMM;
 import com.ui.pages.Manager.LoginPageManager;
 import com.ui.pages.Manager.MainPageManager;
 import com.ui.pages.Manager.PartnersListPageManager;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class ManagerCreateDealB2BVolClass extends BaseTest {
+public class ManagerCreateDealFixSMMConvClass extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -22,7 +24,7 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void createDealB2BVol() throws InterruptedException {
+    public void createDealFixSmmConv() throws InterruptedException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -43,19 +45,18 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .clickOnPartnersListButton();
         /**
          * Partners page
-         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на B2B сделку.
+         * Вводим Partners ID, нажимаем на добавление сделки, нажимаем на FixSMM сделку.
          */
         new PartnersListPageManager(webDriver)
                 .inputPartnersId("")
                 .clickOnAddDealButton()
-                .clickOnB2bButton();
-        new DealPageB2B(webDriver)
+                .clickOnFixSMMButton();
+        new DealPageFixSMM(webDriver)
                 /**
-                 * Deal page B2B
+                 * Deal page FixSMM
                  * Deal info
-                 * Проверка на правильность создания сделки B2B
+                 * Проверка на правильность создания сделки FixSMM
                  * Проверка на выбор классификации conv
-                 * Выбираем Vol классификацию
                  * Проверка что сделка создается с полем Extension Test
                  * Проверка наличия инфополя Partner id
                  * Проверка наличия инфополя Product
@@ -67,7 +68,6 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .assertDealType()
                 .assertExtention()
                 .assertClassification()
-                .chooseVolClassification()
                 .assertPartnerId()
                 .assertProduct()
                 .assertDealCost()
@@ -97,103 +97,47 @@ public class ManagerCreateDealB2BVolClass extends BaseTest {
                 .findDealLog()
                 /**
                  * Site overview
-                 * Нажимаем на блок Site Overview,
+                 * Нажимаем на блок Site Overview
+                 * Нажимаем на Add Format
+                 * Вводим Title
                  * нажимаем на поиск добавления лида,
                  * вводим линку в модальном окне Search lead,
                  * нажимаем на добавление линки
-                 * записываем кост
-                 * Выбираем аналитику за 1 месяц
-                 * Добавляем ссылку на скриншот в аналитику за 1 месяц
-                 * Выбрать Start date и End date в период за месяц
-                 * Выбираем аналитику за 3 месяца
-                 * Добавляем ссылку на скриншот в аналитику за 3 месяца
-                 * Выбрать Start date и End date в период за 3 месяца
-                 * Добавить ссылку в поле Traffic overview
-                 * Добавить ссылку в поле GEO traffic
-                 * Добавить ссылку в поле Device category
-                 * Добавить ссылку в поле Traffic resources
-                 * Добавить ссылку в поле Mobile/Desktop
-                 * Добавить коммент
-                 * Нажать на кнопку New Analytics
-                 * Переход на первую аналитику
+                 * вводим Cost, Number of positions, Reach per post, Stats screenshot, comment
+                 * Нажимаем на сохранения формата
+                 * Проверяем созданный формат по Title
                  */
                 .clickOnSiteOverviewBlock()
+                .clickOnAddFormatButton()
+                .inputTitle("")
                 .clickOnSearchLinkButton()
                 .inputLink("")
                 .clickOnAddLinkButton()
-                .inputCostInAnalytics("")
-                .inputSelectAnalyticsFor1Month("")
-                .inputAddScreenshotFor1Month("")
-                .selectStartDateFor1Month()
-                .selectEndDateFor1Month()
-                .inputSelectAnalyticsFor3Month("")
-                .inputAddScreenshotFor3Month("")
-                .selectStartDateFor3Month()
-                .selectEndDateFor3Month()
-                .inputTrafficOverview("")
-                .inputGeoTraffic("")
-                .inputDeviceCategory("")
-                .inputTrafficSource("")
-                .inputMobileDesktop("")
-                .inputCommentInAnalytics("")
-                .clickOnNewAnalyticsButton()
-                .clickOnFirstAnalyticsButton()
-                /**
-                 * Нажимаем на Add format,
-                 * вводим Place, вводим Cost,
-                 * вводим CPM,
-                 * вводим Traffic Volume,
-                 * добавить ссылку в поле Desktop screenshot
-                 * добавить ссылку в поле
-                 * сохраняем Format
-                 */
-                .clickOnAddFormatButton()
-                .inputSelectPlace("")
                 .inputCostInFormat("")
-                .inputCPM("")
-                .inputTrafficVolume("")
-                .inputDesktopScreenshot("")
-                .inputMobileScreenshot("")
+                .inputNumberOfPosition("")
+                .inputReachPerPost("")
+                .inputStatsScreenshot("")
+                .inputCommentInFormat("")
                 .clickOnSaveFormatButton()
-                /**
-                 * нажимаем на блок Deal zids,
-                 * нажимаем на Add Zid/Cid,
-                 * вводим сайт, вводим Zid/Cid value,
-                 * вводим Place Zid/cid,
-                 * вводим Label,
-                 * вводим Traffic channel,
-                 * написал коммент
-                 * написал код
-                 * сохраняем Zid/Cid
-                 * проверил создание зида в сделку по ZidCid value
-                 */
-                .clickOnDealZidsBlock()
-                .clickOnAddZidCidButton()
-                .inputSite("")
-                .inputZidCidValue("")
-                .inputSelectPlaceZidCid("")
-                .inputLabel("")
-                .inputTrafficChannel("")
-                .inputCommentInZidCid("")
-                .inputCodeInZidCid("")
-                .clickOnSaveZidCidButton()
-                .assertZidCid()
+                .assertFormat()
                 /**
                  * Нажимаем на блок Deal places,
                  * вводим site id,
                  * нажимаем на Add New Deal Place,
+                 * вводим Platform
                  * вводим Place,
                  * вводим label,
                  * вводим GEO,
                  * вводим link PP,
                  * пишем коммент
                  * сохраняем Deal place.
-                 * Проверить создание Deal place по Ad place!!
+                 * Проверяем создание Deal place по GEO
                  */
                 .clickOnDealPlacesBlock()
                 .inputSearchSiteById("")
                 .clickOnAddNewDealPlaceButton()
                 .inputSelectPlaceNewDealPlace("")
+                .inputPlatform("")
                 .inputLabelNewDealPlace("")
                 .inputGEO("")
                 .inputLinkPp("")

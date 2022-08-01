@@ -116,7 +116,7 @@ public class DealPageB2B extends BasePage {
     private final By confirmExit = By.xpath("//div[contains(text(),'Yes')]");
 
     private final By dealPaymentsBlockButton = By.xpath("//div[contains(text(),'Deal payments')]");
-    private final By newContractButton = By.xpath("//div[contains(text(),' Add contract ')]");
+    private final By newContractButton = By.xpath("//div[contains(text(),'Add contract')]");
     private final By contractNameInput = By.xpath("//input[@aria-label='Contract name']");
     private final By startDateInContractInput = By.xpath("//div[@class='flex md6']//input[@aria-label='Start date']");
     private final By endDateInContractInput = By.xpath("//div[@class='flex md6']//input[@aria-label='End date']");
@@ -132,13 +132,16 @@ public class DealPageB2B extends BasePage {
     private final By typeInput = By.xpath("//input[@id='payment-type']");
     private final By walletInput = By.xpath("//input[@id='payment-wallet_id']");
     private final By costInput = By.xpath("//input[@id='payment-summary']");
+    private final By autocheckCheckbox = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//div[@class='v-input--selection-controls__ripple']");
     private final By commentInPaymentInput = By.xpath("//textarea[@id='payment-comment']");
     private final By continueButton = By.xpath("//div[contains(text(),'Continue')]");
-    private final By remainingCostInput = By.xpath("(//input[@aria-label='Cost'])[3]");
+    private final By remainingCostInput = By.xpath
+            ("//div[@class='v-input payment-analytic-cost v-text-field v-input--hide-details theme--light']" +
+                    "//input[@aria-label='Cost']");
     private final By remainingZidCostInput = By.xpath("//input[@id='payment-analytic-zid-cost']");
     private final By savePaymentButton = By.xpath("//div[contains(text(),'Save payment')]");
     private final By approvePaymentButton = By.xpath("//button[@id='payment-positive_status']");
-    private final By errorNotification = By.xpath("(//div[@class='notification-title']");
     private final By infoWallet = By.xpath("//div[contains(text(),' 1x ')]");
 
     public DealPageB2B(WebDriver webDriver) {
@@ -195,7 +198,8 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, commentInput).sendKeys("1234");
         return this;
     }
-    public DealPageB2B addFileToComment(String comment) {
+    public DealPageB2B addFileToComment(String comment) throws InterruptedException {
+        Thread.sleep(3000);
         WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
         unhide(webDriver, inputFileInComment);
         inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
@@ -209,7 +213,6 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, addedComment);
         return this;
     }
-
     public DealPageB2B closeDealChat() {
         waitForElementClickable(webDriver, closeDealChat).click();
         return this;
@@ -298,7 +301,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B inputMobileDesktop(String mobile) {
-        findElement(webDriver, mobileDesktopInput).sendKeys("mobile");
+        findElement(webDriver, mobileDesktopInput).sendKeys("5050");
         return this;
     }
     public DealPageB2B inputCommentInAnalytics(String comment) {
@@ -439,7 +442,7 @@ public class DealPageB2B extends BasePage {
     public DealPageB2B clickOnSaveDealButton() throws InterruptedException {
         waitForInvisibility(webDriver, greenOverlay, 20L);
         waitForElementClickable(webDriver, saveDealButton).click();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         return this;
     }
     public DealPageB2B clickOnSendOnReviewButton() {
@@ -458,12 +461,11 @@ public class DealPageB2B extends BasePage {
     }
 
     public DealPageB2B clickOnDealPaymentsBlockButton() {
-        switchToNewFrame(webDriver);
         waitForElementClickable(webDriver, dealPaymentsBlockButton).click();
         return this;
     }
     public DealPageB2B clickOnNewContractButton() {
-        findElement(webDriver, newContractButton).click();
+        waitForElementClickable(webDriver, newContractButton).click();
         return this;
     }
     public DealPageB2B inputContractName(String name) throws InterruptedException {
@@ -526,6 +528,10 @@ public class DealPageB2B extends BasePage {
     }
     public DealPageB2B inputCostInPayment(String cost) {
         findElement(webDriver, costInput).sendKeys("100");
+        return this;
+    }
+    public DealPageB2B clickOnAutocheck() {
+        findElement(webDriver, autocheckCheckbox).click();
         return this;
     }
     public DealPageB2B inputCommentInPayment(String comment) {

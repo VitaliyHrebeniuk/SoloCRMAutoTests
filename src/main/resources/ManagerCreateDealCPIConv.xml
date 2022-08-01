@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="FixCPI">
-    <test name="testingFixCPI">
+<suite name="CPIConv">
+    <test name="CreateCPIConvWithoutPayment">
         <classes>
-            <class name="com.ui.CreateDeals.ManagerCreateDealCPI" />
+            <class name="com.ui.CreateDeals.CPI.ManagerCreateDealCPIConvClass" />
             <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
-            <class name="com.ui.CreateDeals.ManagerApproveDealFixZid" />
+            <class name="com.ui.CreateDeals.CPI.ManagerApproveDealCPI" />
             <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
             <class name="com.ui.CreateDeals.AuditorApproveDeal" />
         </classes>
