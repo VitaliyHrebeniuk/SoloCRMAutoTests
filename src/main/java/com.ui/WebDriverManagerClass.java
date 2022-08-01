@@ -16,7 +16,7 @@ public class WebDriverManagerClass {
     private void setWebDriver(String browserName) {
         switch (browserName) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.chromedriver().create();
                 ChromeOptions options = new ChromeOptions();
                 /**
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
