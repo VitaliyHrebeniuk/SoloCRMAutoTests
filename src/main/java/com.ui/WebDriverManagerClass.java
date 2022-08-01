@@ -23,7 +23,7 @@ public class WebDriverManagerClass {
                 System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
-                webDriver = new ChromeDriver(options=options);
+                webDriver = new ChromeDriver();
 
                 break;
             case "ff":
