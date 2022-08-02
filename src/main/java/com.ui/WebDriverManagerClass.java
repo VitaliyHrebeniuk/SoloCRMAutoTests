@@ -25,6 +25,7 @@ public class WebDriverManagerClass {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setBinary("/usr/local/bin/chromedriver");
                 chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--disable-gpu");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--single-process");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
