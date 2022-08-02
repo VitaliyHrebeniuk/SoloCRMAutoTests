@@ -21,7 +21,7 @@ public class WebDriverManagerClass {
                 /**
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
-                options.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,"--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent");
+                options.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,"--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent", "--disable-dev-shm-usage");
                 webDriver = new ChromeDriver();
 
                 break;
