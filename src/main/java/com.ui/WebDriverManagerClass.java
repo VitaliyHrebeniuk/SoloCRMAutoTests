@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Collections;
+
 public class WebDriverManagerClass {
     private static WebDriver webDriver;
 
@@ -24,11 +26,10 @@ public class WebDriverManagerClass {
                  **/
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setBinary("/usr/local/bin/chromedriver");
-                chromeOptions.addArguments("--headless");
-                chromeOptions.addArguments("--disable-gpu");
-                chromeOptions.addArguments("--no-sandbox");
-                chromeOptions.addArguments("--single-process");
-                chromeOptions.addArguments("--disable-dev-shm-usage");
+                chromeOptions.addArguments("start-maximized");
+                chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                chromeOptions.setExperimentalOption("useAutomationExtension", false);
+                WebDriver driver = new ChromeDriver(chromeOptions);
 //                System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
 //                options.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,"--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent", "--disable-dev-shm-usage");
                 webDriver = new ChromeDriver(chromeOptions);
