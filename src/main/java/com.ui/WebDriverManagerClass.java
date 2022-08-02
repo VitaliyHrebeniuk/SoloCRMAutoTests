@@ -22,10 +22,15 @@ public class WebDriverManagerClass {
                 /**
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
-                ChromeOptions options = new ChromeOptions();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setBinary("/opt/chrome/chrome");
+                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--single-process");
+                chromeOptions.addArguments("--disable-dev-shm-usage");
                 System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
-                options.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,"--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent", "--disable-dev-shm-usage");
-                webDriver = new ChromeDriver();
+//                options.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,"--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent", "--disable-dev-shm-usage");
+                webDriver = new ChromeDriver(chromeOptions);
 
                 break;
             case "ff":
