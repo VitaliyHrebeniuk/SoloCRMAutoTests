@@ -23,7 +23,7 @@ public class WebDriverManagerClass {
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.setBinary("/opt/chrome/chrome");
+                chromeOptions.setBinary("/usr/local/bin/chromedriver");
                 chromeOptions.addArguments("--headless");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--single-process");
