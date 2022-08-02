@@ -26,7 +26,7 @@ public class WebDriverManagerClass {
                  **/
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setBinary("/usr/local/bin/chromedriver");
-                chromeOptions.addArguments("start-maximized");
+                chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1920,1200","--ignore-certificate-errors");
                 chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
 //                System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
