@@ -18,7 +18,7 @@ public class WebDriverManagerClass {
                 /**
                  Перед тем как тестить локально разкоментируй строку!
                  **/
-                //WebDriverManager.chromedriver().create();
+                WebDriverManager.chromedriver().create();
                 /**
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
@@ -28,7 +28,7 @@ public class WebDriverManagerClass {
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--single-process");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
-                System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
+//                System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
 //                options.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,"--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent", "--disable-dev-shm-usage");
                 webDriver = new ChromeDriver(chromeOptions);
 
