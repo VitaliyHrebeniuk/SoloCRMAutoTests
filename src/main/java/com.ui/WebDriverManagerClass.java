@@ -20,7 +20,7 @@ public class WebDriverManagerClass {
                 /**
                  Перед тем как тестить локально разкоментируй строку!
                  **/
-                WebDriverManager.chromedriver().create();
+                WebDriverManager.chromedriver().setup();
                 /**
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
