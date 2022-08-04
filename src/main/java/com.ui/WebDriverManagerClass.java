@@ -32,7 +32,7 @@ public class WebDriverManagerClass {
                 chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
 //                System.setProperty("webdriver.chrome.driver","/usr/local/bin/chromedriver");
-//                options.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,"--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent", "--disable-dev-shm-usage");
+                chromeOptions.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,"--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent", "--disable-dev-shm-usage");
                 webDriver = new ChromeDriver(chromeOptions);
 
                 break;
