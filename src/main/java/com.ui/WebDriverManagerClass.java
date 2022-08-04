@@ -25,7 +25,8 @@ public class WebDriverManagerClass {
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
                 ChromeOptions chromeOptions = new ChromeOptions();
-                System.setProperty("webdriver.chrome.whitelistedIps", "5.45.127.254");
+                chromeOptions.setCapability("network.proxy.http", "http://5.45.127.254/");
+                chromeOptions.setCapability("network.proxy.http_port", "9515");
                 chromeOptions.setBinary("/usr/local/bin/chromedriver");
                 chromeOptions.addArguments("--headless", "--disable-gpu", "--window-size=1024,768x24","--ignore-certificate-errors");
                 chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
