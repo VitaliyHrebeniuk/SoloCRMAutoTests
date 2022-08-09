@@ -202,7 +202,7 @@ public class DealPageB2B extends BasePage {
         Thread.sleep(3000);
         WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
         unhide(webDriver, inputFileInComment);
-        inputFileInComment.sendKeys("files\\picture.jpg");
+        inputFileInComment.sendKeys("/files/picture.jpg");
         return this;
     }
     public DealPageB2B clickOnAddCommentButton() {
