@@ -486,7 +486,7 @@ public class DealPageB2B extends BasePage {
     public DealPageB2B inputAttachFile(String contract) {
         WebElement inputFileInContract = webDriver.findElement(By.xpath("//div[@class='flex md12']//input[@type='file']"));
         unhide(webDriver, inputFileInContract);
-        inputFileInContract.sendKeys("\\files\\contract.txt");
+        inputFileInContract.sendKeys("/files/contract.txt");
         return this;
     }
     public DealPageB2B clickOnSaveContractButton() {
