@@ -9,7 +9,7 @@ import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
 public class GenerateTokenWith2FaForHeadControl {
-    final String LOGIN_TRUE = "headControl_TEST_API";
+    final String LOGIN_TRUE = "head_control_TEST_API";
     final String PASSWORD_TRUE = "132465798";
     public String headControlTokenWithout2FA;
     public String headControl2FACode;
