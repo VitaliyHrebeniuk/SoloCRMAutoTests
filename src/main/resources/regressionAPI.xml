@@ -8,7 +8,7 @@
             <package name="com.api.tags"/>
             <package name="com.api.similar"/>
             <package name="com.api.seo"/>
-<!--            <package name="com.api.redirectors"/>-->
+            <package name="com.api.redirectors"/>
 <!--            <package name="com.api.payments"/>-->
             <!-- Не тестим: powerbi, reminders -->
         </packages>
