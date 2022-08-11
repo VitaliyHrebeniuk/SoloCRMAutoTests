@@ -9,7 +9,7 @@ import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
 public class GenerateTokenWith2FaForBuyingControl {
-    final String LOGIN_TRUE = "buying_control_TEST_API";
+    final String LOGIN_TRUE = "buyingControl_TEST_API";
     final String PASSWORD_TRUE = "132465798";
     public String buyingControlTokenWithout2FA;
     public String buyingControl2FACode;
