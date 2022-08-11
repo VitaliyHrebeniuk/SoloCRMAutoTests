@@ -4,7 +4,7 @@
         <packages>
             <package name="com.api.users" />
             <package name="com.api.walletTypes" />
-<!--            <package name="com.api.teams"/>-->
+            <package name="com.api.teams"/>
 <!--            <package name="com.api.tags"/>-->
 <!--            <package name="com.api.similar"/>-->
 <!--            <package name="com.api.seo"/>-->
