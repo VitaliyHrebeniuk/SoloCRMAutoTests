@@ -1,4 +1,4 @@
-package com.api.partners.tags;
+package com.api.tags;
 
 import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;

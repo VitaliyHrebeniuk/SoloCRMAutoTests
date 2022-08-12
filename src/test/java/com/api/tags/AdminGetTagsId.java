@@ -1,15 +1,14 @@
-package com.api.partners.tags;
+package com.api.tags;
 
 import com.api.BaseURL;
-import com.api.token2FA.GenerateUserTokenWith2FaForChief;
-import com.api.token2FA.GenerateUserTokenWith2FaForFinControl;
+import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class FinControlPutTags {
+public class AdminGetTagsId {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
@@ -18,23 +17,16 @@ public class FinControlPutTags {
 
     @BeforeClass
     private void beforeUpdateProfileAdmin() {
-        GenerateUserTokenWith2FaForFinControl generateUserTokenWith2FaForFinControl = new GenerateUserTokenWith2FaForFinControl();
-        this.userTokenWith2FA = generateUserTokenWith2FaForFinControl.set2faForAccount();
-        this.user2FaCode = generateUserTokenWith2FaForFinControl.finControl2FaCode;
-    }
-
-    private String generateRandomNumber(){
-        double a = 20 + Math.random()*40;
-        return String.valueOf(a);
+        GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
+        this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
+        this.user2FaCode = generateUserTokenWith2FAForAdmin.admin2FaCode;
     }
 
     @Test
     private void test(){
         request
                 .headers("token", userTokenWith2FA)
-                .param("name","testAPI" + generateRandomNumber())
-                .param("color", "red")
-                .put(URL+"tags")
+                .get(URL+"tags/1")
                 .then()
                 .assertThat()
                 .statusCode(200);
