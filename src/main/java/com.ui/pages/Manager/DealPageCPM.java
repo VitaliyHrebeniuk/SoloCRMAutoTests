@@ -9,10 +9,10 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
 public class DealPageCPM extends BasePage {
-    private final By infoDealType = By.xpath("///input[@aria-label='Deal type']");
+    private final By infoDealType = By.xpath("//input[@aria-label='Deal type']");
     private final By infoStartDate = By.xpath("//div[@class='flex md4']//input[@aria-label='Start date']");
     private final By endDate = By.xpath("//div[contains(text(),'28')]");
-    private final By infoNetwork = By.xpath("//div[@class='flex md5']//label[contains(.,'Network')]");
+    private final By networkInput = By.xpath("//div[@class='flex md5']//input[@aria-label='Network']");
     private final By infoExtension = By.xpath("//input[@aria-label='Extension']");
     private final By infoPartnerId = By.xpath("//h5[contains(text(),'Partner id')]");
     private final By infoProduct = By.xpath("//h5[contains(text(),'Product')]");
@@ -23,18 +23,18 @@ public class DealPageCPM extends BasePage {
     private final By infoTotalSpend = By.xpath("//h5[contains(text(),'Total spend')]");
     private final By infoBalance = By.xpath("//h5[contains(text(),'Balance')]");
 
-    private final By communicationButton = By.xpath("//div[contains(text(),'communication')]");
+    private final By communicationButton = By.xpath("//div[contains(text(),'Communication')]");
     private final By commentInput = By.xpath("//div[@id='comment']//textarea[@aria-label='Comment']");
     private final By addCommentButton = By.xpath("//div[contains(text(),' Add comment ')]");
     private final By addedComment = By.xpath("//div[@class='comment-author']");
     private final By closeDealChat = By.xpath("//div[@class='v-dialog__content v-dialog__content--active']" +
             "//div[contains(text(),'Close')]");
 
-    private final By dealLogButton = By.xpath("//button[@id='deal-log']");
+    private final By dealLogButton = By.xpath("//button[@class='ml-0 btn-info v-btn theme--light'][contains(.,'Log')]");
     private final By assertLog = By.xpath("//strong[contains(text(),'Create deal')]");
 
     private final By siteOverviewBlock = By.xpath("//div[contains(text(),'Site Overview')]");
-    private final By linkInput = By.xpath("//input[@aria-label='Search by link/id']");
+    private final By linkInput = By.xpath("//input[@id='cpi-link_search']");
     private final By addLinkButton = By.xpath
             ("//button[@class='ma-0 btn-select_lead v-btn v-btn--flat v-btn--icon theme--light']");
     private final By addAnalyticsButton = By.xpath("//div[contains(text(),'Add analytics')]");
@@ -105,8 +105,8 @@ public class DealPageCPM extends BasePage {
         findElement(webDriver, endDate).click();
         return this;
     }
-    public DealPageCPM assertNetwork() {
-        Assert.assertEquals(findElement(webDriver, infoNetwork).getAttribute("value"),"Network");
+    public DealPageCPM inputNetwork(String network) {
+        findElement(webDriver, networkInput).sendKeys("Network");
         return this;
     }
     public DealPageCPM assertExtention() {
@@ -158,6 +158,7 @@ public class DealPageCPM extends BasePage {
         Thread.sleep(3000);
         WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
         unhide(webDriver, inputFileInComment);
+        //        inputFileInComment.sendKeys("/files/picture.jpg");
         inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }

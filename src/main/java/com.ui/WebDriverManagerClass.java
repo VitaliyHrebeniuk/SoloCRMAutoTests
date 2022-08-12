@@ -27,10 +27,14 @@ public class WebDriverManagerClass {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                 chromeOptions.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,
-                        "--headless", "--window-size=1920,1200","--ignore-certificate-errors", "--silent",
+                        "--headless", "--window-size=1920,1080","--ignore-certificate-errors", "--silent",
                         "--disable-dev-shm-usage", "--remote-debugging-port=9222");
 
                 webDriver = new ChromeDriver(chromeOptions);
+                webDriver.manage().window().maximize();
+
+
+
 
                 break;
             case "ff":

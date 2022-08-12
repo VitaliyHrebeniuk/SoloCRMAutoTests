@@ -70,7 +70,7 @@ public class ManagerCreateDealCPM extends BaseTest {
                  */
                 .assertDealType()
                 .assertStartDate()
-                .assertNetwork()
+                .inputNetwork("")
                 .assertExtention()
                 .assertPartnerId()
                 .assertProduct()
@@ -111,7 +111,7 @@ public class ManagerCreateDealCPM extends BaseTest {
                 .clickOnSiteOverviewBlock()
                 .inputLink("")
                 .clickOnAddLinkButton()
-                .clickOnSiteOverviewBlock()
+//                .clickOnSiteOverviewBlock()
                 .clickOnAddAnalyticsButton()
                 .clickOnFirstAnalyticsButton()
                 /**
@@ -120,6 +120,7 @@ public class ManagerCreateDealCPM extends BaseTest {
                  * Сохраняем формат
                  * Проверяем сохраненный формат
                  */
+                .clickOnSiteOverviewBlock()
                 .clickOnAddFormatButton()
                 .inputSelectPlaceInFormat("")
                 .inputGeoInFormat("")
