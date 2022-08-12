@@ -4,52 +4,207 @@ import com.ui.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 
 public class DealPageCPM extends BasePage {
+    private final By infoDealType = By.xpath("//input[@aria-label='Deal type']");
+    private final By infoStartDate = By.xpath("//div[@class='flex md4']//input[@aria-label='Start date']");
+    private final By endDate = By.xpath("//div[contains(text(),'28')]");
+    private final By networkInput = By.xpath("//div[@class='flex md5']//input[@aria-label='Network']");
+    private final By infoExtension = By.xpath("//input[@aria-label='Extension']");
+    private final By infoPartnerId = By.xpath("//h5[contains(text(),'Partner id')]");
+    private final By infoProduct = By.xpath("//h5[contains(text(),'Product')]");
+    private final By infoDealCost = By.xpath("//h5[contains(text(),'Deal cost')]");
+    private final By infoInProgress = By.xpath("//h5[contains(text(),'In progress')]");
+    private final By infoManager = By.xpath("//h5[contains(text(),'Manager')]");
+    private final By infoROI = By.xpath("//h5[contains(text(),'ROI')]");
+    private final By infoTotalSpend = By.xpath("//h5[contains(text(),'Total spend')]");
+    private final By infoBalance = By.xpath("//h5[contains(text(),'Balance')]");
+
+    private final By communicationButton = By.xpath("//div[contains(text(),'Communication')]");
+    private final By commentInput = By.xpath("//div[@id='comment']//textarea[@aria-label='Comment']");
+    private final By addCommentButton = By.xpath("//div[contains(text(),' Add comment ')]");
+    private final By addedComment = By.xpath("//div[@class='comment-author']");
+    private final By closeDealChat = By.xpath("//div[@class='v-dialog__content v-dialog__content--active']" +
+            "//div[contains(text(),'Close')]");
+
+    private final By dealLogButton = By.xpath("//button[@class='ml-0 btn-info v-btn theme--light'][contains(.,'Log')]");
+    private final By assertLog = By.xpath("//strong[contains(text(),'Create deal')]");
+
     private final By siteOverviewBlock = By.xpath("//div[contains(text(),'Site Overview')]");
     private final By linkInput = By.xpath("//input[@id='cpi-link_search']");
-    private final By addLinkButton = By.xpath("//button//i[contains(text(), 'add')]");
-    private final By addFormatButton = By.xpath("//div[contains(text(), 'Ad format')]");
+    private final By addLinkButton = By.xpath
+            ("//button[@class='ma-0 btn-select_lead v-btn v-btn--flat v-btn--icon theme--light']");
+    private final By addAnalyticsButton = By.xpath("//div[contains(text(),'Add analytics')]");
+
+    private final By addFormatButton = By.xpath("//div[contains(text(),'Ad format')]");
+    private final By selectPlaceInFormatInput = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
+            "//input[@aria-label='Select place']");
+    private final By geoInFormatInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//input[@aria-label='GEO']");
     private final By cpmUsdInput = By.xpath("//input[@aria-label='CPM USD']");
     private final By cpcUsdInput = By.xpath("//input[@aria-label='CPC USD']");
-    private final By dealPlacesBlock = By.xpath("//div[contains(text(),'Deal places')]");
-    private final By searchSiteButton = By.xpath("//button//div[contains(text(), 'Search site')]");
-    private final By searchByIdInput = By.xpath("//input[@aria-label='Search by id']");
-    private final By addSiteCheckbox = By.xpath("//div[@class='flex md2']//button//i[contains(text(), 'add')]");
-    private final By addSiteButton = By.xpath("//button//i[contains(text(), 'add')];");
-    private final By addNewDealPlaceButton = By.xpath("//div[@class='flex btn-container md2']//button//i[contains(text(), 'add')]");
+    private final By trafficTypeInFormatInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//input[@aria-label='Traffic type']");
+    private final By trafficChannelInFormatInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//input[@aria-label='Traffic channel']");
+    private final By saveFormatButton = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//div[contains(text(),'Save')]");
+    private final By infoFormat = By.xpath("//td[contains(text(),'100')]");
+
+    private final By dealPlacesBlock = By.xpath("//div[@class='subheading'][contains(.,'Deal places')]");
+    private final By searchSiteButton = By.xpath("//button[@class='white--text ml-0 mt-2 btn-actions v-btn theme--light']");
+    private final By searchSiteInput = By.xpath("//input[@aria-label='Search by id']");
+    private final By checkboxSite = By.xpath("//div[@class='v-dialog v-dialog--active v-dialog--persistent']" +
+            "//div[@class='v-input--selection-controls__ripple']");
+    private final By addDealPlaceButton = By.xpath
+            ("//button[@class='modal_fixed_btn v-btn v-btn--floating theme--dark primary']");
+    private final By openDealPlaceButton = By.xpath
+            ("//button[@class='v-btn v-btn--floating v-btn--outline v-btn--depressed v-btn--small theme--light primary--text']");
     private final By placeNameInput = By.xpath("//input[@aria-label='Place name']");
-    private final By selectPlaceInput = By.xpath("//input[@aria-label='Select place']");
-    private final By labelInput = By.xpath("//input[@aria-label='Label']");
-    private final By geoInput = By.xpath("//input[@aria-label='GEO']");
+    private final By selectPlaceInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//input[@aria-label='Select place']");
+    private final By geoInDealPlaceInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//input[@aria-label='GEO']");
     private final By cpmCpcInput = By.xpath("//input[@aria-label='CPM/CPC']");
-    private final By trafficChannelInput = By.xpath("//input[@aria-label='Traffic channel']");
-    private final By trafficTypeInput = By.xpath("//input[@aria-label='Traffic type']");
-    private final By networkMacrosInput = By.xpath("//input[@aria-label='Network makros']");
+    private final By trafficTypeInDealPlaceInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//input[@aria-label='Traffic type']");
+    private final By trafficChannelInDealPlaceInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//input[@aria-label='Traffic channel']");
+    private final By adSizeInput = By.xpath("//input[@aria-label='Ad size']");
+    private final By creativeInput = By.xpath("//input[@aria-label='Creative']");
+    private final By networkMakrosInput = By.xpath("//input[@aria-label='Network makros']");
     private final By redirectorInput = By.xpath("//input[@aria-label='Redirector']");
     private final By linkPpInput = By.xpath("//input[@aria-label='Link PP']");
-    private final By saveButton = By.xpath("//div[contains(text(), 'Save')]");
-    private final By saveDealButton = By.xpath("//button//i[contains(., 'save')]");
-    private final By sendOnReviewButton = By.xpath("//span[contains(text(),'send on review')]");
+    private final By commentInDealPlaceInput = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//textarea[@aria-label='Comment']");
+    private final By saveDealPlaceButton = By.xpath
+            ("//div[@class='v-dialog v-dialog--active v-dialog--persistent']//div[contains(text(),'Save')]");
+    private final By infoDealPlace = By.xpath("//td[contains(text(),'cpm')]");
+
+    private final By greenOverlay = By.xpath("//div[@class='vue-notification-template vue-notification success']");
+    private final By saveDealButton = By.xpath
+            ("//button[@class='ml-0 pulse-button v-btn v-btn--bottom v-btn--floating v-btn--fixed v-btn--right theme--dark green darken-1']");
+    private final By sendOnReviewButton = By.xpath("//button[@class='v-btn v-btn--small theme--light btn-item_send on review']");
     private final By profileButton = By.xpath("//button[@id='profile_btn']");
     private final By exitButton = By.xpath("//a[@id='exit_btn']");
+    private final By confirmExit = By.xpath("//div[contains(text(),'Yes')]");
 
     public DealPageCPM(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public DealPageCPM assertDealType() {
+        Assert.assertEquals(findElement(webDriver, infoDealType).getAttribute("value"),"cpm");
+        return this;
+    }
+    public DealPageCPM assertStartDate() {
+        findElement(webDriver, infoStartDate).click();
+        findElement(webDriver, endDate).click();
+        return this;
+    }
+    public DealPageCPM inputNetwork(String network) {
+        findElement(webDriver, networkInput).sendKeys("Network");
+        return this;
+    }
+    public DealPageCPM assertExtention() {
+        Assert.assertEquals(findElement(webDriver, infoExtension).getAttribute("value"),"Test");
+        return this;
+    }
+    public DealPageCPM assertPartnerId() {
+        Assert.assertEquals(findElement(webDriver, infoPartnerId).getText(),"Partner id");
+        return this;
+    }
+    public DealPageCPM assertProduct() {
+        Assert.assertEquals(findElement(webDriver, infoProduct).getText(),"Product");
+        return this;
+    }
+    public DealPageCPM assertDealCost() {
+        Assert.assertEquals(findElement(webDriver, infoDealCost).getText(),"Deal cost");
+        return this;
+    }
+    public DealPageCPM assertInProgress() {
+        Assert.assertEquals(findElement(webDriver, infoInProgress).getText(),"In progress");
+        return this;
+    }
+    public DealPageCPM assertManager() {
+        Assert.assertEquals(findElement(webDriver, infoManager).getText(),"Manager");
+        return this;
+    }
+    public DealPageCPM assertROI() {
+        Assert.assertEquals(findElement(webDriver, infoROI).getText(),"ROI");
+        return this;
+    }
+    public DealPageCPM assertTotalSpend() {
+        Assert.assertEquals(findElement(webDriver, infoTotalSpend).getText(),"Total spend");
+        return this;
+    }
+    public DealPageCPM assertBalance() {
+        Assert.assertEquals(findElement(webDriver, infoBalance).getText(),"Balance");
+        return this;
+    }
+
+    public DealPageCPM clickOnCommunicationButton() {
+        findElement(webDriver, communicationButton).click();
+        return this;
+    }
+    public DealPageCPM inputCommentInCommunication(String comment) {
+        findElement(webDriver, commentInput).sendKeys("1234");
+        return this;
+    }
+    public DealPageCPM addFileToComment(String comment) throws InterruptedException {
+        Thread.sleep(3000);
+        WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
+        unhide(webDriver, inputFileInComment);
+        //        inputFileInComment.sendKeys("/files/picture.jpg");
+        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
+        return this;
+    }
+    public DealPageCPM clickOnAddCommentButton() {
+        waitForElementClickable(webDriver, addCommentButton).click();
+        return this;
+    }
+    public DealPageCPM findAddedComment() {
+        findElement(webDriver, addedComment);
+        return this;
+    }
+    public DealPageCPM closeDealChat() {
+        waitForElementClickable(webDriver, closeDealChat).click();
+        return this;
+    }
+
+    public DealPageCPM clickOnDealLogButton() {
+        findElement(webDriver, dealLogButton).click();
+        return this;
+    }
+    public DealPageCPM findDealLog() {
+        findElement(webDriver, assertLog);
+        webDriver.navigate().back();
+        return this;
     }
 
     public DealPageCPM clickOnSiteOverviewBlock() {
         waitForElementClickable(webDriver, siteOverviewBlock).click();
         return this;
     }
-
     public DealPageCPM inputLink(String link) {
-        findElement(webDriver, linkInput).sendKeys("http://football.ua");
+        findElement(webDriver, linkInput).sendKeys("https://mmgp.ru/");
         return this;
     }
-
     public DealPageCPM clickOnAddLinkButton() {
-        findElement(webDriver, addLinkButton).click();
+        waitForElementClickable(webDriver, addLinkButton).click();
+        return this;
+    }
+    public DealPageCPM clickOnAddAnalyticsButton() {
+        findElement(webDriver, addAnalyticsButton).click();
+        return this;
+    }
+    public DealPageCPM clickOnFirstAnalyticsButton() {
+        WebElement firstAnalButton = webDriver.findElement(By.xpath("//a[@class='v-tabs__item']"));
+        Actions act = new Actions(webDriver);
+        act.moveToElement(firstAnalButton).click().perform();
         return this;
     }
 
@@ -57,145 +212,139 @@ public class DealPageCPM extends BasePage {
         waitForElementClickable(webDriver, addFormatButton).click();
         return this;
     }
-
-    public DealPageCPM inputSelectPlaceInAdFormat(String place) {
-        findElement(webDriver, selectPlaceInput).sendKeys("article" + Keys.ENTER);
+    public DealPageCPM inputSelectPlaceInFormat(String place) {
+        findElement(webDriver, selectPlaceInFormatInput).sendKeys("article" + Keys.ENTER);
         return this;
     }
-
-    public DealPageCPM inputGeoInAdFormat(String geo) {
-        findElement(webDriver, geoInput).sendKeys("Austria" + Keys.ENTER);
+    public DealPageCPM inputGeoInFormat(String geo) {
+        findElement(webDriver, geoInFormatInput).sendKeys("Austria" + Keys.ENTER);
         return this;
     }
-
     public DealPageCPM inputCpmUsd(String usd) {
-        findElement(webDriver, cpmUsdInput).sendKeys("10");
+        findElement(webDriver, cpmUsdInput).sendKeys("100");
         return this;
     }
-
     public DealPageCPM inputCpcUsd(String usd) {
-        findElement(webDriver, cpcUsdInput).sendKeys("10");
+        findElement(webDriver, cpcUsdInput).sendKeys("150");
         return this;
     }
-
-    public DealPageCPM inputTrafficTypeInAdFormat(String type) {
-        findElement(webDriver, trafficTypeInput).sendKeys("MS" + Keys.ENTER);
+    public DealPageCPM inputTrafficTypeInFormat(String type) {
+        findElement(webDriver, trafficTypeInFormatInput).sendKeys("ALL" + Keys.ENTER);
         return this;
     }
-
-    public DealPageCPM inputTrafficChannelInAdFormat(String channel) {
-        findElement(webDriver, trafficChannelInput).sendKeys("desk" + Keys.ENTER);
+    public DealPageCPM inputTrafficChannelInFormat(String type) {
+        findElement(webDriver, trafficChannelInFormatInput).sendKeys("desk" + Keys.ENTER);
         return this;
     }
-
     public DealPageCPM clickOnSaveFormatButton() {
-        findElement(webDriver, saveButton).click();
+        findElement(webDriver, saveFormatButton).click();
+        return this;
+    }
+    public DealPageCPM assertFormat() {
+        Assert.assertEquals(waitForElementClickable(webDriver, infoFormat).getText(),"100");
         return this;
     }
 
-    public DealPageCPM clickOnDealPlaceBlock() {
-        waitForElementClickable(webDriver, dealPlacesBlock).click();
+    public DealPageCPM clickOnDealPlacesBlock() {
+        findElement(webDriver, dealPlacesBlock).click();
         return this;
     }
-
     public DealPageCPM clickOnSearchSiteButton() {
         findElement(webDriver, searchSiteButton).click();
         return this;
     }
-
-    public DealPageCPM inputSearchById(String id) {
-        waitForElementClickable(webDriver, searchByIdInput).sendKeys("281325");
+    public DealPageCPM inputSearchSite(String site) {
+        findElement(webDriver, searchSiteInput).sendKeys("ceroacero");
         return this;
     }
-
-    public DealPageCPM clickOnAddSiteCheckbox() {
-        waitForElementClickable(webDriver, addSiteCheckbox).click();
+    public DealPageCPM clickOnCheckboxSite() {
+        findElement(webDriver, checkboxSite).click();
         return this;
     }
-
-    public DealPageCPM clickOnAddSiteButton() {
-        waitForElementClickable(webDriver, addSiteButton).click();
+    public DealPageCPM clickOnAddDealPlaceButton() {
+        findElement(webDriver, addDealPlaceButton).click();
         return this;
     }
-
-    public DealPageCPM clickOnAddNewDealPlaceButton() {
-        waitForElementClickable(webDriver, addNewDealPlaceButton).click();
+    public DealPageCPM clickOnOpenDealPlaceButton() {
+        findElement(webDriver, openDealPlaceButton).click();
         return this;
     }
-
     public DealPageCPM inputPlaceName(String name) {
-        waitForElementClickable(webDriver, placeNameInput).sendKeys("Place name");
+        findElement(webDriver, placeNameInput).sendKeys("Place");
         return this;
     }
-
-    public DealPageCPM inputSelectPlaceInNewPlace(String place) {
+    public DealPageCPM inputSelectPlaceInDealPlace(String place) {
         findElement(webDriver, selectPlaceInput).sendKeys("article" + Keys.ENTER);
         return this;
     }
-
-    public DealPageCPM inputLabel(String label) {
-        findElement(webDriver, labelInput).sendKeys("cyber" + Keys.ENTER);
+    public DealPageCPM inputGeoInDealPlace(String geo) {
+        findElement(webDriver, geoInDealPlaceInput).sendKeys("Austria" + Keys.ENTER);
         return this;
     }
-
-    public DealPageCPM inputGeoInNewPlace(String geo) {
-        findElement(webDriver, geoInput).sendKeys("Austria" + Keys.ENTER);
-        return this;
-    }
-
     public DealPageCPM inputCpmCpc(String cpm) {
         findElement(webDriver, cpmCpcInput).sendKeys("cpm" + Keys.ENTER);
         return this;
     }
-
-    public DealPageCPM inputTrafficChannelInNewPlace(String channel) {
-        findElement(webDriver, trafficChannelInput).sendKeys("desk" + Keys.ENTER);
+    public DealPageCPM inputTrafficChannelInDealPlace(String channel) {
+        findElement(webDriver, trafficChannelInDealPlaceInput).sendKeys("desk" + Keys.ENTER);
         return this;
     }
-
-    public DealPageCPM inputTrafficTypeInNewPlace(String type) {
-        findElement(webDriver, trafficTypeInput).sendKeys("MS" + Keys.ENTER);
+    public DealPageCPM inputTrafficTypeInDealPlace(String type) {
+        findElement(webDriver, trafficTypeInDealPlaceInput).sendKeys("ALL" + Keys.ENTER);
         return this;
     }
-
-//    public DealPageCPM inputNetworkMacros(String macros) {
-//        findElement(webDriver, networkMacrosInput).sendKeys("1" + Keys.ENTER);
-//        return this;
-//    }
-
-//    public DealPageCPM inputRedirector(String macros) {
-//        findElement(webDriver, redirectorInput).sendKeys("");
-//        return this;
-//    }
-
+    public DealPageCPM inputAdSize(String size) {
+        findElement(webDriver, adSizeInput).sendKeys("100");
+        return this;
+    }
+    public DealPageCPM inputCreative(String creative) {
+        findElement(webDriver, creativeInput).sendKeys("action");
+        return this;
+    }
+    public DealPageCPM inputNetworkMakros(String makros) {
+        findElement(webDriver, networkMakrosInput).sendKeys("[site]" + Keys.ENTER);
+        return this;
+    }
+    public DealPageCPM inputRedirector(String redirector) {
+        findElement(webDriver, redirectorInput).sendKeys("refparjhob.top");
+        return this;
+    }
     public DealPageCPM inputLinkPP(String link) {
-        findElement(webDriver, linkPpInput)
-                .sendKeys("https://affpa.top/L?tag=d_1370971m_97c_&site=1370971&ad=97&r=registration/");
+        findElement(webDriver, linkPpInput).sendKeys
+                ("http://refpa.top/L?tag=d_687199m_97c__[]general[]_d38098_l32830_post&site=687199&ad=97");
+        return this;
+    }
+    public DealPageCPM inputCommentInDealPlace(String comment) {
+        findElement(webDriver, commentInDealPlaceInput).sendKeys("comment");
+        return this;
+    }
+    public DealPageCPM saveDealPlace() {
+        findElement(webDriver, saveDealPlaceButton).click();
+        return this;
+    }
+    public DealPageCPM assertDealPlace() {
+        Assert.assertEquals(waitForElementClickable(webDriver, infoDealPlace).getText(),"cpm");
         return this;
     }
 
-    public DealPageCPM clickOnSaveNewPlace() {
-        findElement(webDriver, saveButton).click();
+    public DealPageCPM clickOnSaveDealButton() throws InterruptedException {
+        waitForInvisibility(webDriver, greenOverlay, 20L);
+        waitForElementClickable(webDriver, saveDealButton).click();
+        Thread.sleep(3000);
         return this;
     }
-
-    public DealPageCPM clickOnSaveDealButton() {
-        findElement(webDriver, saveDealButton).click();
-        return this;
-    }
-
     public DealPageCPM clickOnSendOnReviewButton() {
-        waitForElementClickable(webDriver, sendOnReviewButton).click();
+        findElement(webDriver, sendOnReviewButton, 1000L).click();
         return this;
     }
-
-    public DealPageCPM clickOnProfileButton() {
+    public DealPageCPM clickOnProfileButton() throws InterruptedException {
+        Thread.sleep(3000);
         waitForElementClickable(webDriver, profileButton).click();
         return this;
     }
-
     public DealPageCPM clickOnExitButton() {
         findElement(webDriver, exitButton).click();
+        findElement(webDriver, confirmExit).click();
         return this;
     }
 }
