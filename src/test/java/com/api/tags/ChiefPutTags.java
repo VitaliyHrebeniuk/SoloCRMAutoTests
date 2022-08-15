@@ -1,14 +1,14 @@
-package com.api.partners.tags;
+package com.api.tags;
 
 import com.api.BaseURL;
-import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
+import com.api.token2FA.GenerateUserTokenWith2FaForChief;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class AdminPostTags {
+public class ChiefPutTags {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
@@ -17,9 +17,9 @@ public class AdminPostTags {
 
     @BeforeClass
     private void beforeUpdateProfileAdmin() {
-        GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
-        this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
-        this.user2FaCode = generateUserTokenWith2FAForAdmin.admin2FaCode;
+        GenerateUserTokenWith2FaForChief generateUserTokenWith2FaForChief = new GenerateUserTokenWith2FaForChief();
+        this.userTokenWith2FA = generateUserTokenWith2FaForChief.set2faForAccount();
+        this.user2FaCode = generateUserTokenWith2FaForChief.chief2FaCode;
     }
 
     private String generateRandomNumber(){
@@ -33,7 +33,7 @@ public class AdminPostTags {
                 .headers("token", userTokenWith2FA)
                 .param("name","testAPI" + generateRandomNumber())
                 .param("color", "red")
-                .post(URL+"tags/1")
+                .put(URL+"tags")
                 .then()
                 .assertThat()
                 .statusCode(200);

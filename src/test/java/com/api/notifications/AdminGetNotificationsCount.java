@@ -1,15 +1,14 @@
-package com.api.partners.tags;
+package com.api.notifications;
 
 import com.api.BaseURL;
-import com.api.token2FA.GenerateUserTokenWith2FaForAuditor;
-import com.api.token2FA.GenerateUserTokenWith2FaForChief;
+import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class AuditorPutTags {
+public class AdminGetNotificationsCount {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
@@ -18,23 +17,16 @@ public class AuditorPutTags {
 
     @BeforeClass
     private void beforeUpdateProfileAdmin() {
-        GenerateUserTokenWith2FaForAuditor generateUserTokenWith2FaForAuditor = new GenerateUserTokenWith2FaForAuditor();
-        this.userTokenWith2FA = generateUserTokenWith2FaForAuditor.set2faForAccount();
-        this.user2FaCode = generateUserTokenWith2FaForAuditor.auditor2FaCode;
-    }
-
-    private String generateRandomNumber(){
-        double a = 20 + Math.random()*40;
-        return String.valueOf(a);
+        GenerateUserTokenWith2FaForAdmin generateUserTokenWith2FAForAdmin = new GenerateUserTokenWith2FaForAdmin();
+        this.userTokenWith2FA = generateUserTokenWith2FAForAdmin.set2faForAccount();
+        this.user2FaCode = generateUserTokenWith2FAForAdmin.admin2FaCode;
     }
 
     @Test
     private void test(){
         request
                 .headers("token", userTokenWith2FA)
-                .param("name","testAPI" + generateRandomNumber())
-                .param("color", "red")
-                .put(URL+"tags")
+                .get(URL+"notifications/count")
                 .then()
                 .assertThat()
                 .statusCode(200);

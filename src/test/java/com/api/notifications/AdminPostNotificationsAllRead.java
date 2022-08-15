@@ -1,4 +1,4 @@
-package com.api.partners.tags;
+package com.api.notifications;
 
 import com.api.BaseURL;
 import com.api.token2FA.GenerateUserTokenWith2FaForAdmin;
@@ -8,7 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class AdminGetTags {
+public class AdminPostNotificationsAllRead {
     public String userTokenWith2FA;
     public String user2FaCode;
     RequestSpecification request = RestAssured.given();
@@ -26,7 +26,7 @@ public class AdminGetTags {
     private void test(){
         request
                 .headers("token", userTokenWith2FA)
-                .get(URL+"tags")
+                .post(URL+"notifications/all_read")
                 .then()
                 .assertThat()
                 .statusCode(200);
