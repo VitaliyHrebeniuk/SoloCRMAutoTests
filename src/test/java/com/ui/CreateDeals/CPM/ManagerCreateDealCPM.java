@@ -111,7 +111,6 @@ public class ManagerCreateDealCPM extends BaseTest {
                 .clickOnSiteOverviewBlock()
                 .inputLink("")
                 .clickOnAddLinkButton()
-//                .clickOnSiteOverviewBlock()
                 .clickOnAddAnalyticsButton()
                 .clickOnFirstAnalyticsButton()
                 /**

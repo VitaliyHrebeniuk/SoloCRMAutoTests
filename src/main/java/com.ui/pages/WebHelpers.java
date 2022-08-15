@@ -30,7 +30,7 @@ public class WebHelpers {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public void scrollToElement(WebDriver webDriver, WebElement locator){
+    public void scrollToElement(WebDriver webDriver, By locator){
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true)", locator);
     }
 

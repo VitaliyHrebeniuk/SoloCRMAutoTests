@@ -198,13 +198,14 @@ public class DealPageCPM extends BasePage {
         return this;
     }
     public DealPageCPM clickOnAddAnalyticsButton() {
-        findElement(webDriver, addAnalyticsButton).click();
+        waitForElementClickable(webDriver, addAnalyticsButton).click();
         return this;
     }
-    public DealPageCPM clickOnFirstAnalyticsButton() {
+    public DealPageCPM clickOnFirstAnalyticsButton() throws InterruptedException {
         WebElement firstAnalButton = webDriver.findElement(By.xpath("//a[@class='v-tabs__item']"));
         Actions act = new Actions(webDriver);
         act.moveToElement(firstAnalButton).click().perform();
+        Thread.sleep(3000);
         return this;
     }
 
@@ -322,7 +323,9 @@ public class DealPageCPM extends BasePage {
         findElement(webDriver, saveDealPlaceButton).click();
         return this;
     }
-    public DealPageCPM assertDealPlace() {
+    public DealPageCPM assertDealPlace() throws InterruptedException {
+        scrollToElement(webDriver, searchSiteButton);
+        Thread.sleep(3000);
         Assert.assertEquals(waitForElementClickable(webDriver, infoDealPlace).getText(),"cpm");
         return this;
     }
