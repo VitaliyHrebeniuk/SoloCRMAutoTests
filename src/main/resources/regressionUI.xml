@@ -4,13 +4,12 @@
     <test name="CreateFixB2BConvWithoutPayment">
         <classes>
             <class name="com.ui.CreateDeals.B2B.ManagerCreateDealB2BConvClass" />
-    <!--           <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
-               <class name="com.ui.CreateDeals.B2B.ManagerApproveDealB2B" />
-               <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
-               <class name="com.ui.CreateDeals.AuditorApproveDeal" />
-               -->
-           </classes>
-       </test>
+            <class name="com.ui.CreateDeals.BuyingControlApproveDeal" />
+            <class name="com.ui.CreateDeals.B2B.ManagerApproveDealB2B" />
+            <class name="com.ui.CreateDeals.TeamLeadApproveDeal" />
+            <class name="com.ui.CreateDeals.AuditorApproveDeal" />
+        </classes>
+    </test>
    <!--    <test name="Deal CPI">-->
 <!--        <classes>-->
 <!--            <class name="com.ui.ManagerCreateDealCPI" />-->
