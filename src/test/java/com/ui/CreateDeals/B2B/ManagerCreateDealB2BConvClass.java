@@ -23,6 +23,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     }
     @Test
     public void createDealB2BConv() throws InterruptedException {
+        System.out.println(manager2FaCode +"-1");
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -34,7 +35,6 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .clickOnSignInButton()
                 .inputAuthCode(manager2FaCode)
                 .clickOnSendCodeButton();
-        System.out.println(manager2FaCode);
         /**
          * Main page
          * Нажимаем на Partners, нажимаем на Partners list.
