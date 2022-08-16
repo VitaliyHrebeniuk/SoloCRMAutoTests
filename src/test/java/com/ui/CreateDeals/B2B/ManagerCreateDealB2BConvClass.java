@@ -34,6 +34,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .clickOnSignInButton()
                 .inputAuthCode(manager2FaCode)
                 .clickOnSendCodeButton();
+        System.out.println(manager2FaCode);
         /**
          * Main page
          * Нажимаем на Partners, нажимаем на Partners list.
@@ -212,7 +213,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
 
     @AfterMethod
     public void ResetCode() {
-        System.out.println("Запускает");
+        System.out.println(manager2FaCode);
         request
                 .headers("token", managerTokenWith2FA)
                 .post(apiURL + "security/status/disable/" + manager2FaCode)
