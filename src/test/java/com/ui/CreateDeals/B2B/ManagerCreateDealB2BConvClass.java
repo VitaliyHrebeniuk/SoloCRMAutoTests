@@ -213,6 +213,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
 
     @AfterMethod
     public void ResetCode() {
+        System.out.println(apiURL + "security/status/disable/" + manager2FaCode);
         request
                 .headers("token", managerTokenWith2FA)
                 .post(apiURL + "security/status/disable/" + manager2FaCode)
