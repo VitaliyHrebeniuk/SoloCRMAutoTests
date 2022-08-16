@@ -16,6 +16,7 @@ public class GenerateUserTokenWith2FaForManagerUI {
     public String manager2FaCode;
     public RequestSpecification request = RestAssured.given();
     final String URL = "https://beta-api.solo-crm.com/";
+    public String lastcode;
 
     public String setUserTokenWithout2FA() {
         Response response = request
@@ -44,14 +45,13 @@ public class GenerateUserTokenWith2FaForManagerUI {
 
     public String get2FaCode() {
         String secretKey = generateUser2FACode();
-        String lastCode = null;
         int i = 1;
         while (i == 1) {
             String code = getTOTPCode(secretKey);
             i += 1;
-            lastCode = code;
+            this.lastcode = code;
         }
-        return lastCode;
+        return lastcode;
     }
 
     public String set2faForAccount() {
@@ -66,20 +66,29 @@ public class GenerateUserTokenWith2FaForManagerUI {
     /**
      * Использую при повторном получении 6-ти значного кода
      */
-    public String set2faForAccount2() {
-        this.manager2FaCode = get2FaCode2();
-        return manager2FaCode;
-
+    public String setUserTokenWithout2FA2() {
+        Response response = request
+                .param("login", LOGIN_TRUE)
+                .param("password", PASSWORD_TRUE)
+                .post(URL + "profile/login");
+        this.managerTokenWith2FA = response.path("data.token").toString();
+        return managerTokenWith2FA;
     }
     public String get2FaCode2() {
-        String secretKey = manager2FACode;
-        String lastCode = null;
+        String secretKey = generateUser2FACode2();
         int i = 1;
         while (i == 1) {
             String code = getTOTPCode(secretKey);
             i += 1;
-            lastCode = code;
+            this.lastcode = code;
         }
-        return lastCode;
+        return lastcode;
+    }
+    public String generateUser2FACode2() {
+        return manager2FACode;
+    }
+    public String LastCode(){
+        this.manager2FaCode = get2FaCode2();
+        return manager2FaCode;
     }
 }
