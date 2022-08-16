@@ -17,7 +17,7 @@ public class GenerateUserTokenWith2FaForManagerUI {
     public RequestSpecification request = RestAssured.given();
     final String URL = "https://beta-api.solo-crm.com/";
 
-    public String setUserTokenWithout2FA(){
+    public String setUserTokenWithout2FA() {
         Response response = request
                 .param("login", LOGIN_TRUE)
                 .param("password", PASSWORD_TRUE)
@@ -26,11 +26,11 @@ public class GenerateUserTokenWith2FaForManagerUI {
         return managerTokenWithout2FA;
     }
 
-    public String generateUser2FACode(){
+    public String generateUser2FACode() {
         String setUserTokenWithout2FA = setUserTokenWithout2FA();
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
-                .get( URL + "security/generate/code/qr");
+                .get(URL + "security/generate/code/qr");
         manager2FACode = response.path("data.security_code").toString();
         return manager2FACode;
     }
@@ -51,17 +51,35 @@ public class GenerateUserTokenWith2FaForManagerUI {
             i += 1;
             lastCode = code;
         }
-        System.out.println(lastCode);
         return lastCode;
     }
 
-    public String set2faForAccount(){
+    public String set2faForAccount() {
         this.manager2FaCode = get2FaCode();
         Response response = request
-                .headers("token",setUserTokenWithout2FA())
+                .headers("token", setUserTokenWithout2FA())
                 .post(URL + "security/verify/" + manager2FaCode);
         this.managerTokenWith2FA = response.path("data.token").toString();
         return managerTokenWith2FA;
     }
 
+    /**
+     * Использую при повторном получении 6-ти значного кода
+     */
+    public String set2faForAccount2() {
+        this.manager2FaCode = get2FaCode2();
+        return manager2FaCode;
+
+    }
+    public String get2FaCode2() {
+        String secretKey = manager2FACode;
+        String lastCode = null;
+        int i = 1;
+        while (i == 1) {
+            String code = getTOTPCode(secretKey);
+            i += 1;
+            lastCode = code;
+        }
+        return lastCode;
+    }
 }
