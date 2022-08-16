@@ -209,13 +209,16 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .clickOnProfileButton()
                 .clickOnExitButton();
     }
+
     @AfterMethod
     public void ResetCode() {
+        System.out.println("Запускает");
         request
                 .headers("token", managerTokenWith2FA)
                 .post(apiURL + "security/status/disable/" + manager2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
+        System.out.println("Отключило");
     }
 }
