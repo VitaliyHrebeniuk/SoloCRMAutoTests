@@ -213,13 +213,12 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
 
     @AfterMethod
     public void ResetCode() {
-        System.out.println(manager2FaCode + "");
         request
                 .headers("token", managerTokenWith2FA)
                 .post(apiURL + "security/status/disable/" + manager2FaCode)
                 .then()
                 .assertThat()
-                .statusCode(200);
-        System.out.println("Отключило");
+                .statusCode(201);
+
     }
 }
