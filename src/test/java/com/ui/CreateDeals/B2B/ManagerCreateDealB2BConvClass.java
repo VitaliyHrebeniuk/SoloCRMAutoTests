@@ -211,9 +211,8 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .clickOnExitButton();
     }
 
-    @AfterMethod
+    @AfterClass
     public void ResetCode() {
-        System.out.println(manager2FaCode);
         setToken();
         request
                 .headers("token", managerTokenWith2FA)
