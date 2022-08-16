@@ -218,7 +218,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .post(apiURL + "security/status/disable/" + manager2FaCode)
                 .then()
                 .assertThat()
-                .statusCode(201);
+                .statusCode(200);
 
     }
 }
