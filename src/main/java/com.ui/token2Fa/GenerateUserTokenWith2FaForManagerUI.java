@@ -51,7 +51,7 @@ public class GenerateUserTokenWith2FaForManagerUI {
             i += 1;
             lastCode = code;
         }
-        //System.out.println(lastCode);
+        System.out.println(lastCode);
         return lastCode;
     }
 
