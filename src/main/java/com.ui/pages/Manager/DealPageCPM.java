@@ -158,8 +158,8 @@ public class DealPageCPM extends BasePage {
         Thread.sleep(3000);
         WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
         unhide(webDriver, inputFileInComment);
-        //        inputFileInComment.sendKeys("/files/picture.jpg");
-        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
+        inputFileInComment.sendKeys("/files/picture.jpg");
+//        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
     public DealPageCPM clickOnAddCommentButton() {
