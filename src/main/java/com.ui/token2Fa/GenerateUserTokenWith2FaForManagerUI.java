@@ -84,7 +84,4 @@ public class GenerateUserTokenWith2FaForManagerUI {
         }
         return lastcode;
     }
-    public String generateUser2FACode2() {
-        return manager2FACode;
-    }
 }
