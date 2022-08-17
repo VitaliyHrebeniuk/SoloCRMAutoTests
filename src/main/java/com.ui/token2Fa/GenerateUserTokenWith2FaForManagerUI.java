@@ -74,8 +74,8 @@ public class GenerateUserTokenWith2FaForManagerUI {
         this.managerTokenWith2FA = response.path("data.token").toString();
         return managerTokenWith2FA;
     }
-    public String get2FaCode2() {
-        String secretKey = generateUser2FACode2();
+    public String get2FaCode2(String security_code) {
+        String secretKey = security_code;
         int i = 1;
         while (i == 1) {
             String code = getTOTPCode(secretKey);
@@ -86,9 +86,5 @@ public class GenerateUserTokenWith2FaForManagerUI {
     }
     public String generateUser2FACode2() {
         return manager2FACode;
-    }
-    public String LastCode(){
-        this.manager2FaCode = get2FaCode2();
-        return manager2FaCode;
     }
 }

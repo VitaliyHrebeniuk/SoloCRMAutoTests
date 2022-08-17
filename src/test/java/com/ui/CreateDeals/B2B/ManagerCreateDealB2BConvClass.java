@@ -14,16 +14,17 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
+    private String security_code;
 
     @BeforeMethod
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
+        this.security_code = generateUserTokenWith2FaForManager.generateUser2FACode();
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
     public void createDealB2BConv() throws InterruptedException {
-        System.out.println(manager2FaCode +"-1");
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -215,7 +216,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     @AfterClass
     public void ResetCode() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
-        this.manager2FaCode = generateUserTokenWith2FaForManager.LastCode();
+        this.manager2FaCode = generateUserTokenWith2FaForManager.get2FaCode2(security_code);
         System.out.println(manager2FaCode);
         request
                 .headers("token", managerTokenWith2FA)
