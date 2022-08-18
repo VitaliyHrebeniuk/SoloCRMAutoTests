@@ -215,7 +215,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     @AfterClass
     public void ResetCode() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
-        this.manager2FaCode = generateUserTokenWith2FaForManager.get2FaCode2(security_code);
+        this.manager2FaCode = generateUserTokenWith2FaForManager.get2FaCodeRepeat(security_code);
         System.out.println(manager2FaCode);
         request
                 .headers("token", managerTokenWith2FA)
