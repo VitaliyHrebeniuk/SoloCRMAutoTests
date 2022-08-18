@@ -16,10 +16,12 @@ public class ManagerCreateDealB2BWithPayment extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
+    private String security_code;
 
     @BeforeMethod
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
+        this.security_code = generateUserTokenWith2FaForManager.generateUser2FACode();
         this.managerTokenWith2FA = generateUserTokenWith2FaForManager.set2faForAccount();
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
@@ -262,6 +264,8 @@ public class ManagerCreateDealB2BWithPayment extends BaseTest {
     }
     @AfterMethod
     public void ResetCode() {
+        GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
+        this.manager2FaCode = generateUserTokenWith2FaForManager.get2FaCode2(security_code);
         request
                 .headers("token", managerTokenWith2FA)
                 .post(apiURL + "security/status/disable/" + manager2FaCode)
