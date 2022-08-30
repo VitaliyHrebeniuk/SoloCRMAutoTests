@@ -61,6 +61,7 @@ public class GenerateUserTokenWith2FaForManagerUI {
                 .post(URL + "security/verify/" + manager2FaCode);
         this.managerTokenWith2FA = response.path("data.token").toString();
         return managerTokenWith2FA;
+
     }
 
     /**
