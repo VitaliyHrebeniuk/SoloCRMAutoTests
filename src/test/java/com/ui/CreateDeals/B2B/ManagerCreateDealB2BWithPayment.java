@@ -265,7 +265,7 @@ public class ManagerCreateDealB2BWithPayment extends BaseTest {
     @AfterMethod
     public void ResetCode() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
-        this.manager2FaCode = generateUserTokenWith2FaForManager.get2FaCode2(security_code);
+        this.manager2FaCode = generateUserTokenWith2FaForManager.get2FaCodeRepeat(security_code);
         request
                 .headers("token", managerTokenWith2FA)
                 .post(apiURL + "security/status/disable/" + manager2FaCode)
