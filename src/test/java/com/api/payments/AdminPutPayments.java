@@ -60,7 +60,7 @@ public class AdminPutPayments {
         ym = new SimpleDateFormat("y-M-");
         d = new SimpleDateFormat("d");
         d_result = valueOf(d.format(today));
-        d_result_int = Integer.parseInt(valueOf(d_result))+ 2;
+        d_result_int = Integer.parseInt(valueOf(d_result))+ 1;
         hours = new SimpleDateFormat("H:");
         minutes = new SimpleDateFormat("m");
         minutes_result = valueOf(minutes.format(today));

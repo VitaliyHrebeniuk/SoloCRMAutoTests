@@ -237,8 +237,9 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, searchLinkButton).click();
         return this;
     }
-    public DealPageB2B inputLink(String link) {
+    public DealPageB2B inputLink(String link) throws InterruptedException {
         waitForElementClickable(webDriver, linkInput).sendKeys("https://football.ua");
+        Thread.sleep(3000);
         return this;
     }
     public DealPageB2B clickOnAddLinkButton() {
