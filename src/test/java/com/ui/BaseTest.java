@@ -8,8 +8,7 @@ public class BaseTest{
     protected static WebDriver webDriver;
     public static final String baseURL = "https://beta.solo-crm.com/";
     public static final String apiURL = "https://beta-api.solo-crm.com/";
-    public static final String jiraURL = "https://solocrm.atlassian.net/";
-    public static final String jiraTaskURL = "https://solocrm.atlassian.net/browse/SOLOCRM-95";
+    public static final String jiraURL = "https://solocrm.atlassian.net/browse/SOLOCRM-95";
 
 
     @BeforeTest

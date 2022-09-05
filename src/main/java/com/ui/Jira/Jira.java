@@ -1,7 +1,6 @@
 package com.ui.Jira;
 
 import com.ui.pages.BasePage;
-import com.ui.pages.Manager.LoginPageManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -58,7 +57,10 @@ public class Jira extends BasePage {
         return this;
     }
 
-
+    public Jira sleep() throws InterruptedException {
+        Thread.sleep(5000);
+        return this;
+    }
 
 
 }

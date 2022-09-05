@@ -11,14 +11,12 @@ public class CreateTaskInJira extends BaseTest {
                 .inputEmailField("")
                 .clickOnContinueButton()
                 .inputPassword("")
-                .clickOnEnterButton();
-
-        Thread.sleep(5000);
-
-        new Jira(webDriver, jiraTaskURL)
+                .clickOnEnterButton()
+                .sleep()
                 .clickComment()
                 .inputComment()
                 .clickOnSendCommentButton();
+        Thread.sleep(5000);
     }
 
 }

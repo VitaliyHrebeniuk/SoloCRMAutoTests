@@ -1,7 +1,7 @@
 package com.ui.pages.Manager;
 
-import com.ui.pages.BasePage;
 import com.ui.pages.ManagerCreateDealOffline.AddOfflineDealPage;
+import com.ui.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
