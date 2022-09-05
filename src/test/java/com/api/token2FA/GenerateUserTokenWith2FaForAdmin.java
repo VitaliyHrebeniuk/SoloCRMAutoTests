@@ -65,5 +65,4 @@ public class GenerateUserTokenWith2FaForAdmin {
         this.adminTokenWith2FA = response.path("data.token").toString();
         return adminTokenWith2FA;
     }
-
 }

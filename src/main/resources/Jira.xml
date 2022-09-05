@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="CPIVol">
+    <test name="Create Task Jira">
+        <classes>
+            <class name="com.ui.Jira.Jira"/>
+        </classes>
+    </test>
+</suite>
