@@ -11,6 +11,7 @@
             <package name="com.api.redirectors"/>
             <package name="com.api.payments"/>
             <package name="com.api.notifications"/>
+            <package name="com.api.macroses"/>
             <!-- Не тестим: powerbi, reminders -->
         </packages>
     </test>
