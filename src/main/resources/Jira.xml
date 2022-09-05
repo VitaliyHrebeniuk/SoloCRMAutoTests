@@ -2,7 +2,7 @@
 <suite name="CPIVol">
     <test name="Create Task Jira">
         <classes>
-            <class name="com.ui.Jira.Jira"/>
+            <class name="com.ui.CreateTaskInJira.CreateTaskInJira"/>
         </classes>
     </test>
 </suite>
