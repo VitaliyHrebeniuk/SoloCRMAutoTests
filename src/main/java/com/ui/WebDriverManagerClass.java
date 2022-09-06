@@ -31,7 +31,7 @@ public class WebDriverManagerClass {
                         "--disable-dev-shm-usage", "--remote-debugging-port=9222");
 
                 webDriver = new ChromeDriver(chromeOptions);
-//                webDriver.manage().window().maximize();
+                webDriver.manage().window().maximize();
 
                 break;
             case "ff":
