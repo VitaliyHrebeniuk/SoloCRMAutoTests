@@ -15,7 +15,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
     private String security_code;
-
+    //
     @BeforeMethod
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
