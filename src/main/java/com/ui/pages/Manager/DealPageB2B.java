@@ -202,8 +202,8 @@ public class DealPageB2B extends BasePage {
         Thread.sleep(3000);
         WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
         unhide(webDriver, inputFileInComment);
-//        inputFileInComment.sendKeys("/files/picture.jpg");
-        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
+        inputFileInComment.sendKeys("/files/picture.jpg");
+//        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
     public DealPageB2B clickOnAddCommentButton() {
@@ -488,8 +488,8 @@ public class DealPageB2B extends BasePage {
     public DealPageB2B inputAttachFile(String contract) {
         WebElement inputFileInContract = webDriver.findElement(By.xpath("//div[@class='flex md12']//input[@type='file']"));
         unhide(webDriver, inputFileInContract);
-//        inputFileInContract.sendKeys("/files/contract.txt");
-        inputFileInContract.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
+        inputFileInContract.sendKeys("/files/contract.txt");
+//        inputFileInContract.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
     public DealPageB2B clickOnSaveContractButton() {
