@@ -15,7 +15,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
     private String security_code;
-    //
+
     @BeforeMethod
     public void setToken() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
@@ -212,7 +212,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .clickOnExitButton();
     }
 
-    @AfterClass
+    @AfterMethod
     public void ResetCode() {
         GenerateUserTokenWith2FaForManagerUI generateUserTokenWith2FaForManager = new GenerateUserTokenWith2FaForManagerUI();
         this.manager2FaCode = generateUserTokenWith2FaForManager.get2FaCodeRepeat(security_code);
@@ -223,6 +223,5 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .then()
                 .assertThat()
                 .statusCode(200);
-
     }
 }

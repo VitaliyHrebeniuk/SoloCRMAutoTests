@@ -211,7 +211,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B findAddedComment() {
-        findElement(webDriver, addedComment);
+        waitForElementClickable(webDriver, addedComment);
         return this;
     }
     public DealPageB2B closeDealChat() {
