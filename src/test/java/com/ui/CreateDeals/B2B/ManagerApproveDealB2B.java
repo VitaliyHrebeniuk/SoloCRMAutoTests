@@ -68,7 +68,7 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .inputEndDateInContract("")
                 .inputAttachFile("")
                 .clickOnSaveContractButton()
-                .assertContractName()
+//                .assertContractName()
                 /**
                  * нажимаем на New Payment,
                  * вводим Start date,
