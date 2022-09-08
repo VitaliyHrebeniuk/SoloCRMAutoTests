@@ -26,10 +26,10 @@ public class WebDriverManagerClass {
                  **/
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-                chromeOptions.addArguments(
-                         "--start-maximized", "--ignore-certificate-errors",
+                chromeOptions.addArguments("--headless", "--no-sandbox", "--disable-gpu", "--silent",
+                         "--start-maximized", "--ignore-certificate-errors", "--disable-extensions",
                         "--disable-dev-shm-usage", "--remote-debugging-port=9222", "--window-size=1920,1080");
-//                "--headless","--no-sandbox""--disable-gpu""--silent""--disable-extensions" ,
+//
                 webDriver = new ChromeDriver(chromeOptions);
                 webDriver.manage().window().maximize();
 
