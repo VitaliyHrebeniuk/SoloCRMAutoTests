@@ -210,8 +210,9 @@ public class DealPageB2B extends BasePage {
         waitForElementClickable(webDriver, addCommentButton).click();
         return this;
     }
-    public DealPageB2B findAddedComment() {
-        findElement(webDriver, addedComment);
+    public DealPageB2B findAddedComment() throws InterruptedException {
+        Thread.sleep(3000);
+        waitForElementClickable(webDriver, addedComment);
         return this;
     }
     public DealPageB2B closeDealChat() {
