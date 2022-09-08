@@ -86,7 +86,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .inputCommentInCommunication("")
                 .addFileToComment("")
                 .clickOnAddCommentButton()
-                .findAddedComment()
+//                .findAddedComment()
                 .closeDealChat()
                 /**
                  * Deal log
