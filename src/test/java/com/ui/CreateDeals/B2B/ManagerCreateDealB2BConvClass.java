@@ -82,12 +82,12 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                  * нажать Add comment
                  * Проверить что коммент появился в дилчате
                  */
-//                .clickOnCommunicationButton()
-//                .inputCommentInCommunication("")
-//                .addFileToComment("")
-//                .clickOnAddCommentButton()
-//                .findAddedComment()
-//                .closeDealChat()
+                .clickOnCommunicationButton()
+                .inputCommentInCommunication("")
+                .addFileToComment("")
+                .clickOnAddCommentButton()
+                .findAddedComment()
+                .closeDealChat()
                 /**
                  * Deal log
                  * Открытие страницы логов
