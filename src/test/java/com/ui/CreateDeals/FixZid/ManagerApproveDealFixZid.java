@@ -1,16 +1,16 @@
-package com.ui.CreateDeals.B2B;
+package com.ui.CreateDeals.FixZid;
 
-import com.ui.pages.Manager.DealPageB2B;
+import com.ui.BaseTest;
+import com.ui.pages.Manager.DealPageFixZid;
+import com.ui.pages.Manager.MainPageManager;
 import com.ui.pages.Manager.DealsListPageManager;
 import com.ui.pages.Manager.LoginPageManager;
-import com.ui.pages.Manager.MainPageManager;
-import com.ui.BaseTest;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.*;
 
-public class ManagerApproveDealB2B extends BaseTest {
+public class ManagerApproveDealFixZid extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
     private String manager2FaCode;
@@ -22,7 +22,7 @@ public class ManagerApproveDealB2B extends BaseTest {
         this.manager2FaCode = generateUserTokenWith2FaForManager.manager2FaCode;
     }
     @Test
-    public void addPaymentInB2B() throws InterruptedException {
+    public void addPaymentInFixZid() throws InterruptedException {
         /**
          * Вводим логин, вводим пароль, нажимаем на Sign In,
          * вводим код аутентификации, нажимаем на Send Code.
@@ -40,15 +40,14 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .clickOnPartnersButton()
                 .clickOnDealsListButton();
         /**
-         * Вводим тип сделки B2B, вводим статус сделки
          * Нажимаем на сортировку по Start Date, нажимаем на открытие сделки.
          */
         new DealsListPageManager(webDriver)
-                .inputDealTypeB2B("")
+                .inputDealTypeFixZid("")
                 .inputDealStatus("")
                 .clickOnStartDateSort()
-                .clickOnOpenDealB2BButton();
-        new DealPageB2B(webDriver)
+                .clickOnOpenDealFixZidButton();
+        new DealPageFixZid(webDriver)
                 /**
                  * Deal payments
                  * Нажимаем на блок Deal Payments
@@ -68,7 +67,7 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .inputEndDateInContract("")
                 .inputAttachFile("")
                 .clickOnSaveContractButton()
-//                .assertContractName()
+                .assertContractName()
                 /**
                  * нажимаем на New Payment,
                  * вводим Start date,
@@ -114,4 +113,3 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .statusCode(200);
     }
 }
-
