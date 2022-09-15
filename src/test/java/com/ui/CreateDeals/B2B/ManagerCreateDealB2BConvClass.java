@@ -10,7 +10,6 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.*;
 
-import java.io.IOException;
 
 public class ManagerCreateDealB2BConvClass extends BaseTest {
     String managerTokenWith2FA;
