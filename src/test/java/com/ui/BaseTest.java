@@ -16,7 +16,6 @@ public class BaseTest{
         webDriver = WebDriverManagerClass.getWebDriver();
     }
 
-
     @AfterTest
     public void shutDown() {
         webDriver.quit();

@@ -1,10 +1,10 @@
 package com.ui.CreateDeals.CPI;
 
+import com.ui.BaseTest;
 import com.ui.pages.Manager.DealPageCPI;
 import com.ui.pages.Manager.DealsListPageManager;
 import com.ui.pages.Manager.LoginPageManager;
 import com.ui.pages.Manager.MainPageManager;
-import com.ui.BaseTest;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
