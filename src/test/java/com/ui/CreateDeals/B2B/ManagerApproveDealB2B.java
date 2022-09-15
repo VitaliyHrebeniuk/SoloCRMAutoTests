@@ -1,10 +1,10 @@
 package com.ui.CreateDeals.B2B;
 
+import com.ui.BaseTest;
 import com.ui.pages.Manager.DealPageB2B;
 import com.ui.pages.Manager.DealsListPageManager;
 import com.ui.pages.Manager.LoginPageManager;
 import com.ui.pages.Manager.MainPageManager;
-import com.ui.BaseTest;
 import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
@@ -68,7 +68,7 @@ public class ManagerApproveDealB2B extends BaseTest {
                 .inputEndDateInContract("")
                 .inputAttachFile("")
                 .clickOnSaveContractButton()
-//                .assertContractName()
+                .assertContractName()
                 /**
                  * нажимаем на New Payment,
                  * вводим Start date,

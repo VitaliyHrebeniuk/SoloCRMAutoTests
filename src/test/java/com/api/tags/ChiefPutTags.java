@@ -16,7 +16,7 @@ public class ChiefPutTags {
     final String URL = baseURL.baseURL;
 
     @BeforeClass
-    private void beforeUpdateProfileAdmin() {
+    private void beforeUpdateProfileChief() {
         GenerateUserTokenWith2FaForChief generateUserTokenWith2FaForChief = new GenerateUserTokenWith2FaForChief();
         this.userTokenWith2FA = generateUserTokenWith2FaForChief.set2faForAccount();
         this.user2FaCode = generateUserTokenWith2FaForChief.chief2FaCode;
