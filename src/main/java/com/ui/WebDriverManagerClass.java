@@ -25,11 +25,10 @@ public class WebDriverManagerClass {
                  Перед тем как запушить на сервер разкоментируй строку!тут настройки для серевера
                  **/
                 ChromeOptions chromeOptions = new ChromeOptions();
-//                chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-//                chromeOptions.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,
-//                        "--headless", "--start-maximized", "--ignore-certificate-errors", "--silent",
-//                        "--disable-dev-shm-usage", "--remote-debugging-port=9222");
-                chromeOptions.addArguments("--headless", "--start-maximized", "--ignore-certificate-errors", "--remote-debugging-port=9222");
+                chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                chromeOptions.addArguments("--no-sandbox", "--disable-gpu" ,
+                        "--headless", "--start-maximized", "--ignore-certificate-errors", "--silent",
+                        "--disable-dev-shm-usage", "--remote-debugging-port=9222");
 
                 webDriver = new ChromeDriver(chromeOptions);
                 webDriver.manage().window().maximize();
