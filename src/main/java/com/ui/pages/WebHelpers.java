@@ -54,7 +54,7 @@ public class WebHelpers {
         try {
             WebDriver webDriver = new Augmenter().augment(driver);
             File source = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
-            path = "./target/screenshots/" + source.getName();
+            path = "/files/" + source.getName();
             FileUtils.copyFile(source, new File(path));
         }
         catch(IOException e) {
