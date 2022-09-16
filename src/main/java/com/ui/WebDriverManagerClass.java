@@ -29,7 +29,7 @@ public class WebDriverManagerClass {
 //                chromeOptions.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,
 //                        "--headless", "--start-maximized", "--ignore-certificate-errors", "--silent",
 //                        "--disable-dev-shm-usage", "--remote-debugging-port=9222");
-                chromeOptions.addArguments("--ignore-certificate-errors", "--remote-debugging-port=9222");
+                chromeOptions.addArguments("--headless", "--start-maximized", "--ignore-certificate-errors", "--remote-debugging-port=9222");
 
                 webDriver = new ChromeDriver(chromeOptions);
                 webDriver.manage().window().maximize();
