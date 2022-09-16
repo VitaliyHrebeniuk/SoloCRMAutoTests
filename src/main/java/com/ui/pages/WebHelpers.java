@@ -1,10 +1,13 @@
 package com.ui.pages;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -43,6 +46,21 @@ public class WebHelpers {
                 + "arguments[0].style['OTransform']='translate(0px, 0px) scale(1)';"
                 + "return true;";
         ((JavascriptExecutor) webDriver).executeScript(script, locator);
+    }
+
+    public String captureScreen() {
+        String path;
+        WebDriver driver = new ChromeDriver();
+        try {
+            WebDriver webDriver = new Augmenter().augment(driver);
+            File source = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
+            path = "./target/screenshots/" + source.getName();
+            FileUtils.copyFile(source, new File(path));
+        }
+        catch(IOException e) {
+            path = "Failed to capture screenshot: " + e.getMessage();
+        }
+        return path;
     }
 
     public void switchToNewFrame(WebDriver webDriver) {
