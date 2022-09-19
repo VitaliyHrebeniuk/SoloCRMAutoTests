@@ -48,19 +48,29 @@ public class WebHelpers {
         ((JavascriptExecutor) webDriver).executeScript(script, locator);
     }
 
-    public String captureScreen() {
-        String path;
-        WebDriver driver = new ChromeDriver();
-        try {
-            WebDriver webDriver = new Augmenter().augment(driver);
-            File source = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
-            path = "/files/screen.png" + source.getName();
-            FileUtils.copyFile(source, new File(path));
-        }
-        catch(IOException e) {
-            path = "Failed to capture screenshot: " + e.getMessage();
-        }
-        return path;
+//    public String captureScreen() {
+//        String path;
+//        WebDriver driver = new ChromeDriver();
+//        try {
+//            WebDriver webDriver = new Augmenter().augment(driver);
+//            File source = ((TakesScreenshot)webDriver).getScreenshotAs(OutputType.FILE);
+//            path = "/files/screen.png" + source.getName();
+//            FileUtils.copyFile(source, new File(path));
+//        }
+//        catch(IOException e) {
+//            path = "Failed to capture screenshot: " + e.getMessage();
+//        }
+//        return path;
+//    }
+    public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{
+    //Convert web driver object to TakeScreenshot
+        TakesScreenshot scrShot =((TakesScreenshot)webdriver);
+    //Call getScreenshotAs method to create image file
+        File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+    //Move image file to new destination
+        File DestFile=new File(fileWithPath);
+    //Copy file at destination
+        FileUtils.copyFile(SrcFile, DestFile);
     }
 
     public void switchToNewFrame(WebDriver webDriver) {
