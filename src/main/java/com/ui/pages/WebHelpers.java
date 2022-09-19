@@ -62,7 +62,7 @@ public class WebHelpers {
 //        }
 //        return path;
 //    }
-    public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{
+    public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws IOException {
     //Convert web driver object to TakeScreenshot
         TakesScreenshot scrShot =((TakesScreenshot)webdriver);
     //Call getScreenshotAs method to create image file
