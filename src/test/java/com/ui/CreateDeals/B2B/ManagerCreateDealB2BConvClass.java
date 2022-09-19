@@ -9,8 +9,6 @@ import com.ui.token2Fa.GenerateUserTokenWith2FaForManagerUI;
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.*;
-
-import java.io.IOException;
 import java.lang.InterruptedException;
 
 
