@@ -202,7 +202,7 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, commentInput).sendKeys("1234");
         return this;
     }
-    public DealPageB2B addFileToComment(String comment) throws Exception {
+    public DealPageB2B addFileToComment(String comment) throws InterruptedException {
         Thread.sleep(3000);
         WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
         unhide(webDriver, inputFileInComment);
@@ -214,7 +214,7 @@ public class DealPageB2B extends BasePage {
         waitForElementClickable(webDriver, addCommentButton).click();
         return this;
     }
-    public DealPageB2B findAddedComment() throws Exception {
+    public DealPageB2B findAddedComment() throws IOException, InterruptedException {
         this.takeSnapShot(webDriver, "/files/screen.png");
         Thread.sleep(3000);
         waitForElementClickable(webDriver, addedComment);
@@ -243,7 +243,7 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, searchLinkButton).click();
         return this;
     }
-    public DealPageB2B inputLink(String link) throws Exception {
+    public DealPageB2B inputLink(String link) throws InterruptedException {
         waitForElementClickable(webDriver, linkInput).sendKeys("https://football.ua");
         Thread.sleep(3000);
         return this;
@@ -447,7 +447,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
 
-    public DealPageB2B clickOnSaveDealButton() throws Exception {
+    public DealPageB2B clickOnSaveDealButton() throws InterruptedException {
         waitForInvisibility(webDriver, greenOverlay, 20L);
         waitForElementClickable(webDriver, saveDealButton).click();
         Thread.sleep(3000);
@@ -457,7 +457,7 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, sendOnReviewButton, 1000L).click();
         return this;
     }
-    public DealPageB2B clickOnProfileButton() throws Exception {
+    public DealPageB2B clickOnProfileButton() throws InterruptedException {
         Thread.sleep(3000);
         waitForElementClickable(webDriver, profileButton).click();
         return this;
@@ -476,7 +476,7 @@ public class DealPageB2B extends BasePage {
         waitForElementClickable(webDriver, newContractButton).click();
         return this;
     }
-    public DealPageB2B inputContractName(String name) throws Exception {
+    public DealPageB2B inputContractName(String name) throws InterruptedException {
         findElement(webDriver, contractNameInput).sendKeys("Contract name");
         Thread.sleep(1000);
         return this;
@@ -507,7 +507,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
 
-    public DealPageB2B clickOnNewPaymentButton() throws Exception {
+    public DealPageB2B clickOnNewPaymentButton() throws InterruptedException {
         waitForElementClickable(webDriver, newPaymentButton).click();
         Thread.sleep(1000);
         return this;
@@ -551,12 +551,12 @@ public class DealPageB2B extends BasePage {
         findElement(webDriver, continueButton).click();
         return this;
     }
-    public DealPageB2B inputRemainingCost(String cost) throws Exception {
+    public DealPageB2B inputRemainingCost(String cost) throws InterruptedException {
         waitForElementClickable(webDriver, remainingCostInput).sendKeys("50");
         Thread.sleep(1000);
         return this;
     }
-    public DealPageB2B inputRemainingZidCost(String cost) throws Exception {
+    public DealPageB2B inputRemainingZidCost(String cost) throws InterruptedException {
         findElement(webDriver, remainingZidCostInput).sendKeys("50");
         Thread.sleep(1500);
         return this;
@@ -565,12 +565,12 @@ public class DealPageB2B extends BasePage {
         waitForElementClickable(webDriver, savePaymentButton).click();
         return this;
     }
-    public DealPageB2B clickOnApprovePaymentButton() throws Exception {
+    public DealPageB2B clickOnApprovePaymentButton() throws InterruptedException {
         waitForElementClickable(webDriver, approvePaymentButton).click();
         Thread.sleep(3000);
         return this;
     }
-    public DealPageB2B assertPayment() throws Exception {
+    public DealPageB2B assertPayment() throws InterruptedException {
         Assert.assertEquals(waitForElementClickable(webDriver, infoWallet).
                 getText(),"1x\n" + "WMZ Z146407012030\n" + "100 USD");
         Thread.sleep(5000);
