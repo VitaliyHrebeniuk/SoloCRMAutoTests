@@ -215,7 +215,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B findAddedComment() throws InterruptedException, IOException {
-        takeSnapShot(webDriver, "/files/screen.png");
+//        takeSnapShot(webDriver, "/files/screen.png");
         Thread.sleep(3000);
         waitForElementClickable(webDriver, addedComment);
         return this;

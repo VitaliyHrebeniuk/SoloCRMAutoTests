@@ -26,7 +26,7 @@ public class WebDriverManagerClass {
                  **/
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-                chromeOptions.addArguments("--no-sandbox", "--disable-gpu" ,"--disable-extensions" ,
+                chromeOptions.addArguments("--no-sandbox", "--disable-gpu" ,"--enable-extensions" ,
                         "--headless", "--start-maximized", "--ignore-certificate-errors", "--silent",
                         "--disable-dev-shm-usage", "--remote-debugging-port=9222");
 
