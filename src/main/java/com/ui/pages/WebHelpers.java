@@ -63,7 +63,7 @@ public class WebHelpers {
         return path;
     }
 
-    public static void takeSnapShot(WebDriver webdriver,String fileWithPath) throws IOException {
+    public static void takeSnapShot(WebDriver webdriver,String fileWithPath){
         try {
             //Convert web driver object to TakeScreenshot
             TakesScreenshot scrShot = ((TakesScreenshot) webdriver);

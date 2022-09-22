@@ -90,6 +90,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .inputCommentInCommunication("")
                 .addFileToComment("")
                 .clickOnAddCommentButton()
+                .takeScreenshot()
                 .findAddedComment()
                 .closeDealChat()
                 /**
