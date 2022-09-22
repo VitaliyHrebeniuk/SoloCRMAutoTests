@@ -216,7 +216,7 @@ public class DealPageB2B extends BasePage {
     }
 
     public DealPageB2B takeScreenshot() {
-        takeSnapShot(webDriver, "/files/screen.png");
+        takeSnapShot(webDriver, "/files");
         return this;
     }
     public DealPageB2B findAddedComment() throws InterruptedException{
