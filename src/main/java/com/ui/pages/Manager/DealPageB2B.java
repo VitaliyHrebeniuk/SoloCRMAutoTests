@@ -1,10 +1,14 @@
 package com.ui.pages.Manager;
 
 import com.ui.pages.BasePage;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.openqa.selenium.By;
+
+import java.io.File;
+import java.io.IOException;
 
 public class DealPageB2B extends BasePage {
     private final By infoDealType = By.xpath("//input[@aria-label='Deal type']");
@@ -210,7 +214,12 @@ public class DealPageB2B extends BasePage {
         waitForElementClickable(webDriver, addCommentButton).click();
         return this;
     }
-    public DealPageB2B findAddedComment() throws InterruptedException {
+
+    public DealPageB2B takeScreenshot() {
+        takeSnapShot(webDriver, "/files/screen.png");
+        return this;
+    }
+    public DealPageB2B findAddedComment() throws InterruptedException{
         Thread.sleep(3000);
         waitForElementClickable(webDriver, addedComment);
         return this;

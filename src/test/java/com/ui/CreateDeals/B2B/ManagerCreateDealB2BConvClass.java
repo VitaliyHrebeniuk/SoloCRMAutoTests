@@ -10,6 +10,10 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.*;
 
+import java.io.IOException;
+import java.lang.InterruptedException;
+
+
 public class ManagerCreateDealB2BConvClass extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();
@@ -24,7 +28,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
         this.security_code = generateUserTokenWith2FaForManager.manager2FACode;
     }
     @Test
-    public void createDealB2BConv() throws InterruptedException {
+    public void createDealB2BConv() throws InterruptedException, IOException {
         /**
          * Login page
          * Вводим логин, вводим пароль, нажимаем на Sign In,
@@ -86,6 +90,7 @@ public class ManagerCreateDealB2BConvClass extends BaseTest {
                 .inputCommentInCommunication("")
                 .addFileToComment("")
                 .clickOnAddCommentButton()
+                .takeScreenshot()
                 .findAddedComment()
                 .closeDealChat()
                 /**
