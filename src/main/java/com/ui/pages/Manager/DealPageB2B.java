@@ -216,7 +216,7 @@ public class DealPageB2B extends BasePage {
     }
 
     public DealPageB2B takeScreenshot() {
-        takeSnapShot(webDriver, "/files/screen.png");
+        takeSnapShot(webDriver, "\\files\\screen.png");
 //        takeSnapShot(webDriver, "C:\\Users\\aberz\\Downloads\\screen.png");
         return this;
     }
