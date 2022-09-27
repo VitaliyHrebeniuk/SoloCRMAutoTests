@@ -210,7 +210,8 @@ public class DealPageB2B extends BasePage {
 //        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
-    public DealPageB2B clickOnAddCommentButton() {
+    public DealPageB2B clickOnAddCommentButton() throws InterruptedException {
+        Thread.sleep(3000);
         waitForElementClickable(webDriver, addCommentButton).click();
         return this;
     }
@@ -220,7 +221,7 @@ public class DealPageB2B extends BasePage {
         return this;
     }
     public DealPageB2B findAddedComment() throws InterruptedException{
-        Thread.sleep(5000);
+        Thread.sleep(3000);
         waitForElementClickable(webDriver, addedComment);
         return this;
     }
