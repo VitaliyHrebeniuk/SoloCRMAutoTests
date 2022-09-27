@@ -24,7 +24,8 @@ public class DealPageB2B extends BasePage {
 
     private final By communicationButton = By.xpath("//div[contains(text(),'Communication')]");
     private final By commentInput = By.xpath("//div[@id='comment']//textarea[@aria-label='Comment']");
-    private final By addCommentButton = By.xpath("//div[contains(text(),' Add comment ')]");
+    private final By addCommentButton = By.xpath
+            ("//button[@class='white--text btn-success v-btn v-btn--small theme--light']");
     private final By addedComment = By.xpath("//div[@class='comment-author']");
     private final By closeDealChat = By.xpath("//div[@class='v-dialog__content v-dialog__content--active']" +
             "//div[contains(text(),'Close')]");
