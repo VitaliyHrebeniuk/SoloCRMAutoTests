@@ -208,12 +208,11 @@ public class DealPageB2B extends BasePage {
         WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
         unhide(webDriver, inputFileInComment);
         inputFileInComment.sendKeys("/files/picture.jpg");
+        Thread.sleep(3000);
 //        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
-    public DealPageB2B clickOnAddCommentButton() throws InterruptedException {
-        Thread.sleep(3000);
-        waitForElementClickable(webDriver, addCommentButton).click();
+    public DealPageB2B clickOnAddCommentButton() {
         findElement(webDriver, addCommentButton).click();
         return this;
     }
