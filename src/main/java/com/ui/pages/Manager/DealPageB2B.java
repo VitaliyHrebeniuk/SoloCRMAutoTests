@@ -212,7 +212,8 @@ public class DealPageB2B extends BasePage {
 //        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
-    public DealPageB2B clickOnAddCommentButton() {
+    public DealPageB2B clickOnAddCommentButton() throws InterruptedException {
+        Thread.sleep(3000);
         findElement(webDriver, addCommentButton).click();
         return this;
     }
