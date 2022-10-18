@@ -13,7 +13,6 @@ import org.testng.annotations.*;
 import java.io.IOException;
 import java.lang.InterruptedException;
 
-
 public class ManagerCreateDealB2BConvClass extends BaseTest {
     String managerTokenWith2FA;
     RequestSpecification request = RestAssured.given();

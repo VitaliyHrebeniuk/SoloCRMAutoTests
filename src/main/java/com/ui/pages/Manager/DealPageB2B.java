@@ -24,7 +24,8 @@ public class DealPageB2B extends BasePage {
 
     private final By communicationButton = By.xpath("//div[contains(text(),'Communication')]");
     private final By commentInput = By.xpath("//div[@id='comment']//textarea[@aria-label='Comment']");
-    private final By addCommentButton = By.xpath("//div[contains(text(),' Add comment ')]");
+    private final By addCommentButton = By.xpath
+            ("//button[@class='white--text btn-success v-btn v-btn--small theme--light']");
     private final By addedComment = By.xpath("//div[@class='comment-author']");
     private final By closeDealChat = By.xpath("//div[@class='v-dialog__content v-dialog__content--active']" +
             "//div[contains(text(),'Close')]");
@@ -207,16 +208,18 @@ public class DealPageB2B extends BasePage {
         WebElement inputFileInComment = webDriver.findElement(By.xpath("//input[@type='file'][@id='files'][@accept='image/*']"));
         unhide(webDriver, inputFileInComment);
         inputFileInComment.sendKeys("/files/picture.jpg");
+        Thread.sleep(3000);
 //        inputFileInComment.sendKeys("C:\\Users\\aberz\\Downloads\\picture.jpg");
         return this;
     }
-    public DealPageB2B clickOnAddCommentButton() {
-        waitForElementClickable(webDriver, addCommentButton).click();
+    public DealPageB2B clickOnAddCommentButton() throws InterruptedException {
+        Thread.sleep(3000);
+        findElement(webDriver, addCommentButton).click();
         return this;
     }
-
     public DealPageB2B takeScreenshot() {
         takeSnapShot(webDriver, "/files/screen.png");
+//        takeSnapShot(webDriver, "C:\\Users\\aberz\\Downloads\\screen.png");
         return this;
     }
     public DealPageB2B findAddedComment() throws InterruptedException{
