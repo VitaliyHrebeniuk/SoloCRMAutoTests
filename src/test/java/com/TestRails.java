@@ -9,4 +9,6 @@ import java.lang.annotation.Target;
 public @interface TestRails {
 
 	String id() default "none";
+
+    String description() default "none";
 }

@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Log Actions" verbose="1">
+    <test name="Valid Login">
+        <classes>
+            <class name="com.testRail.logsAction.LoginValidSuite" />
+        </classes>
+    </test>
+    <test name="Logout Users">
+        <classes>
+            <class name="com.testRail.logsAction.LogoutUsers" />
+        </classes>
+    </test>
+</suite>

@@ -10,7 +10,7 @@
  * Copyright Gurock Software GmbH. See license.md for details.
  */
  
-package com;
+package com.testRail;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;

@@ -1,38 +1,34 @@
-package com.ui.pages.Auditor;
+package com.ui.pages.Admin;
 
-import com.ui.pages.Admin.MainPageAdmin;
+import com.ui.pages.Auditor.PaymentsListPageAuditor;
 import com.ui.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MainPageAuditor extends BasePage {
+public class MainPageAdmin extends BasePage {
     private final By paymentsListButton = By.xpath("//a[@id='buying-payments_list']");
     private final By profileButton = By.id("profile_btn");
     private final By exitButton = By.id("exit_btn");
     private final By yesWarningButton = By.xpath("//body/div[@id='app']/div[2]/div[1]/div[1]/div[2]/button[2]");
 
-    public MainPageAuditor(WebDriver webDriver) {
+    public MainPageAdmin(WebDriver webDriver) {
         super(webDriver);
     }
 
-    public PaymentsListPageAuditor clickOnPaymentsListButton() {
-        findElement(webDriver, paymentsListButton).click();
-        return new PaymentsListPageAuditor(webDriver);
-    }
-
-    public MainPageAuditor clickOnProfileButton() {
+    public MainPageAdmin clickOnProfileButton() {
         findElement(webDriver, profileButton).click();
         return this;
     }
 
-    public MainPageAuditor clickOnExitButton() {
+    public MainPageAdmin clickOnExitButton() {
         findElement(webDriver, exitButton).click();
         return this;
     }
 
-    public MainPageAuditor clickOnYesWarningButton() {
+    public MainPageAdmin clickOnYesWarningButton() {
         findElement(webDriver, yesWarningButton).click();
         return this;
     }
+
 
 }

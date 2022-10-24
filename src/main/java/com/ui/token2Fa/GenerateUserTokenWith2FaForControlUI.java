@@ -7,32 +7,32 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
 
-public class GenerateUserTokenWith2FaForAdminUI {
-    final String LOGIN_TRUE = "admin_TEST_UI";
+public class GenerateUserTokenWith2FaForControlUI {
+    final String LOGIN_TRUE = "control_TEST_UI";
     final String PASSWORD_TRUE = "132465798";
-    public String adminTokenWithout2FA;
-    public String admin2FACode;
-    public String adminTokenWith2FA;
-    public String admin2FaCode;
+    public String controlTokenWithout2FA;
+    public String control2FACode;
+    public String controlTokenWith2FA;
+    public String control2FaCode;
     public RequestSpecification request = RestAssured.given();
     final String URL = "https://beta-api.solo-crm.com/";
 
     public String setUserTokenWithout2FA(){
         Response response = request
-                .param("login", LOGIN_TRUE)
-                .param("password", PASSWORD_TRUE)
-                .post(URL + "profile/login");
-        adminTokenWithout2FA = response.path("data.token").toString();
-        return adminTokenWithout2FA;
+                .queryParams("login", LOGIN_TRUE)
+                .queryParams("password", PASSWORD_TRUE)
+                .post(URL+"profile/login");
+        this.controlTokenWithout2FA = response.path("data.token").toString();
+        return controlTokenWithout2FA;
     }
 
     public String generateUser2FACode(){
         String setUserTokenWithout2FA = setUserTokenWithout2FA();
         Response response = request
                 .headers("token", setUserTokenWithout2FA)
-                .get( URL + "security/generate/code/qr");
-        admin2FACode = response.path("data.security_code").toString();
-        return admin2FACode;
+                .get(URL+"security/generate/code/qr");
+        this.control2FACode = response.path("data.security_code").toString();
+        return control2FACode;
     }
 
     public String getTOTPCode(String secretKey) {
@@ -42,7 +42,7 @@ public class GenerateUserTokenWith2FaForAdminUI {
         return TOTP.getOTP(hexKey);
     }
 
-    public String get2FaCode() {
+    public String chief2FaCode() {
         String secretKey = generateUser2FACode();
         String lastCode = null;
         int i = 1;
@@ -56,12 +56,11 @@ public class GenerateUserTokenWith2FaForAdminUI {
     }
 
     public String set2faForAccount(){
-        this.admin2FaCode = get2FaCode();
+        this.control2FaCode = chief2FaCode();
         Response response = request
                 .headers("token",setUserTokenWithout2FA())
-                .post(URL + "security/verify/" + admin2FaCode);
-        this.adminTokenWith2FA = response.path("data.token").toString();
-        return adminTokenWith2FA;
+                .post(URL+"security/verify/" + control2FaCode);
+        this.controlTokenWith2FA = response.path("data.token").toString();
+        return controlTokenWith2FA;
     }
-
 }
