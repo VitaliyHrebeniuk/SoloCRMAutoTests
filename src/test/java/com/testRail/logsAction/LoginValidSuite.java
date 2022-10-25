@@ -115,11 +115,6 @@ public class LoginValidSuite extends BaseTest {
     public String spamer2FaCode;
 
     /**
-     * Base URL
-     */
-    BaseURL apiURL = new BaseURL();
-    final String URL = apiURL.baseURL;
-    /**
      * Инфа для ТестРейл
      */
     String PROJECT_ID = "1";
@@ -180,7 +175,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", userTokenWith2FA)
-                .post(URL+"security/status/disable/" + user2FaCode)
+                .post(apiURL+"security/status/disable/" + user2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -214,7 +209,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", teamLeadTokenWith2FA)
-                .post(URL+"security/status/disable/" + teamLead2FaCode)
+                .post(apiURL+"security/status/disable/" + teamLead2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -248,7 +243,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", chiefTokenWith2FA)
-                .post(URL+"security/status/disable/" + chief2FaCode)
+                .post(apiURL+"security/status/disable/" + chief2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -282,7 +277,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", managerTokenWith2FA)
-                .post(URL+"security/status/disable/" + manager2FaCode)
+                .post(apiURL+"security/status/disable/" + manager2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -316,7 +311,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", auditorTokenWith2FA)
-                .post(URL+"security/status/disable/" + auditor2FaCode)
+                .post(apiURL+"security/status/disable/" + auditor2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -350,7 +345,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", buyingControlTokenWith2FA)
-                .post(URL+"security/status/disable/" + buyingControl2FaCode)
+                .post(apiURL+"security/status/disable/" + buyingControl2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -384,7 +379,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", cmWith2FA)
-                .post(URL+"security/status/disable/" + cm2FaCode)
+                .post(apiURL+"security/status/disable/" + cm2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -418,7 +413,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", controlWith2FA)
-                .post(URL+"security/status/disable/" + control2FaCode)
+                .post(apiURL+"security/status/disable/" + control2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -452,7 +447,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", finControlWith2FA)
-                .post(URL+"security/status/disable/" + finControl2FaCode)
+                .post(apiURL+"security/status/disable/" + finControl2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -486,7 +481,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", fsWith2FA)
-                .post(URL+"security/status/disable/" + fs2FaCode)
+                .post(apiURL+"security/status/disable/" + fs2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -520,7 +515,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", headControlTokenWith2FA)
-                .post(URL+"security/status/disable/" + headControl2FaCode)
+                .post(apiURL+"security/status/disable/" + headControl2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -554,7 +549,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", retentionManagerTokenWith2FA)
-                .post(URL+"security/status/disable/" + retentionManager2FaCode)
+                .post(apiURL+"security/status/disable/" + retentionManager2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -588,7 +583,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", retentionTeamLeadTokenWith2FA)
-                .post(URL+"security/status/disable/" + retentionTeamLead2FaCode)
+                .post(apiURL+"security/status/disable/" + retentionTeamLead2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -622,7 +617,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", searcherTokenWith2FA)
-                .post(URL+"security/status/disable/" + searcher2FaCode)
+                .post(apiURL+"security/status/disable/" + searcher2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
@@ -656,7 +651,7 @@ public class LoginValidSuite extends BaseTest {
          */
         request
                 .headers("token", spamerTokenWith2FA)
-                .post(URL+"security/status/disable/" + spamer2FaCode)
+                .post(apiURL+"security/status/disable/" + spamer2FaCode)
                 .then()
                 .assertThat()
                 .statusCode(200);
