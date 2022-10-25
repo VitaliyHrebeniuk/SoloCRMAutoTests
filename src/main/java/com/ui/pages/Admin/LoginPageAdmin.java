@@ -61,7 +61,7 @@ public class LoginPageAdmin extends BasePage{
     }
 
     public LoginPageAdmin inputIncorrectPassword(String password) {
-        findElement(webDriver, passwordField).sendKeys("132465798");
+        findElement(webDriver, passwordField).sendKeys("12415");
         return this;
     }
     public LoginPageAdmin assertPasswordError() {
@@ -71,6 +71,10 @@ public class LoginPageAdmin extends BasePage{
 
     public LoginPageAdmin inputIncorrectAuthCode(String admin2FaCode) {
         findElement(webDriver, authCodeInput).sendKeys("12345");
+        return this;
+    }
+    public LoginPageAdmin clickOnSendCodeButton1() {
+        findElement(webDriver, sendCodeButton).click();
         return this;
     }
     public LoginPageAdmin assertAuthCodeError() {

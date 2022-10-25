@@ -50,7 +50,7 @@ public class InvalidLoginSuite extends BaseTest {
 //        ctx.setAttribute("suiteId",suite_id);
 //    }
     @TestRails(id="165")
-    @Test
+    @Test(priority=1)
     public void enterIncorrectLogin() {
         /**
          * Подключаем 2ФА и запоминаем код
@@ -79,7 +79,7 @@ public class InvalidLoginSuite extends BaseTest {
                 .statusCode(200);
     }
     @TestRails(id="166")
-    @Test
+    @Test(priority = 2)
     public void enterIncorrectPassword() {
         /**
          * Подключаем 2ФА и запоминаем код
@@ -108,7 +108,7 @@ public class InvalidLoginSuite extends BaseTest {
                 .statusCode(200);
     }
     @TestRails(id="167")
-    @Test
+    @Test(priority = 3)
     public void enterIncorrect2FaCode() {
         /**
          * Подключаем 2ФА и запоминаем код
@@ -128,6 +128,7 @@ public class InvalidLoginSuite extends BaseTest {
                 .inputPassword("")
                 .clickOnSignInButton()
                 .inputIncorrectAuthCode("")
+                .clickOnSendCodeButton1()
                 .assertAuthCodeError()
                 .closeAuthCodeWindow();
         /**
