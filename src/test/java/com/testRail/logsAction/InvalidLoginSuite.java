@@ -60,9 +60,8 @@ public class InvalidLoginSuite extends BaseTest {
         this.user2FaCode = generateUserTokenWith2FAForAdminUI.admin2FaCode;
 
         /**
-         * Вводим логин, вводим пароль, нажимаем на Sign In,
-         * вводим код аутентификации, нажимаем на Send Code.
-         * После чего выходим из аккаунта
+         * Вводим несуществующий логин, вводим пароль, нажимаем на Sign In,
+         * Проверяем что пришло сообщение об ошибке
          */
         new LoginPageAdmin(webDriver, baseURL)
                 .inputIncorrectLogin("")
@@ -90,9 +89,8 @@ public class InvalidLoginSuite extends BaseTest {
         this.user2FaCode = generateUserTokenWith2FAForAdminUI.admin2FaCode;
 
         /**
-         * Вводим логин, вводим пароль, нажимаем на Sign In,
-         * вводим код аутентификации, нажимаем на Send Code.
-         * После чего выходим из аккаунта
+         * Вводим логин, вводим неправильный пароль, нажимаем на Sign In,
+         * Проверяем что пришло сообщение об ошибке
          */
         new LoginPageAdmin(webDriver, baseURL)
                 .inputLogin("")
@@ -121,15 +119,17 @@ public class InvalidLoginSuite extends BaseTest {
 
         /**
          * Вводим логин, вводим пароль, нажимаем на Sign In,
-         * вводим код аутентификации, нажимаем на Send Code.
-         * После чего выходим из аккаунта
+         * вводим неправильный код аутентификации, нажимаем на Send Code.
+         * Проверяем что пришло сообщение об ошибке.
+         * Закрываем окно ввода кода аутентификации.
          */
         new LoginPageAdmin(webDriver, baseURL)
                 .inputLogin("")
                 .inputPassword("")
                 .clickOnSignInButton()
                 .inputIncorrectAuthCode("")
-                .assertAuthCodeError();
+                .assertAuthCodeError()
+                .closeAuthCodeWindow();
         /**
          * Отключаем 2ФА юзеру.
          */

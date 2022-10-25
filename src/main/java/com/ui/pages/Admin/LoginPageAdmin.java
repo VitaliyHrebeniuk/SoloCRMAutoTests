@@ -19,6 +19,7 @@ public class LoginPageAdmin extends BasePage{
             ("//div[@class='vue-notification-template vue-notification error'][contains(., 'Password is wrong')]");
     private final By errorAuthCodeWindow = By.xpath
             ("//div[@class='vue-notification-template vue-notification error'][contains(., 'Wrong code')]");
+    private final By closeAuthCodeWindowButton = By.xpath("//div[contains(text(),'Close')]");
 
 
     public LoginPageAdmin(WebDriver webDriver, String url) {
@@ -73,7 +74,11 @@ public class LoginPageAdmin extends BasePage{
         return this;
     }
     public LoginPageAdmin assertAuthCodeError() {
-        Assert.assertEquals(waitForElementClickable(webDriver, errorLoginWindow).getText(),"Error\nWrong code");
+        Assert.assertEquals(waitForElementClickable(webDriver, errorAuthCodeWindow).getText(),"Error\nWrong code");
+        return this;
+    }
+    public LoginPageAdmin closeAuthCodeWindow() {
+        findElement(webDriver, closeAuthCodeWindowButton).click();
         return this;
     }
 }
