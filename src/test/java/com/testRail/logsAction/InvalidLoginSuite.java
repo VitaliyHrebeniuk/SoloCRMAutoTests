@@ -12,10 +12,12 @@ import org.json.simple.JSONObject;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,6 +52,16 @@ public class InvalidLoginSuite extends BaseTest {
         c = (JSONObject)client.sendPost("add_run/"+PROJECT_ID,data);
         Long suite_id = (Long)c.get("id");
         ctx.setAttribute("suiteId",suite_id);
+    }
+    @BeforeMethod
+    public void beforeTest(ITestContext ctx, Method method) throws NoSuchMethodException {
+        Method m = LoginValidSuite.class.getMethod(method.getName());
+
+        if (m.isAnnotationPresent(TestRails.class)) {
+            TestRails ta = m.getAnnotation(TestRails.class);
+            System.out.println(ta.id());
+            ctx.setAttribute("caseId",ta.id());
+        }
     }
     @TestRails(id="165")
     @Test(priority=1)
