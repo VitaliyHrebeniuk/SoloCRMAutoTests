@@ -10,6 +10,8 @@ import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import org.testng.ITestContext;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
@@ -35,20 +37,20 @@ public class InvalidLoginSuite extends BaseTest {
     String PROJECT_ID = "1";
     APIClient client = null;
 
-//    @BeforeSuite
-//    public void createSuite(ITestContext ctx) throws IOException, APIException {
-//        client = new APIClient("https://solocrmtest.testrail.io");
-//        client.setUser("aberzeniyaqa@gmail.com");
-//        client.setPassword("X@1VYnbH");
-//        Map data = new HashMap();
-//        data.put("include_all",true);
-//        data.put("name","Invalid Login Suite "+System.currentTimeMillis());
-//        data.put("suite_id",16);
-//        JSONObject c;
-//        c = (JSONObject)client.sendPost("add_run/"+PROJECT_ID,data);
-//        Long suite_id = (Long)c.get("id");
-//        ctx.setAttribute("suiteId",suite_id);
-//    }
+    @BeforeSuite
+    public void createSuite(ITestContext ctx) throws IOException, APIException {
+        client = new APIClient("https://solocrmtest.testrail.io");
+        client.setUser("aberzeniyaqa@gmail.com");
+        client.setPassword("X@1VYnbH");
+        Map data = new HashMap();
+        data.put("include_all",true);
+        data.put("name","Invalid Login Suite "+System.currentTimeMillis());
+        data.put("suite_id",16);
+        JSONObject c;
+        c = (JSONObject)client.sendPost("add_run/"+PROJECT_ID,data);
+        Long suite_id = (Long)c.get("id");
+        ctx.setAttribute("suiteId",suite_id);
+    }
     @TestRails(id="165")
     @Test(priority=1)
     public void enterIncorrectLogin() {
@@ -140,5 +142,21 @@ public class InvalidLoginSuite extends BaseTest {
                 .then()
                 .assertThat()
                 .statusCode(200);
+    }
+    @AfterMethod
+    public void afterTest(ITestResult result, ITestContext ctx) throws IOException, APIException {
+        Map data = new HashMap();
+        if(result.isSuccess()) {
+            data.put("status_id",1);
+        }
+        else {
+            data.put("status_id", 5);
+            data.put("comment", result.getThrowable().toString());
+        }
+
+        String caseId = (String)ctx.getAttribute("caseId");
+        Long suiteId = (Long)ctx.getAttribute("suiteId");
+        client.sendPost("add_result_for_case/"+suiteId+"/"+caseId,data);
+
     }
 }
