@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InvalidLoginSuite extends BaseTest {
+public class InvalidLoginSuite_id_2 extends BaseTest {
     /**
      * Чтобы можно было отправлять запросы Апишки
      */
@@ -46,16 +46,17 @@ public class InvalidLoginSuite extends BaseTest {
         client.setPassword("X@1VYnbH");
         Map data = new HashMap();
         data.put("include_all",true);
-        data.put("name","Invalid Login Suite "+System.currentTimeMillis());
+        data.put("name","Login Valid Suite "+System.currentTimeMillis());
         data.put("suite_id",16);
         JSONObject c;
         c = (JSONObject)client.sendPost("add_run/"+PROJECT_ID,data);
         Long suite_id = (Long)c.get("id");
         ctx.setAttribute("suiteId",suite_id);
     }
+
     @BeforeMethod
     public void beforeTest(ITestContext ctx, Method method) throws NoSuchMethodException {
-        Method m = LoginValidSuite.class.getMethod(method.getName());
+        Method m = InvalidLoginSuite_id_2.class.getMethod(method.getName());
 
         if (m.isAnnotationPresent(TestRails.class)) {
             TestRails ta = m.getAnnotation(TestRails.class);

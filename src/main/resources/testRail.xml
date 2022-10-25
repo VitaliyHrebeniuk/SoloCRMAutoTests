@@ -2,12 +2,12 @@
 <suite name="Log Actions" verbose="1">
     <test name="Valid Login">
         <classes>
-            <class name="com.testRail.logsAction.LoginValidSuite" />
+            <class name="com.testRail.logsAction.LoginValidSuite_id_1" />
         </classes>
     </test>
     <test name="Logout Users">
         <classes>
-            <class name="com.testRail.logsAction.LogoutUsers" />
+            <class name="com.testRail.logsAction.LogoutUsersSuite_id_3" />
         </classes>
     </test>
 </suite>

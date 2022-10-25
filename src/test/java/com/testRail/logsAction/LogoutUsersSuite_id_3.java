@@ -36,7 +36,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LogoutUsers  extends BaseTest {
+public class LogoutUsersSuite_id_3 extends BaseTest {
     /**
      * Чтобы можно было отправлять запросы Апишки
      */
@@ -145,7 +145,7 @@ public class LogoutUsers  extends BaseTest {
 
     @BeforeMethod
     public void beforeTest(ITestContext ctx, Method method) throws NoSuchMethodException {
-        Method m = LogoutUsers.class.getMethod(method.getName());
+        Method m = LogoutUsersSuite_id_3.class.getMethod(method.getName());
         if (m.isAnnotationPresent(TestRails.class)) {
             TestRails ta = m.getAnnotation(TestRails.class);
             System.out.println(ta.id());

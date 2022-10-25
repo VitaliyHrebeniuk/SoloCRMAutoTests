@@ -1,7 +1,6 @@
 package com.testRail.logsAction;
 
 import com.TestRails;
-import com.api.BaseURL;
 import com.testRail.APIClient;
 import com.testRail.APIException;
 import com.ui.BaseTest;
@@ -33,7 +32,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginValidSuite extends BaseTest {
+public class LoginValidSuite_id_1 extends BaseTest {
     /**
      * Чтобы можно было отправлять запросы Апишки
      */
@@ -137,7 +136,7 @@ public class LoginValidSuite extends BaseTest {
 
     @BeforeMethod
     public void beforeTest(ITestContext ctx, Method method) throws NoSuchMethodException {
-        Method m = LoginValidSuite.class.getMethod(method.getName());
+        Method m = LoginValidSuite_id_1.class.getMethod(method.getName());
 
         if (m.isAnnotationPresent(TestRails.class)) {
             TestRails ta = m.getAnnotation(TestRails.class);
